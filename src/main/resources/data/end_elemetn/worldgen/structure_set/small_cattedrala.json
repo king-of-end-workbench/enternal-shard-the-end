@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "end_elemetn:small_cattedrala",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 25,
+    "separation": 24,
+    "salt": 592793727
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": [
+    "end_elemetn:chorus_forest",
+    "end_elemetn:inverted_forest"
+  ],
+  "spawners": {
+    "type": "end_elemetn:trumpling",
+    "weight": 6,
+    "minCount": 1,
+    "maxCount": 2
+  }
+}

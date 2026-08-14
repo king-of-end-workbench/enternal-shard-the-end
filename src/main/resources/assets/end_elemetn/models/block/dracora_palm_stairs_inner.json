@@ -1,0 +1,10 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "particle": "end_elemetn:block/dracora_palm_planks",
+    "bottom": "end_elemetn:block/dracora_palm_planks",
+    "top": "end_elemetn:block/dracora_palm_planks",
+    "side": "end_elemetn:block/dracora_palm_planks"
+  },
+  "render_type": "solid"
+}

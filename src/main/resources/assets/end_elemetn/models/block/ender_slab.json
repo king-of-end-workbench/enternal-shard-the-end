@@ -1,0 +1,10 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "particle": "end_elemetn:block/end_citadel_wood",
+    "bottom": "end_elemetn:block/end_citadel_wood",
+    "top": "end_elemetn:block/end_citadel_wood",
+    "side": "end_elemetn:block/end_citadel_wood"
+  },
+  "render_type": "solid"
+}

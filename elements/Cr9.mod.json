@@ -1,0 +1,49 @@
+{
+  "_fv": 79,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "unlockingItems": [],
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:ChorusScrap"
+      },
+      {
+        "value": "CUSTOM:EnternalRawOre"
+      },
+      {
+        "value": "CUSTOM:ChorusScrap"
+      },
+      {
+        "value": "CUSTOM:EnternalRawOre"
+      },
+      {
+        "value": "Items.ENDER_PEARL"
+      },
+      {
+        "value": "CUSTOM:EnternalRawOre"
+      },
+      {
+        "value": "CUSTOM:ChorusScrap"
+      },
+      {
+        "value": "CUSTOM:EnternalRawOre"
+      },
+      {
+        "value": "CUSTOM:ChorusScrap"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:EnternalShard"
+    },
+    "name": "cr_9",
+    "namespace": "mod"
+  }
+}

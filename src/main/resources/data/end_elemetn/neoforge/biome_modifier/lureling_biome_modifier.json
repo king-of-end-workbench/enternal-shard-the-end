@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "small_end_islands",
+  "spawners": {
+    "type": "end_elemetn:lureling",
+    "weight": 8,
+    "minCount": 1,
+    "maxCount": 3
+  }
+}

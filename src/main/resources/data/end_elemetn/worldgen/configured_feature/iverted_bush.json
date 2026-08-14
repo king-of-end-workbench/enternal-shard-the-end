@@ -1,0 +1,12 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:inverted_bush",
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      0,
+      -1,
+      0
+    ]
+  }
+}

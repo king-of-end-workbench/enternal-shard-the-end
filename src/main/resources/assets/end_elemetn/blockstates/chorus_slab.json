@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "end_elemetn:block/chorus_slab"
+    },
+    "type=top": {
+      "model": "end_elemetn:block/chorus_slab_top"
+    },
+    "type=double": {
+      "model": "end_elemetn:block/chorus_slab_full"
+    }
+  }
+}

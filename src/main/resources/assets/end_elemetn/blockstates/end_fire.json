@@ -1,0 +1,28 @@
+{
+  "multipart": [
+    {
+      "apply": { "model": "end_elemetn:block/end_fire" },
+      "when": { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" }
+    },
+    {
+      "apply": { "model": "end_elemetn:block/end_fire_side" },
+      "when": { "OR": [ { "north": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" } ] }
+    },
+    {
+      "apply": { "model": "end_elemetn:block/end_fire_side", "y": 90 },
+      "when": { "OR": [ { "east": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" } ] }
+    },
+    {
+      "apply": { "model": "end_elemetn:block/end_fire_side", "y": 180 },
+      "when": { "OR": [ { "south": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" } ] }
+    },
+    {
+      "apply": { "model": "end_elemetn:block/end_fire_side", "y": 270 },
+      "when": { "OR": [ { "west": "true" }, { "east": "false", "north": "false", "south": "false", "up": "false", "west": "false" } ] }
+    },
+    {
+      "apply": { "model": "end_elemetn:block/end_fire_up" },
+      "when": { "up": "true" }
+    }
+  ]
+}

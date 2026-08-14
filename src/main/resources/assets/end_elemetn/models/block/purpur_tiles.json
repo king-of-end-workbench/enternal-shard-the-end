@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/endcitadel_carved_bricks",
+    "up": "end_elemetn:block/endcitadel_carved_bricks",
+    "north": "end_elemetn:block/endcitadel_carved_bricks",
+    "east": "end_elemetn:block/endcitadel_carved_bricks",
+    "south": "end_elemetn:block/endcitadel_carved_bricks",
+    "west": "end_elemetn:block/endcitadel_carved_bricks",
+    "particle": "end_elemetn:block/endcitadel_carved_bricks"
+  },
+  "render_type": "solid"
+}

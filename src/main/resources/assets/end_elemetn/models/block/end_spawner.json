@@ -1,0 +1,9 @@
+{
+  "parent": "end_elemetn:block/template_end_spawner",
+  "textures": {
+    "bottom": "end_elemetn:block/trial_spawner_bottom",
+    "top": "end_elemetn:block/trial_spawner_top_active_ominous",
+    "side": "end_elemetn:block/trial_spawner_side_active_ominous"
+  },
+  "render_type": "cutout"
+}

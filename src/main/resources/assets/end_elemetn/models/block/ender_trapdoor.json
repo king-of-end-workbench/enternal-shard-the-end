@@ -1,0 +1,8 @@
+{
+  "parent": "block/template_orientable_trapdoor_bottom",
+  "textures": {
+    "texture": "end_elemetn:block/jellyshroom_trapdoor",
+    "particle": "end_elemetn:block/jellyshroom_trapdoor"
+  },
+  "render_type": "solid"
+}

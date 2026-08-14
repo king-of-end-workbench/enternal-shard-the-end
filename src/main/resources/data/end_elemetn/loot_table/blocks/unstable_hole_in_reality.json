@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "end_elemetn:blocks/unstable_hole_in_reality",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "end_elemetn:unstable_hole_in_reality"
+        }
+      ]
+    }
+  ]
+}

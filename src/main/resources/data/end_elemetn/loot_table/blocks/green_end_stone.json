@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "end_elemetn:blocks/green_end_stone",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "end_elemetn:green_end_stone"
+        }
+      ]
+    }
+  ]
+}

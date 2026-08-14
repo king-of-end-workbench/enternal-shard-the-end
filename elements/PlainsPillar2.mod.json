@@ -1,0 +1,14 @@
+{
+  "_fv": 79,
+  "_type": "feature",
+  "definition": {
+    "skipPlacement": false,
+    "generationStep": "TOP_LAYER_MODIFICATION",
+    "restrictionBiomes": [
+      {
+        "value": "CUSTOM:VoidPlains"
+      }
+    ],
+    "featurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"feature_container\" deletable=\"false\" x=\"40\" y=\"40\"><value name=\"feature\"><block type=\"feature_block_column_simple\"><value name=\"height\"><block type=\"int_provider_weighted\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"3\"></mutation><field name=\"weight0\">5</field><field name=\"weight1\">3</field><field name=\"weight2\">2</field><value name=\"entry0\"><block type=\"int_provider_constant\"><field name=\"value\">5</field></block></value><value name=\"entry1\"><block type=\"int_provider_constant\"><field name=\"value\">5</field></block></value><value name=\"entry2\"><block type=\"int_provider_constant\"><field name=\"value\">5</field></block></value></block></value><value name=\"block\"><block type=\"blockstate_selector\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"0\"></mutation><field name=\"block\">CUSTOM:PillarsOfShadowWood</field></block></value></block></value><next><block type=\"placement_count\"><value name=\"count\"><block type=\"int_provider_weighted\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"3\"></mutation><field name=\"weight0\">5</field><field name=\"weight1\">3</field><field name=\"weight2\">2</field><value name=\"entry0\"><block type=\"int_provider_constant\"><field name=\"value\">100</field></block></value><value name=\"entry1\"><block type=\"int_provider_constant\"><field name=\"value\">75</field></block></value><value name=\"entry2\"><block type=\"int_provider_constant\"><field name=\"value\">50</field></block></value></block></value><next><block type=\"placement_in_square\"><next><block type=\"placement_height_triangular\"><value name=\"min\"><block type=\"vertical_anchor_above_bottom\"><field name=\"value\">5</field></block></value><value name=\"max\"><block type=\"vertical_anchor_below_top\"><field name=\"value\">5</field></block></value><next><block type=\"placement_heightmap\"><field name=\"heightmap\">OCEAN_FLOOR_WG</field><next><block type=\"placement_biome_filter\"></block></next></block></next></block></next></block></next></block></next></block></xml>"
+  }
+}

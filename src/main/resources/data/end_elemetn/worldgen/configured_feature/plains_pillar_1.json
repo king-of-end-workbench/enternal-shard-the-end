@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:delta_feature",
+  "config": {
+    "contents": {
+      "Name": "end_elemetn:void_liquid"
+    },
+    "rim": {
+      "Name": "end_elemetn:pillars_of_shadow_wood"
+    },
+    "size": {
+      "type": "uniform",
+      "min_inclusive": 3,
+      "max_inclusive": 16
+    },
+    "rim_size": {
+      "type": "uniform",
+      "min_inclusive": 0,
+      "max_inclusive": 4
+    }
+  }
+}

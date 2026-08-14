@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/endlava",
+    "up": "end_elemetn:block/endlava",
+    "north": "end_elemetn:block/endlava",
+    "east": "end_elemetn:block/endlava",
+    "south": "end_elemetn:block/endlava",
+    "west": "end_elemetn:block/endlava",
+    "particle": "end_elemetn:block/endlava"
+  },
+  "render_type": "solid"
+}

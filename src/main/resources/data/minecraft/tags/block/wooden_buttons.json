@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:chorus_button",
+    "end_elemetn:warped_button",
+    "end_elemetn:ender_button",
+    "end_elemetn:dracora_palm_button"
+  ]
+}

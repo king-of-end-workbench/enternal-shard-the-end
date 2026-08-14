@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/end_meshfades_stone",
+    "up": "end_elemetn:block/end_meshfades_stone_grass_top",
+    "north": "end_elemetn:block/end_meshfades_stone_grass_side",
+    "east": "end_elemetn:block/end_meshfades_stone_grass_side",
+    "south": "end_elemetn:block/end_meshfades_stone_grass_side",
+    "west": "end_elemetn:block/end_meshfades_stone_grass_side",
+    "particle": "end_elemetn:block/end_meshfades_stone"
+  },
+  "render_type": "solid"
+}

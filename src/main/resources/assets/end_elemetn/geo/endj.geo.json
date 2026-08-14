@@ -1,0 +1,101 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.ENDJ",
+				"texture_width": 128,
+				"texture_height": 80,
+				"visible_bounds_width": 5,
+				"visible_bounds_height": 4.5,
+				"visible_bounds_offset": [0, 1.75, 0]
+			},
+			"bones": [
+				{
+					"name": "all",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "headd",
+					"parent": "all",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "headd",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [0, 23, -5], "size": [0, 10, 7], "uv": [96, 13]},
+						{"origin": [-4, 7, -6], "size": [8, 16, 8], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "bone",
+					"parent": "head",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{"origin": [-16, 33, -18], "size": [32, 16, 32], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "mouth",
+					"parent": "headd",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "bite1",
+					"parent": "mouth",
+					"pivot": [0, 6, -4],
+					"cubes": [
+						{"origin": [-2, 1, -6], "size": [4, 6, 4], "uv": [96, 0]}
+					]
+				},
+				{
+					"name": "bite2",
+					"parent": "mouth",
+					"pivot": [0, 6, 0],
+					"cubes": [
+						{"origin": [-2, 1, -2], "size": [4, 6, 4], "uv": [96, 10]}
+					]
+				},
+				{
+					"name": "tentaclel",
+					"parent": "all",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "tent4",
+					"parent": "tentaclel",
+					"pivot": [-16, 33, -2],
+					"cubes": [
+						{"origin": [-16, 11, -18], "size": [0, 22, 32], "pivot": [-16, 33, -2], "rotation": [0, 0, 25], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "tent1",
+					"parent": "tentaclel",
+					"pivot": [16, 33, -2],
+					"cubes": [
+						{"origin": [16, 11, -18], "size": [0, 22, 32], "pivot": [16, 33, -2], "rotation": [0, 0, -25], "uv": [0, 16]}
+					]
+				},
+				{
+					"name": "tent3",
+					"parent": "tentaclel",
+					"pivot": [-1, 33, -17],
+					"cubes": [
+						{"origin": [-16, 11, -18], "size": [32, 22, 0], "pivot": [0, 33, -18], "rotation": [-25, 0, 0], "uv": [0, 48]}
+					]
+				},
+				{
+					"name": "tent2",
+					"parent": "tentaclel",
+					"pivot": [0, 33.03061, 13.6488],
+					"cubes": [
+						{"origin": [-16, 11, 14], "size": [32, 22, 0], "pivot": [0, 33, 14], "rotation": [25, 0, 0], "uv": [0, 48]}
+					]
+				}
+			]
+		}
+	]
+}

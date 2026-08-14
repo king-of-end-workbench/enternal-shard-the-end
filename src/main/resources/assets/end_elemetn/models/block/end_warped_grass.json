@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/end_mycelium_path_top",
+    "up": "end_elemetn:block/eeerr",
+    "north": "end_elemetn:block/end_mycelium_side",
+    "east": "end_elemetn:block/end_mycelium_side",
+    "south": "end_elemetn:block/end_mycelium_side",
+    "west": "end_elemetn:block/end_mycelium_side",
+    "particle": "end_elemetn:block/end_mycelium_path_top"
+  },
+  "render_type": "solid"
+}

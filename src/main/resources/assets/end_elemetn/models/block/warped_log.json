@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/iooi",
+    "up": "end_elemetn:block/iooi",
+    "north": "end_elemetn:block/erer",
+    "east": "end_elemetn:block/erer",
+    "south": "end_elemetn:block/erer",
+    "west": "end_elemetn:block/erer",
+    "particle": "end_elemetn:block/iooi"
+  },
+  "render_type": "solid"
+}

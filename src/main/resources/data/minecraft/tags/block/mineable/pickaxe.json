@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:cubet_purpur_tiles",
+    "end_elemetn:enderite_ore",
+    "end_elemetn:polished_endstone",
+    "end_elemetn:cracked_purpur",
+    "end_elemetn:purpur_tiles",
+    "end_elemetn:dirty_end_cobblestone",
+    "end_elemetn:mossy_endstone_bricks",
+    "end_elemetn:end_mesh_pick",
+    "end_elemetn:green_end_stone",
+    "end_elemetn:shadow_grass",
+    "end_elemetn:chiseled_purpur",
+    "end_elemetn:titanium_pedestal",
+    "end_elemetn:end_meshfades_stone",
+    "end_elemetn:cracked_endstone_bricks",
+    "end_elemetn:arch_endstone_pillar",
+    "end_elemetn:meteor_debris",
+    "end_elemetn:endstone_pillar",
+    "end_elemetn:cracked_green_endcobblestone",
+    "end_elemetn:endstone_tiles",
+    "end_elemetn:muddy_endcobblestone",
+    "end_elemetn:endwild_grass",
+    "end_elemetn:titanium_ore",
+    "end_elemetn:green_end_cobblestone",
+    "end_elemetn:titanium_block",
+    "end_elemetn:chiseled_endstone_bricks",
+    "end_elemetn:smooth_purpur",
+    "end_elemetn:end_cobbelstone"
+  ]
+}

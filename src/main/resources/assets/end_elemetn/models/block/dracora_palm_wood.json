@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638",
+    "particle": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638"
+  },
+  "render_type": "solid"
+}

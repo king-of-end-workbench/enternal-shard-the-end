@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:ender_wood",
+    "end_elemetn:ender_log",
+    "end_elemetn:ender_planks",
+    "end_elemetn:ender_wood_stairs"
+  ]
+}

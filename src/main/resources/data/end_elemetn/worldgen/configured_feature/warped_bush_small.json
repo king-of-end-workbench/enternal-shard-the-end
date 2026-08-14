@@ -1,0 +1,14 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:small_bush",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      -1,
+      -1,
+      -1
+    ]
+  }
+}

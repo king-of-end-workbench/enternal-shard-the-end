@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "end_elemetn:blocks/corn_stage_2",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "end_elemetn:corn_seeds",
+          "conditions": [
+            {
+              "block": "end_elemetn:corn_stage_2",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "half": "lower"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

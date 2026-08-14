@@ -1,0 +1,12 @@
+{
+  "_fv": 79,
+  "_type": "damagetype",
+  "definition": {
+    "exhaustion": 0.1,
+    "scaling": "always",
+    "effects": "drowning",
+    "normalDeathMessage": "%1$s was devastated",
+    "itemDeathMessage": "%1$s was devastated by %2$s using %3$s",
+    "playerDeathMessage": "%1$s was devastated whilst trying to escape %2$s"
+  }
+}

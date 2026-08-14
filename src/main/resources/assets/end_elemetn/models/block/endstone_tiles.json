@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/end_citadel_criseled_bricks",
+    "up": "end_elemetn:block/end_citadel_criseled_bricks",
+    "north": "end_elemetn:block/end_citadel_criseled_bricks",
+    "east": "end_elemetn:block/end_citadel_criseled_bricks",
+    "south": "end_elemetn:block/end_citadel_criseled_bricks",
+    "west": "end_elemetn:block/end_citadel_criseled_bricks",
+    "particle": "end_elemetn:block/end_citadel_criseled_bricks"
+  },
+  "render_type": "solid"
+}

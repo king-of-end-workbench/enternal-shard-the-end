@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "end_elemetn:weapon_smithing_template"
+  },
+  "base": {
+    "item": "end_elemetn:enderithe_ingot"
+  },
+  "addition": {
+    "item": "end_elemetn:enderite"
+  },
+  "result": {
+    "id": "end_elemetn:upgraded_enderithe_ingot"
+  }
+}

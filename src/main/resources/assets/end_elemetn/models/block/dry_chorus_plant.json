@@ -1,0 +1,10 @@
+{
+  "parent": "end_elemetn:custom/chorus_withered_plant",
+  "textures": {
+    "all": "end_elemetn:block/t_chorusfullwithered",
+    "particle": "end_elemetn:block/t_chorusfullwithered",
+    "0": "end_elemetn:block/t_chorusfullwithered",
+    "missing": "end_elemetn:block/"
+  },
+  "render_type": "solid"
+}

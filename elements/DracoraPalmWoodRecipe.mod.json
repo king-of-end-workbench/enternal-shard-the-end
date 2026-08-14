@@ -1,0 +1,53 @@
+{
+  "_fv": 79,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 3,
+    "group": "bark",
+    "unlockingItems": [
+      {
+        "value": "CUSTOM:DracoraPalmLog"
+      }
+    ],
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "BUILDING",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:DracoraPalmLog"
+      },
+      {
+        "value": "CUSTOM:DracoraPalmLog"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:DracoraPalmLog"
+      },
+      {
+        "value": "CUSTOM:DracoraPalmLog"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:DracoraPalmWood"
+    },
+    "name": "dracora_palm_wood_recipe",
+    "namespace": "mod"
+  }
+}

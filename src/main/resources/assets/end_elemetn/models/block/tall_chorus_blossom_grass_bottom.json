@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "end_elemetn:block/tall_chorus_grass_potted",
+    "particle": "end_elemetn:block/chorus_grass_potted"
+  },
+  "render_type": "cutout"
+}

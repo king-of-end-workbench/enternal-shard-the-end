@@ -1,0 +1,34 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "2": "pedestal4"
+      },
+      "name": "default"
+    },
+    "one_point": {
+      "map": {
+        "2": "pedestal2"
+      },
+      "name": "one_point"
+    },
+    "more_points": {
+      "map": {
+        "2": "pedestal1"
+      },
+      "name": "more_points"
+    },
+    "star": {
+      "map": {
+        "2": "pedestal3"
+      },
+      "name": "star"
+    },
+    "err": {
+      "map": {
+        "2": "pedestal"
+      },
+      "name": "err"
+    }
+  }
+}

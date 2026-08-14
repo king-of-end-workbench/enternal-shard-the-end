@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/end_rock_broken",
+    "up": "end_elemetn:block/end_rock_broken",
+    "north": "end_elemetn:block/end_rock_broken",
+    "east": "end_elemetn:block/end_rock_broken",
+    "south": "end_elemetn:block/end_rock_broken",
+    "west": "end_elemetn:block/end_rock_broken",
+    "particle": "end_elemetn:block/end_rock_broken"
+  },
+  "render_type": "solid"
+}

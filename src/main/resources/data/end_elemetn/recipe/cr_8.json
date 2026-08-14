@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " a ",
+    "b b"
+  ],
+  "key": {
+    "a": {
+      "item": "end_elemetn:enderithe_ingot"
+    },
+    "b": {
+      "item": "end_elemetn:enderite"
+    }
+  },
+  "result": {
+    "id": "end_elemetn:enderithe_showel_shard",
+    "count": 1
+  }
+}

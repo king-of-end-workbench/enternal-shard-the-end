@@ -1,0 +1,9 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:end_wild_tree_2",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": "minecraft:air"
+  }
+}

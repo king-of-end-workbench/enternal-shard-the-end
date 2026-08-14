@@ -1,0 +1,22 @@
+{
+  "_fv": 79,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Hypnotized Potion",
+    "splashName": "SplashHypnotized Potion",
+    "lingeringName": "Lingering Hypnotized Potion",
+    "arrowName": "Arrow of Hypnotized",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:Hypnotised"
+        },
+        "duration": 3600,
+        "infinite": false,
+        "amplifier": 1,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "end_elemetn:blocks/dry_chorus_flower",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "end_elemetn:dry_chorus_flower"
+        }
+      ]
+    }
+  ]
+}

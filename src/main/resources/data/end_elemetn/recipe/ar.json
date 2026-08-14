@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "end_elemetn:enternal_upgrader_smithing_template"
+  },
+  "base": {
+    "item": "minecraft:netherite_helmet"
+  },
+  "addition": {
+    "item": "end_elemetn:upgraded_enderithe_ingot"
+  },
+  "result": {
+    "id": "end_elemetn:enderite_helmet"
+  }
+}

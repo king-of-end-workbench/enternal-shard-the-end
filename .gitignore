@@ -1,0 +1,25 @@
+# Build output
+build/
+out/
+run/
+*.class
+
+# Gradle
+.gradle/
+gradle-app.setting
+
+# IDE
+.idea/
+.eclipse/
+*.iml
+
+# MCreator workspace cache/backups (regenerated locally, not source)
+.mcreator/FullBackup*.zip
+.mcreator/generatorGradleCache
+.mcreator/workspaceBackups/
+.mcreator/imageEditorMetadata/
+.mcreator/modElementThumbnails/
+
+# OS
+.DS_Store
+Thumbs.db

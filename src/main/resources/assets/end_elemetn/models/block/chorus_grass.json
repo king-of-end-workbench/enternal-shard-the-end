@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "minecraft:block/end_stone",
+    "up": "end_elemetn:block/end_stone_top8",
+    "north": "end_elemetn:block/3",
+    "east": "end_elemetn:block/3",
+    "south": "end_elemetn:block/3",
+    "west": "end_elemetn:block/3",
+    "particle": "minecraft:block/end_stone"
+  },
+  "render_type": "solid"
+}

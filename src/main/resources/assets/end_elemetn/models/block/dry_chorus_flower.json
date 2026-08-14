@@ -1,0 +1,9 @@
+{
+  "parent": "end_elemetn:custom/chorus_withered_flower_death_new",
+  "textures": {
+    "all": "end_elemetn:block/t_chorusfullwithered",
+    "particle": "end_elemetn:block/t_chorusfullwithered",
+    "1": "end_elemetn:block/t_chorusfullwithered"
+  },
+  "render_type": "solid"
+}

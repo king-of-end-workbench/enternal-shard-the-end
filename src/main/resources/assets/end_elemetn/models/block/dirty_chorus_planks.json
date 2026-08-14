@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "end_elemetn:block/sand_end_wood",
+    "particle": "end_elemetn:block/sand_end_wood"
+  },
+  "render_type": "solid"
+}

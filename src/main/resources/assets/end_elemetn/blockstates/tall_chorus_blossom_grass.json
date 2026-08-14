@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "end_elemetn:block/tall_chorus_blossom_grass"
+    },
+    "half=lower": {
+      "model": "end_elemetn:block/tall_chorus_blossom_grass_bottom"
+    }
+  }
+}

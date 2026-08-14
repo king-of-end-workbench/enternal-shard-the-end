@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:inverted_forest",
+    "small_end_islands",
+    "end_midlands",
+    "end_elemetn:void_plains",
+    "end_elemetn:end_wilds",
+    "end_elemetn:chorus_forest",
+    "end_elemetn:dracora_oasis",
+    "end_highlands",
+    "end_barrens"
+  ]
+}

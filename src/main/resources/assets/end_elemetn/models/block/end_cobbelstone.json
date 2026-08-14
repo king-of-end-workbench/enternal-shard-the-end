@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/cobbled_endstone",
+    "up": "end_elemetn:block/cobbled_endstone",
+    "north": "end_elemetn:block/cobbled_endstone",
+    "east": "end_elemetn:block/cobbled_endstone",
+    "south": "end_elemetn:block/cobbled_endstone",
+    "west": "end_elemetn:block/cobbled_endstone",
+    "particle": "end_elemetn:block/cobbled_endstone"
+  },
+  "render_type": "solid"
+}

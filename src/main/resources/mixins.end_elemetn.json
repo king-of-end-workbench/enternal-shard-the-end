@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "package": "net.mcreator.end_elemetn.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.end_elemetn.refmap.json",
+  "mixins": [],
+  "client": [],
+  "minVersion": "0.8"
+}

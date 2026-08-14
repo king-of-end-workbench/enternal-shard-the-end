@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:titanium_ore",
+    "end_elemetn:titanium_block",
+    "end_elemetn:snarelingweb"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "package": "net.mcreator.end_elemetn.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BiomeSourceMixin",
+    "TheEndBiomeSourceMixin",
+    "ClimateSamplerMixin",
+    "NoiseConfigMixin",
+    "ChunkNoiseSamplerMixin",
+    "NoiseGeneratorSettingsAccess"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8.4"
+}

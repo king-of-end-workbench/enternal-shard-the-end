@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/pixil-frame-0_-_2022-01-21t214928.779",
+    "up": "end_elemetn:block/pixil-frame-0_-_2022-01-21t214928.779",
+    "north": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638",
+    "east": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638",
+    "south": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638",
+    "west": "end_elemetn:block/pixil-frame-0_-_2022-01-21t213313.638",
+    "particle": "end_elemetn:block/pixil-frame-0_-_2022-01-21t214928.779"
+  },
+  "render_type": "solid"
+}

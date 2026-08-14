@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "end_elemetn:inverted_forest",
+  "features": "end_elemetn:warped_bush_small",
+  "step": "vegetal_decoration"
+}

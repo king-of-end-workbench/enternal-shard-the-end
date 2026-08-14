@@ -1,0 +1,14 @@
+{
+  "_fv": 79,
+  "_type": "feature",
+  "definition": {
+    "skipPlacement": false,
+    "generationStep": "SURFACE_STRUCTURES",
+    "restrictionBiomes": [
+      {
+        "value": "small_end_islands"
+      }
+    ],
+    "featurexml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"feature_container\" deletable=\"false\" x=\"40\" y=\"40\"><value name=\"feature\"><block type=\"feature_custom_structure\"><field name=\"structure\">warped_island</field><field name=\"x\">0</field><field name=\"y\">0</field><field name=\"z\">0</field><field name=\"random_rotation\">FALSE</field><field name=\"random_mirror\">FALSE</field><value name=\"ignored_blocks\"><block type=\"block_holderset_list\"><mutation xmlns=\"http://www.w3.org/1999/xhtml\" inputs=\"1\"></mutation><field name=\"block0\">Blocks.AIR</field></block></value></block></value><next><block type=\"placement_block_predicate_filter\"><value name=\"condition\"><block type=\"block_predicate_is_air\"></block></value><next><block type=\"placement_block_predicate_filter\"><value name=\"condition\"><block type=\"block_predicate_matching_blocks\"><field name=\"x\">0</field><field name=\"y\">-5</field><field name=\"z\">0</field><value name=\"blockSet\"><block type=\"block_holderset_tag\"><field name=\"tag\">minecraft:air</field></block></value></block></value><next><block type=\"placement_height_range\"><value name=\"height\"><block type=\"height_provider_uniform\"><value name=\"min\"><block type=\"vertical_anchor_absolute\"><field name=\"value\">40</field></block></value><value name=\"max\"><block type=\"vertical_anchor_absolute\"><field name=\"value\">69</field></block></value></block></value><next><block type=\"placement_rarity\"><field name=\"rarity\">2500</field><next><block type=\"placement_biome_filter\"></block></next></block></next></block></next></block></next></block></next></block><block type=\"block_predicate_is_air\" x=\"688\" y=\"372\"></block><block type=\"height_provider_constant\" x=\"167\" y=\"401\"><value name=\"value\"><block type=\"vertical_anchor_absolute\"><field name=\"value\">65</field></block></value></block><block type=\"block_predicate_has_sturdy_face\" x=\"710\" y=\"447\"><field name=\"x\">0</field><field name=\"y\">0</field><field name=\"z\">0</field><field name=\"direction\">DOWN</field></block><block type=\"block_predicate_is_air\" x=\"828\" y=\"443\"></block><block type=\"placement_heightmap\" x=\"235\" y=\"492\"><field name=\"heightmap\">OCEAN_FLOOR_WG</field></block></xml>"
+  }
+}

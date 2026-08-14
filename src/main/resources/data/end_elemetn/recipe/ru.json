@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "end_elemetn:enternal_upgrader_smithing_template"
+  },
+  "base": {
+    "item": "minecraft:stick"
+  },
+  "addition": {
+    "item": "end_elemetn:enderithe_hoe_shard"
+  },
+  "result": {
+    "id": "end_elemetn:enderithe_hoe"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/end_titanium_ore",
+    "up": "end_elemetn:block/end_titanium_ore",
+    "north": "end_elemetn:block/end_titanium_ore",
+    "east": "end_elemetn:block/end_titanium_ore",
+    "south": "end_elemetn:block/end_titanium_ore",
+    "west": "end_elemetn:block/end_titanium_ore",
+    "particle": "end_elemetn:block/end_titanium_ore"
+  },
+  "render_type": "solid"
+}

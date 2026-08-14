@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "end_elemetn:block/end_vine",
+    "particle": "end_elemetn:block/end_vine"
+  },
+  "render_type": "cutout"
+}

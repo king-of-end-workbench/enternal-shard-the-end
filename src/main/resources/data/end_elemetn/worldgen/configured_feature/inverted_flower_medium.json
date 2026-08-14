@@ -1,0 +1,12 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:medium_plant_b",
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      0,
+      -2,
+      0
+    ]
+  }
+}

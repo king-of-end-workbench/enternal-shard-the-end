@@ -1,0 +1,13 @@
+{
+  "feature": "end_elemetn:meteor",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 400
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "parent": "end_elemetn:custom/dragon_fruit",
+  "textures": {
+    "all": "end_elemetn:block/dragon_fruit",
+    "particle": "end_elemetn:block/dragon_fruit",
+    "0": "end_elemetn:block/dragon_fruit"
+  },
+  "render_type": "cutout"
+}

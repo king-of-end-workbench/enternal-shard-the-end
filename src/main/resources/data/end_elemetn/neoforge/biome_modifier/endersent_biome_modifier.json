@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "end_elemetn:end_wilds",
+  "spawners": {
+    "type": "end_elemetn:endersent",
+    "weight": 2,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

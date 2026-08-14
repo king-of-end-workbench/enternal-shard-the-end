@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/bluecitadel_log_top",
+    "up": "end_elemetn:block/bluecitadel_log_top",
+    "north": "end_elemetn:block/end_tree",
+    "east": "end_elemetn:block/end_tree",
+    "south": "end_elemetn:block/end_tree",
+    "west": "end_elemetn:block/end_tree",
+    "particle": "end_elemetn:block/bluecitadel_log_top"
+  },
+  "render_type": "solid"
+}

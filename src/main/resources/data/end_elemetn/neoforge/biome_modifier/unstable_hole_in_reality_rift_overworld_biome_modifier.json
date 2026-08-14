@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_overworld",
+  "features": "end_elemetn:unstable_hole_in_reality_rift_overworld",
+  "step": "underground_decoration"
+}

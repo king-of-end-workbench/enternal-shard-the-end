@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "end_elemetn:unstable_hole_in_reality_rift_end",
+  "step": "underground_decoration"
+}

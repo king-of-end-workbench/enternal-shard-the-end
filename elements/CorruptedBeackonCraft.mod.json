@@ -1,0 +1,49 @@
+{
+  "_fv": 79,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "unlockingItems": [],
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "Blocks.GLASS"
+      },
+      {
+        "value": "Blocks.GLASS"
+      },
+      {
+        "value": "Blocks.GLASS"
+      },
+      {
+        "value": "Blocks.GLASS"
+      },
+      {
+        "value": "CUSTOM:TheEndShard"
+      },
+      {
+        "value": "Blocks.GLASS"
+      },
+      {
+        "value": "CUSTOM:PillarsOfShadowWood"
+      },
+      {
+        "value": "CUSTOM:BlastlingShoot"
+      },
+      {
+        "value": "CUSTOM:PillarsOfShadowWood"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:CorruptedBeacon"
+    },
+    "name": "corrupted_beackon_craft",
+    "namespace": "mod"
+  }
+}

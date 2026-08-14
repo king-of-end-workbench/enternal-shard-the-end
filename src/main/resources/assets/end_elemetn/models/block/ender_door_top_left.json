@@ -1,0 +1,9 @@
+{
+  "parent": "block/door_top_left",
+  "textures": {
+    "particle": "end_elemetn:block/jellyshroom_door_bottom",
+    "bottom": "end_elemetn:block/jellyshroom_door_bottom",
+    "top": "end_elemetn:block/jellyshroom_door_top"
+  },
+  "render_type": "solid"
+}

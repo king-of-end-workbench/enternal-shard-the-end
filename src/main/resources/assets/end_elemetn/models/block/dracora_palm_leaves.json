@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "end_elemetn:block/tenanea_leaves",
+    "particle": "end_elemetn:block/tenanea_leaves"
+  }
+}

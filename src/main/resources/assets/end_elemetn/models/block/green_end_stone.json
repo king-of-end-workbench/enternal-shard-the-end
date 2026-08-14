@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/green_end_stone",
+    "up": "end_elemetn:block/green_end_stone",
+    "north": "end_elemetn:block/green_end_stone",
+    "east": "end_elemetn:block/green_end_stone",
+    "south": "end_elemetn:block/green_end_stone",
+    "west": "end_elemetn:block/green_end_stone",
+    "particle": "end_elemetn:block/green_end_stone"
+  },
+  "render_type": "solid"
+}

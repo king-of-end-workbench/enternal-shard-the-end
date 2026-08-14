@@ -1,0 +1,11 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "end_meshfades_stone",
+        "missing": ""
+      },
+      "name": "default"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "end_elemetn:block/tall_chorus_plant"
+    },
+    "half=lower": {
+      "model": "end_elemetn:block/tall_chorus_plant_bottom"
+    }
+  }
+}

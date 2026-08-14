@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:block",
+  "random_sequence": "end_elemetn:blocks/dracora_palm_button",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "end_elemetn:dracora_palm_button"
+        }
+      ]
+    }
+  ]
+}

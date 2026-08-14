@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "end_elemetn:block/end_fern"
+    },
+    "half=lower": {
+      "model": "end_elemetn:block/end_fern_bottom"
+    }
+  }
+}

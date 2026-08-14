@@ -1,0 +1,14 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:warped_tree_meduim",
+    "random_rotation": true,
+    "random_mirror": true,
+    "ignored_blocks": "minecraft:air",
+    "offset": [
+      -3,
+      -7,
+      -3
+    ]
+  }
+}

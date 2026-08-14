@@ -1,0 +1,10 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "end_elemetn:void_plains",
+  "spawners": {
+    "type": "end_elemetn:shadowling",
+    "weight": 1,
+    "minCount": 1,
+    "maxCount": 1
+  }
+}

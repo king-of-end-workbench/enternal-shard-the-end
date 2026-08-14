@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/cobbled_end_stone_dirty",
+    "up": "end_elemetn:block/cobbled_end_stone_dirty",
+    "north": "end_elemetn:block/cobbled_end_stone_dirty",
+    "east": "end_elemetn:block/cobbled_end_stone_dirty",
+    "south": "end_elemetn:block/cobbled_end_stone_dirty",
+    "west": "end_elemetn:block/cobbled_end_stone_dirty",
+    "particle": "end_elemetn:block/cobbled_end_stone_dirty"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,7 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:warped_island",
+    "ignored_blocks": "minecraft:air"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/gltf_embedded_4",
+    "up": "end_elemetn:block/gltf_embedded_4",
+    "north": "end_elemetn:block/gltf_embedded_4",
+    "east": "end_elemetn:block/gltf_embedded_4",
+    "south": "end_elemetn:block/gltf_embedded_4",
+    "west": "end_elemetn:block/gltf_embedded_4",
+    "particle": "end_elemetn:block/gltf_embedded_4"
+  },
+  "render_type": "solid"
+}

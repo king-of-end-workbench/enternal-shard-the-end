@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/cracked_endstone",
+    "up": "end_elemetn:block/cracked_endstone",
+    "north": "end_elemetn:block/cracked_endstone",
+    "east": "end_elemetn:block/cracked_endstone",
+    "south": "end_elemetn:block/cracked_endstone",
+    "west": "end_elemetn:block/cracked_endstone",
+    "particle": "end_elemetn:block/cracked_endstone"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,blockstate=0": {
+      "model": "end_elemetn:block/dry_chorus_plant"
+    },
+    "facing=east,blockstate=0": {
+      "model": "end_elemetn:block/dry_chorus_plant",
+      "y": 90
+    },
+    "facing=south,blockstate=0": {
+      "model": "end_elemetn:block/dry_chorus_plant",
+      "y": 180
+    },
+    "facing=west,blockstate=0": {
+      "model": "end_elemetn:block/dry_chorus_plant",
+      "y": 270
+    },
+    "facing=north,blockstate=1": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_0"
+    },
+    "facing=east,blockstate=1": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_0",
+      "y": 90
+    },
+    "facing=south,blockstate=1": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_0",
+      "y": 180
+    },
+    "facing=west,blockstate=1": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_0",
+      "y": 270
+    },
+    "facing=north,blockstate=2": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_1"
+    },
+    "facing=east,blockstate=2": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_1",
+      "y": 90
+    },
+    "facing=south,blockstate=2": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_1",
+      "y": 180
+    },
+    "facing=west,blockstate=2": {
+      "model": "end_elemetn:block/blockstate_dry_chorus_plant_blockstate_1",
+      "y": 270
+    }
+  }
+}

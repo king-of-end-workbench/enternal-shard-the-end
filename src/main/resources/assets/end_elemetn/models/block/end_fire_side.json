@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_fire_side",
+  "textures": {
+    "fire": "end_elemetn:block/fire_0"
+  },
+  "render_type": "cutout"
+}

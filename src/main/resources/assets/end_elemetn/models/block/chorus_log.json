@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/chorus_stem_top",
+    "up": "end_elemetn:block/chorus_stem_top",
+    "north": "end_elemetn:block/chorus_log2",
+    "east": "end_elemetn:block/chorus_tree",
+    "south": "end_elemetn:block/chorus_log3",
+    "west": "end_elemetn:block/chorus_tree",
+    "particle": "end_elemetn:block/chorus_stem_top"
+  },
+  "render_type": "solid"
+}

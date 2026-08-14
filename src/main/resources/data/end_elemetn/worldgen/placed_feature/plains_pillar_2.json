@@ -1,0 +1,47 @@
+{
+  "feature": "end_elemetn:plains_pillar_2",
+  "placement": [
+    {
+      "type": "minecraft:count",
+      "count": {
+        "type": "weighted_list",
+        "distribution": [
+          {
+            "data": 100,
+            "weight": 5
+          },
+          {
+            "data": 75,
+            "weight": 3
+          },
+          {
+            "data": 50,
+            "weight": 2
+          }
+        ]
+      }
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:trapezoid",
+        "min_inclusive": {
+          "above_bottom": 5
+        },
+        "max_inclusive": {
+          "below_top": 5
+        }
+      }
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "OCEAN_FLOOR_WG"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

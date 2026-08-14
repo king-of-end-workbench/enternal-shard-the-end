@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/polished_purpur",
+    "up": "end_elemetn:block/polished_purpur",
+    "north": "end_elemetn:block/polished_purpur",
+    "east": "end_elemetn:block/polished_purpur",
+    "south": "end_elemetn:block/polished_purpur",
+    "west": "end_elemetn:block/polished_purpur",
+    "particle": "end_elemetn:block/polished_purpur"
+  },
+  "render_type": "solid"
+}

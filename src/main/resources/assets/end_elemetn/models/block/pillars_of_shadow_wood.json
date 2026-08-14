@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/violecite_furnace_top",
+    "up": "end_elemetn:block/violecite_furnace_top",
+    "north": "end_elemetn:block/infusion_pedestal_pillar",
+    "east": "end_elemetn:block/infusion_pedestal_pillar",
+    "south": "end_elemetn:block/infusion_pedestal_pillar",
+    "west": "end_elemetn:block/infusion_pedestal_pillar",
+    "particle": "end_elemetn:block/violecite_furnace_top"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:warped_fence",
+    "end_elemetn:chorus_fence",
+    "end_elemetn:dracora_palm_fence",
+    "end_elemetn:ender_fence"
+  ]
+}

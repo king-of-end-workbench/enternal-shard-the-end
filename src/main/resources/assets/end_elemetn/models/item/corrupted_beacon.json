@@ -1,0 +1,31 @@
+{
+  "loader": "neoforge:separate_transforms",
+  "gui_light": "front",
+  "base": {
+    "parent": "end_elemetn:custom/corrupted_beacon",
+    "textures": {
+      "0": "end_elemetn:block/corrupted_beacon",
+      "particle": "end_elemetn:item/corrupted_beacon_icon"
+    }
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "end_elemetn:item/corrupted_beacon_icon"
+      }
+    },
+    "fixed": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "end_elemetn:item/corrupted_beacon_icon"
+      }
+    },
+    "ground": {
+      "parent": "item/generated",
+      "textures": {
+        "layer0": "end_elemetn:item/corrupted_beacon_icon"
+      }
+    }
+  }
+}

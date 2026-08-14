@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:dracora_palm_stairs",
+    "end_elemetn:ender_wood_stairs",
+    "end_elemetn:chorus_stairs",
+    "end_elemetn:warped_stairs",
+    "end_elemetn:ender_stairs"
+  ]
+}

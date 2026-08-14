@@ -1,0 +1,10 @@
+{
+  "parent": "end_elemetn:block/template_end_city_vault",
+  "textures": {
+    "bottom": "end_elemetn:block/vault_bottom_ominous",
+    "top": "end_elemetn:block/vault_top",
+    "front": "end_elemetn:block/vault_front_on",
+    "side": "end_elemetn:block/vault_side_off"
+  },
+  "render_type": "cutout"
+}

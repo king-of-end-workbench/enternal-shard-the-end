@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "#end_elemetn:dracora_palm_logs",
+      "required": false
+    },
+    {
+      "id": "#end_elemetn:warped_logs",
+      "required": false
+    },
+    {
+      "id": "#end_elemetn:chorus_logs",
+      "required": false
+    }
+  ]
+}

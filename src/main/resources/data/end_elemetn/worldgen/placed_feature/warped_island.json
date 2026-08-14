@@ -1,0 +1,43 @@
+{
+  "feature": "end_elemetn:warped_island",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "minecraft:air"
+      }
+    },
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:matching_blocks",
+        "blocks": "#minecraft:air",
+        "offset": [
+          0,
+          -5,
+          0
+        ]
+      }
+    },
+    {
+      "type": "minecraft:height_range",
+      "height": {
+        "type": "minecraft:uniform",
+        "min_inclusive": {
+          "absolute": 40
+        },
+        "max_inclusive": {
+          "absolute": 69
+        }
+      }
+    },
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 2500
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

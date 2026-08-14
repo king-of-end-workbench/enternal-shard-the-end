@@ -1,0 +1,7 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:dry_chorus3",
+    "ignored_blocks": "minecraft:air"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/violecite_furnace_top",
+    "up": "end_elemetn:block/mossy_glowshroom_cap",
+    "north": "end_elemetn:block/crystal_moss_side",
+    "east": "end_elemetn:block/crystal_moss_side",
+    "south": "end_elemetn:block/crystal_moss_side",
+    "west": "end_elemetn:block/crystal_moss_side",
+    "particle": "end_elemetn:block/violecite_furnace_top"
+  },
+  "render_type": "solid"
+}

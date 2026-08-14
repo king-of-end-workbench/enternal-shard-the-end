@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "end_elemetn:block/corn4",
+    "particle": "end_elemetn:block/corn_stage3"
+  },
+  "render_type": "cutout"
+}

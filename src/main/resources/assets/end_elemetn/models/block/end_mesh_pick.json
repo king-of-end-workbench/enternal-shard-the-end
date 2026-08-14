@@ -1,0 +1,10 @@
+{
+  "parent": "end_elemetn:custom/end_mesh_pick",
+  "textures": {
+    "all": "end_elemetn:block/end_meshfades_stone",
+    "particle": "end_elemetn:block/end_meshfades_stone",
+    "0": "end_elemetn:block/end_meshfades_stone",
+    "missing": "end_elemetn:block/"
+  },
+  "render_type": "solid"
+}

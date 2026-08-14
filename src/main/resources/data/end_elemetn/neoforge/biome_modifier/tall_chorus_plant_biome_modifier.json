@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "end_elemetn:chorus_forest",
+  "features": "end_elemetn:tall_chorus_plant",
+  "step": "vegetal_decoration"
+}

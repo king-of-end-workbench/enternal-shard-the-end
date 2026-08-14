@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/blocksprite_polished-tuff",
+    "up": "end_elemetn:block/blocksprite_polished-tuff",
+    "north": "end_elemetn:block/blocksprite_polished-tuff",
+    "east": "end_elemetn:block/blocksprite_polished-tuff",
+    "south": "end_elemetn:block/blocksprite_polished-tuff",
+    "west": "end_elemetn:block/blocksprite_polished-tuff",
+    "particle": "end_elemetn:block/blocksprite_polished-tuff"
+  },
+  "render_type": "solid"
+}

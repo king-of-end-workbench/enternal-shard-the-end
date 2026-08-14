@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "end_elemetn:block/endfloorplanks2_broken",
+    "particle": "end_elemetn:block/endfloorplanks2_broken"
+  },
+  "render_type": "solid"
+}

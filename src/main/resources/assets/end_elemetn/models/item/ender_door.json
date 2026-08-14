@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "end_elemetn:item/lacugrove_door"
+  },
+  "render_type": "translucent"
+}

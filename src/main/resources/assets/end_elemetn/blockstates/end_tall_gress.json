@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "end_elemetn:block/end_tall_gress"
+    },
+    "half=lower": {
+      "model": "end_elemetn:block/end_tall_gress_bottom"
+    }
+  }
+}

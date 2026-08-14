@@ -1,0 +1,10 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "particle": "end_elemetn:block/end_tree",
+    "bottom": "end_elemetn:block/end_tree",
+    "top": "end_elemetn:block/end_tree",
+    "side": "end_elemetn:block/end_tree"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "end_elemetn:block/chorusleave",
+    "particle": "end_elemetn:block/chorusleave"
+  }
+}

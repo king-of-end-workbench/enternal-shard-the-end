@@ -1,0 +1,7 @@
+{
+  "type": "end_elemetn:structure_feature",
+  "config": {
+    "structure": "end_elemetn:ender_mud_gaser3",
+    "ignored_blocks": "minecraft:air"
+  }
+}

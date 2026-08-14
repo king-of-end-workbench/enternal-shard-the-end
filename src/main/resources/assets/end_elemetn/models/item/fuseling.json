@@ -1,0 +1,7 @@
+{
+  "parent": "end_elemetn:custom/fuseling",
+  "textures": {
+    "2": "end_elemetn:block/fuseling",
+    "particle": "end_elemetn:item/fuseling"
+  }
+}
