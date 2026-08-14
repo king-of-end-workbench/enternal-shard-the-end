@@ -49,8 +49,12 @@ mixin {
         config "end_elemetn.mixins.json"
     }
     // Start of user code block custom mixins
+    // Only ONE refmap per source set is possible: the Mixin annotation processor writes a
+    // single refmap + .mappings.tsrg pair per compile task, so a second "add" for this same
+    // source set silently overwrote the javac args (-AoutRefMapFile / -AoutTsrgFile) and left
+    // reobfJar looking for end_elemetn.refmap.json.mappings.tsrg, which was never generated.
+    // Both mixin configs share the refmap declared above; only the extra "config" is needed.
     if (file("src/main/resources/end_elemetn_custom.mixins.json").exists()) {
-        add sourceSets.main, "end_elemetn_custom.refmap.json"
         config "end_elemetn_custom.mixins.json"
     }
     // End of user code block custom mixins
