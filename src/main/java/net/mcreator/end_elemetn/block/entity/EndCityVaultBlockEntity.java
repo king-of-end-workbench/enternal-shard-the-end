@@ -25,7 +25,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.end_elemetn.block.EndCityVaultBlock;
@@ -148,22 +147,15 @@ public class EndCityVaultBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+	public CompoundTag getUpdateTag() {
 		CompoundTag tag = new CompoundTag();
 		tag.putInt("CurrentTier", currentTier);
 		return tag;
 	}
 
 	@Override
-	public void handleUpdateTag(CompoundTag tag, HolderLookup.Provider registries) {
-		if (tag.contains("CurrentTier")) {
-			currentTier = tag.getInt("CurrentTier");
-		}
-	}
-
-	@Override
-	protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.saveAdditional(tag, registries);
+	public void saveAdditional(CompoundTag tag) {
+		super.saveAdditional(tag);
 		tag.putInt("CurrentTier", currentTier);
 		ListTag list = new ListTag();
 		for (UUID player : claimedPlayers) {
@@ -173,8 +165,8 @@ public class EndCityVaultBlockEntity extends BlockEntity {
 	}
 
 	@Override
-	protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
-		super.loadAdditional(tag, registries);
+	public void load(CompoundTag tag) {
+		super.load(tag);
 		if (tag.contains("CurrentTier")) {
 			currentTier = tag.getInt("CurrentTier");
 		}

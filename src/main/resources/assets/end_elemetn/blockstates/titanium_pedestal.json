@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "blockstate=0": {
       "model": "end_elemetn:block/titanium_pedestal"
+    },
+    "blockstate=1": {
+      "model": "end_elemetn:block/pedestallll_blockstate_0"
+    },
+    "blockstate=2": {
+      "model": "end_elemetn:block/pedestallll_blockstate_1"
+    },
+    "blockstate=3": {
+      "model": "end_elemetn:block/pedestallll_blockstate_2"
+    },
+    "blockstate=4": {
+      "model": "end_elemetn:block/pedestallll_blockstate_3"
     }
   }
 }

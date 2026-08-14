@@ -22,10 +22,10 @@ public class EndElemetnModBlockEntities {
 	public static final RegistryObject<BlockEntityType<?>> END_SPAWNER = register("end_spawner", EndElemetnModBlocks.END_SPAWNER, EndSpawnerBlockEntity::new);
 	public static final RegistryObject<BlockEntityType<?>> TITANIUM_PEDESTAL = register("titanium_pedestal", EndElemetnModBlocks.TITANIUM_PEDESTAL, TitaniumPedestalBlockEntity::new);
 	// Start of user code block custom block entities
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<HoleInRealityBlockEntity>> HOLE_IN_REALITY = register("hole_in_reality", EndElemetnModBlocks.HOLE_IN_REALITY, HoleInRealityBlockEntity::new);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<UnstableHoleInRealityBlockEntity>> UNSTABLE_HOLE_IN_REALITY = register("unstable_hole_in_reality", EndElemetnModBlocks.UNSTABLE_HOLE_IN_REALITY,
+	public static final RegistryObject<BlockEntityType<?>> HOLE_IN_REALITY = register("hole_in_reality", EndElemetnModBlocks.HOLE_IN_REALITY, HoleInRealityBlockEntity::new);
+	public static final RegistryObject<BlockEntityType<?>> UNSTABLE_HOLE_IN_REALITY = register("unstable_hole_in_reality", EndElemetnModBlocks.UNSTABLE_HOLE_IN_REALITY,
 			UnstableHoleInRealityBlockEntity::new);
-	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<EndCityVaultBlockEntity>> END_CITY_VAULT = register("end_city_vault", EndElemetnModBlocks.END_CITY_VAULT, EndCityVaultBlockEntity::new);
+	public static final RegistryObject<BlockEntityType<?>> END_CITY_VAULT = register("end_city_vault", EndElemetnModBlocks.END_CITY_VAULT, EndCityVaultBlockEntity::new);
 
 	// End of user code block custom block entities
 	private static RegistryObject<BlockEntityType<?>> register(String registryname, RegistryObject<Block> block, BlockEntityType.BlockEntitySupplier<?> supplier) {
