@@ -90,7 +90,7 @@ public class EndSpawnerBlock extends Block implements EntityBlock {
 			if (!world.isClientSide()) {
 				BlockEntity be = world.getBlockEntity(pos);
 				if (be instanceof EndSpawnerBlockEntity spawner) {
-					EntityType<?> type = egg.getType(stack);
+					EntityType<?> type = egg.getType(stack.getTag());
 					spawner.setDesignatedMob(type);
 					stack.shrink(1);
 					player.displayClientMessage(Component.literal("Спавнер запомнил: ").append(type.getDescription()), true);

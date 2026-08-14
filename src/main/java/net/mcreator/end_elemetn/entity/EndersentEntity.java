@@ -1,6 +1,8 @@
 package net.mcreator.end_elemetn.entity;
 
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -37,6 +39,10 @@ public class EndersentEntity extends EnderMan {
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
 	public final AnimationState animationState3 = new AnimationState();
+
+	public EndersentEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.ENDERSENT.get(), world);
+	}
 
 	public EndersentEntity(EntityType<EndersentEntity> type, Level world) {
 		super(type, world);

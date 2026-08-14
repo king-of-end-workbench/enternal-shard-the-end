@@ -95,12 +95,8 @@ public abstract class AbstractHammerItem extends TieredItem {
 
 	@Override
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		return true;
-	}
-
-	@Override
-	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
 		stack.hurtAndBreak(2, attacker, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
+		return true;
 	}
 
 	@Override

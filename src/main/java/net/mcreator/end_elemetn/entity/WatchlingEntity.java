@@ -1,6 +1,8 @@
 package net.mcreator.end_elemetn.entity;
 
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -40,6 +42,10 @@ public class WatchlingEntity extends EnderMan {
 	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(WatchlingEntity.class, EntityDataSerializers.INT);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
+
+	public WatchlingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.WATCHLING.get(), world);
+	}
 
 	public WatchlingEntity(EntityType<WatchlingEntity> type, Level world) {
 		super(type, world);

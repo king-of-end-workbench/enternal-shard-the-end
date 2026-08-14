@@ -14,8 +14,9 @@ public class NecrosentPriObnovleniiTikaProcedure {
 	public static void execute(LevelAccessor world, Entity entity) {
 		if (entity == null)
 			return;
-		if (Math.random() < 0.04 && entity instanceof Mob _mobEnt0 && _mobEnt0.isAggressive() && _mobEnt0.getTarget() instanceof LivingEntity target) {
+		if (Math.random() < 0.04 && entity instanceof Mob _mobEnt0 && _mobEnt0.isAggressive() && _mobEnt0.getTarget() != null) {
 			LivingEntity shooter = _mobEnt0;
+			LivingEntity target = _mobEnt0.getTarget();
 			Level projectileLevel = entity.level();
 			if (!projectileLevel.isClientSide()) {
 				if (Math.random() < 0.5) {

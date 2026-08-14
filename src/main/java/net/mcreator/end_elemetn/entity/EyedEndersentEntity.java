@@ -1,5 +1,9 @@
 package net.mcreator.end_elemetn.entity;
 
+import net.minecraftforge.network.PlayMessages;
+
+import net.mcreator.end_elemetn.init.EndElemetnModEntities;
+
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -40,6 +44,10 @@ public class EyedEndersentEntity extends EnderMan {
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
 	public final AnimationState animationState3 = new AnimationState();
+
+	public EyedEndersentEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.EYED_ENDERSENT.get(), world);
+	}
 
 	public EyedEndersentEntity(EntityType<EyedEndersentEntity> type, Level world) {
 		super(type, world);

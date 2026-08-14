@@ -8,7 +8,6 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.core.registries.Registries;
 
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
 import net.mcreator.end_elemetn.entity.SoulGlobEntity;
@@ -48,9 +47,9 @@ public class SSnarelingPriObnovleniiTikaProcedure {
 	private static ItemStack createArrowWeaponItemStack(Level level, int knockback, byte piercing) {
 		ItemStack weapon = new ItemStack(Items.ARROW);
 		if (knockback > 0)
-			weapon.enchant(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.KNOCKBACK), knockback);
+			weapon.enchant(Enchantments.KNOCKBACK, knockback);
 		if (piercing > 0)
-			weapon.enchant(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING), piercing);
+			weapon.enchant(Enchantments.PIERCING, piercing);
 		return weapon;
 	}
 }

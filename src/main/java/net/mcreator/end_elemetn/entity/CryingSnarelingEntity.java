@@ -1,5 +1,9 @@
 package net.mcreator.end_elemetn.entity;
 
+import net.minecraftforge.network.PlayMessages;
+
+import net.mcreator.end_elemetn.init.EndElemetnModEntities;
+
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -39,6 +43,10 @@ public class CryingSnarelingEntity extends EnderMan implements RangedAttackMob {
 	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(CryingSnarelingEntity.class, EntityDataSerializers.INT);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
+
+	public CryingSnarelingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.CRYING_SNARELING.get(), world);
+	}
 
 	public CryingSnarelingEntity(EntityType<CryingSnarelingEntity> type, Level world) {
 		super(type, world);

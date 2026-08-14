@@ -1,6 +1,8 @@
 package net.mcreator.end_elemetn.entity;
 
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.monster.RangedAttackMob;
@@ -45,6 +47,10 @@ public class BlastlingEntity extends EnderMan implements RangedAttackMob {
 	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(BlastlingEntity.class, EntityDataSerializers.INT);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
+
+	public BlastlingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.BLASTLING.get(), world);
+	}
 
 	public BlastlingEntity(EntityType<BlastlingEntity> type, Level world) {
 		super(type, world);

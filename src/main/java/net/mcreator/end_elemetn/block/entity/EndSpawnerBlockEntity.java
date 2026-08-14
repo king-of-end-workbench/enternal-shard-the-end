@@ -246,7 +246,7 @@ public class EndSpawnerBlockEntity extends RandomizableContainerBlockEntity impl
 				BlockPos spawnPos = findSpawnPosition(level, pos, level.getRandom());
 				if (spawnPos == null)
 					continue;
-				Entity spawned = mobType.spawn(serverLevel, spawnPos, MobSpawnType.TRIAL_SPAWNER);
+				Entity spawned = mobType.spawn(serverLevel, spawnPos, MobSpawnType.SPAWNER);
 				if (spawned == null)
 					continue;
 				spawned.setYRot(level.getRandom().nextFloat() * 360F);

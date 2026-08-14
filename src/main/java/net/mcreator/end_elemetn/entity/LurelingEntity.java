@@ -1,6 +1,8 @@
 package net.mcreator.end_elemetn.entity;
 
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -42,6 +44,10 @@ public class LurelingEntity extends EnderMan {
 	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(LurelingEntity.class, EntityDataSerializers.INT);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
+
+	public LurelingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.LURELING.get(), world);
+	}
 
 	public LurelingEntity(EntityType<LurelingEntity> type, Level world) {
 		super(type, world);

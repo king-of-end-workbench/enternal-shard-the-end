@@ -1,6 +1,8 @@
 package net.mcreator.end_elemetn.entity;
 
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.InteractionHand;
@@ -46,6 +48,10 @@ public class ShadowlingEntity extends EnderMan {
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
 	private boolean watchedByPlayer = false;
+
+	public ShadowlingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.SHADOWLING.get(), world);
+	}
 
 	public ShadowlingEntity(EntityType<ShadowlingEntity> type, Level world) {
 		super(type, world);

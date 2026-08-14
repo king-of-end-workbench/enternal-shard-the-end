@@ -21,7 +21,7 @@
     {
       "name": "Shulker",
       "type": "armor",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "shulker",
       "metadata": {
@@ -1234,7 +1234,7 @@
     {
       "name": "SnarelingGlob",
       "type": "projectile",
-      "compiles": false,
+      "compiles": true,
       "locked_code": false,
       "registry_name": "snareling_glob",
       "metadata": {
@@ -1415,7 +1415,7 @@
     {
       "name": "Watchling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "watchling",
       "metadata": {
@@ -1430,7 +1430,7 @@
     {
       "name": "Snareling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "snareling",
       "metadata": {
@@ -1445,7 +1445,7 @@
     {
       "name": "Blastling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "blastling",
       "metadata": {
@@ -1460,7 +1460,7 @@
     {
       "name": "Lureling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "lureling",
       "metadata": {
@@ -1475,7 +1475,7 @@
     {
       "name": "Trumpling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "trumpling",
       "metadata": {
@@ -1490,7 +1490,7 @@
     {
       "name": "Endersent",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "endersent",
       "metadata": {
@@ -1505,7 +1505,7 @@
     {
       "name": "EyedEndersent",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "eyed_endersent",
       "metadata": {
@@ -3791,7 +3791,7 @@
     {
       "name": "EndFirePriStolknovieniiSushchnostiSBlokom",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "end_fire_pri_stolknovienii_sushchnosti_s_blokom",
       "metadata": {
@@ -3813,7 +3813,7 @@
     {
       "name": "EndFire",
       "type": "block",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "end_fire",
       "metadata": {
@@ -4350,7 +4350,7 @@
     {
       "name": "AntiEndHate",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "anti_end_hate",
       "metadata": {
@@ -4372,7 +4372,7 @@
     {
       "name": "Shadowling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "shadowling",
       "metadata": {
@@ -4503,7 +4503,7 @@
     {
       "name": "ShadowlingPriObnovlieniiTikaSushchnosti",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "shadowling_pri_obnovlienii_tika_sushchnosti",
       "metadata": {
@@ -4578,7 +4578,7 @@
     {
       "name": "Necrosent",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "necrosent",
       "metadata": {
@@ -4617,7 +4617,7 @@
     {
       "name": "CryingWatchling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "crying_watchling",
       "metadata": {
@@ -4631,7 +4631,7 @@
     {
       "name": "CryingSnareling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "crying_snareling",
       "metadata": {
@@ -4645,7 +4645,7 @@
     {
       "name": "CryingBlastling",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "crying_blastling",
       "metadata": {
@@ -4689,7 +4689,7 @@
     {
       "name": "SoulGlob",
       "type": "projectile",
-      "compiles": false,
+      "compiles": true,
       "locked_code": false,
       "registry_name": "soul_glob",
       "metadata": {
@@ -4986,7 +4986,7 @@
     {
       "name": "LureBlastlingBulletKoghdaSnariadPopadaietVSushchnost",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "lure_blastling_bullet_koghda_snariad_popadaiet_v_sushchnost",
       "metadata": {
@@ -5082,7 +5082,7 @@
     {
       "name": "LurePriZaviershieniiIspolzovaniia",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "lure_pri_zaviershienii_ispolzovaniia",
       "metadata": {
@@ -5100,7 +5100,7 @@
     {
       "name": "CorruptedBeacon",
       "type": "item",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "corrupted_beacon",
       "metadata": {
@@ -5143,7 +5143,7 @@
     {
       "name": "LaserBeam",
       "type": "livingentity",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "laser_beam",
       "metadata": {
@@ -5178,7 +5178,7 @@
     {
       "name": "CorruptedBeaconPriShchielchkiePKM",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "corrupted_beacon_pri_shchielchkie_pkm",
       "metadata": {
@@ -6054,7 +6054,7 @@
     {
       "name": "SSnarelingPriObnovleniiTika",
       "type": "procedure",
-      "compiles": true,
+      "compiles": false,
       "locked_code": true,
       "registry_name": "s_snareling_pri_obnovlenii_tika",
       "metadata": {
@@ -6770,7 +6770,7 @@
     {
       "name": "DimensionalCutterPriVzmakhieSushchnostiPriedmietom",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": false,
       "registry_name": "dimensional_cutter_pri_vzmakhie_sushchnosti_priedmietom",
       "metadata": {

@@ -2,6 +2,8 @@ package net.mcreator.end_elemetn.entity;
 
 import net.minecraftforge.event.ForgeEventFactory;
 
+import net.minecraftforge.network.PlayMessages;
+
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.Level;
@@ -41,6 +43,10 @@ public class TrumplingEntity extends TamableAnimal {
 	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(TrumplingEntity.class, EntityDataSerializers.INT);
 	public final AnimationState animationState0 = new AnimationState();
 	public final AnimationState animationState2 = new AnimationState();
+
+	public TrumplingEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.TRUMPLING.get(), world);
+	}
 
 	public TrumplingEntity(EntityType<TrumplingEntity> type, Level world) {
 		super(type, world);

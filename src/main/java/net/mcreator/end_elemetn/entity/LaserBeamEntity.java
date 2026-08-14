@@ -1,5 +1,9 @@
 package net.mcreator.end_elemetn.entity;
 
+import net.minecraftforge.network.PlayMessages;
+
+import net.mcreator.end_elemetn.init.EndElemetnModEntities;
+
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -39,6 +43,10 @@ public class LaserBeamEntity extends Monster {
 	public static final EntityDataAccessor<Integer> DATA_yaw = SynchedEntityData.defineId(LaserBeamEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> DATA_pitch = SynchedEntityData.defineId(LaserBeamEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Boolean> DATA_shouldSynchroRot = SynchedEntityData.defineId(LaserBeamEntity.class, EntityDataSerializers.BOOLEAN);
+
+	public LaserBeamEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.LASER_BEAM.get(), world);
+	}
 
 	public LaserBeamEntity(EntityType<LaserBeamEntity> type, Level world) {
 		super(type, world);
