@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "plains",
+  "biomes": "minecraft:end_barrens",
   "features": "end_elemetn:mud_lake",
   "step": "surface_structures"
 }

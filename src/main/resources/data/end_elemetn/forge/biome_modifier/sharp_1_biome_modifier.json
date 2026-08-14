@@ -1,6 +1,10 @@
 {
   "type": "forge:add_features",
-  "biomes": "plains",
+  "biomes": [
+    "minecraft:end_barrens",
+    "minecraft:end_highlands",
+    "minecraft:end_midlands"
+  ],
   "features": "end_elemetn:sharp_1",
   "step": "surface_structures"
 }

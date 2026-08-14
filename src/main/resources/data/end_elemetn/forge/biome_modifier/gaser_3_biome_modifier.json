@@ -1,6 +1,6 @@
 {
   "type": "forge:add_features",
-  "biomes": "plains",
+  "biomes": "minecraft:end_barrens",
   "features": "end_elemetn:gaser_3",
   "step": "surface_structures"
 }

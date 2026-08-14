@@ -1,5 +1,8 @@
 {
-  "parent": "end_elemetn:block/unstable_hole_in_reality",
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "minecraft:block/sculk_catalyst_side"
+  },
   "display": {
     "thirdperson": {
       "rotation": [

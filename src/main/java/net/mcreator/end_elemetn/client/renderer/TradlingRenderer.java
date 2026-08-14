@@ -1,18 +1,39 @@
 package net.mcreator.end_elemetn.client.renderer;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.HierarchicalModel;
+import net.minecraft.client.Minecraft;
 
 import net.mcreator.end_elemetn.entity.TradlingEntity;
 import net.mcreator.end_elemetn.client.model.animations.enderomAnimation;
 import net.mcreator.end_elemetn.client.model.Modelenderom;
 
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.blaze3d.vertex.PoseStack;
+
 public class TradlingRenderer extends MobRenderer<TradlingEntity, Modelenderom<TradlingEntity>> {
 	public TradlingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelenderom.LAYER_LOCATION)), 0.5f);
+		this.addLayer(new RenderLayer<TradlingEntity, Modelenderom<TradlingEntity>>(this) {
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/tradeling_eyes.png");
+
+			@Override
+			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, TradlingEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+				VertexConsumer vertexConsumer = bufferSource.getBuffer(RenderType.eyes(LAYER_TEXTURE));
+				AnimatedModel model = new AnimatedModel(Minecraft.getInstance().getEntityModels().bakeLayer(Modelenderom.LAYER_LOCATION));
+				this.getParentModel().copyPropertiesTo(model);
+				model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
+				model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+				model.renderToBuffer(poseStack, vertexConsumer, light, LivingEntityRenderer.getOverlayCoords(entity, 0), 1.0F, 1.0F, 1.0F, 1.0F);
+			}
+		});
 	}
 
 	@Override
