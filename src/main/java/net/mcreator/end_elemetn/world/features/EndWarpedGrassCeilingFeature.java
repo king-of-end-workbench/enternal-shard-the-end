@@ -41,21 +41,27 @@ public class EndWarpedGrassCeilingFeature extends Feature<NoneFeatureConfigurati
 		int bottom = level.getMinBuildHeight();
 		BlockState grass = EndElemetnModBlocks.END_WARPED_GRASS.get().defaultBlockState();
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		BlockPos.MutableBlockPos abovePos = new BlockPos.MutableBlockPos();
 		boolean placedAny = false;
 
 		for (int dx = 0; dx < 16; dx++) {
 			for (int dz = 0; dz < 16; dz++) {
 				int x = chunkMinX + dx;
 				int z = chunkMinZ + dz;
-				boolean previousWasAir = false;
+				// Scanning top to bottom, we want the boundary where the block ABOVE (already
+				// visited) is solid end_stone and the CURRENT block is air - that's the underside
+				// of an island's floor, not its top surface (which would be air above, stone
+				// below). The block to convert is the one above, since that's the actual ceiling.
+				boolean previousWasEndStone = false;
 				for (int y = top; y >= bottom; y--) {
 					pos.set(x, y, z);
 					BlockState state = level.getBlockState(pos);
-					if (previousWasAir && state.is(Blocks.END_STONE)) {
-						level.setBlock(pos, grass, 2);
+					if (previousWasEndStone && state.isAir()) {
+						abovePos.set(x, y + 1, z);
+						level.setBlock(abovePos, grass, 2);
 						placedAny = true;
 					}
-					previousWasAir = state.isAir();
+					previousWasEndStone = state.is(Blocks.END_STONE);
 				}
 			}
 		}
