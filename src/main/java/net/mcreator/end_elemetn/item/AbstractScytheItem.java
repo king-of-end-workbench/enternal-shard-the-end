@@ -41,8 +41,16 @@ import java.util.List;
  * spinning AoE strike.
  */
 public abstract class AbstractScytheItem extends HoeItem {
-	private static final int SPIN_CHARGE_TICKS = 24;
+	// Holding the spin without releasing chains multiple rotations: each successive rotation is
+	// ROTATION_ACCEL_TICKS faster (down to MIN_ROTATION_TICKS), and the damage/cooldown of the
+	// eventual hit scale with how many full rotations were actually completed.
+	private static final int BASE_ROTATION_TICKS = 24;
+	private static final int ROTATION_ACCEL_TICKS = 3;
+	private static final int MIN_ROTATION_TICKS = 12;
 	private static final int MIN_HOLD_FOR_SPIN_TICKS = 12;
+	private static final int SUPER_HIT_SPIN_THRESHOLD = 5;
+	private static final float SUPER_HIT_DAMAGE_MULTIPLIER = 1.5f;
+	private static final float SUPER_HIT_RADIUS_MULTIPLIER = 1.3f;
 	private static final float CROWD_DAMAGE_PER_TARGET = 0.25f;
 	private static final float CROWD_DAMAGE_CAP = 3f;
 
@@ -51,18 +59,20 @@ public abstract class AbstractScytheItem extends HoeItem {
 	private final double spinRadius;
 	private final float spinDamage;
 	private final int spinCooldownTicks;
+	private final int maxSpinCount;
 
 	// HoeItem (via DiggerItem) already builds its own attack damage/speed attribute modifiers from
 	// these two args - no need to duplicate that here like AbstractHammerItem (a plain TieredItem)
 	// has to.
 	protected AbstractScytheItem(Tier tier, float attackDamage, float attackSpeed, double meleeSplashRadius, float meleeSplashDamage, double spinRadius,
-			float spinDamage, int spinCooldownTicks) {
+			float spinDamage, int spinCooldownTicks, int maxSpinCount) {
 		super(tier, (int) attackDamage, attackSpeed, new Item.Properties());
 		this.meleeSplashRadius = meleeSplashRadius;
 		this.meleeSplashDamage = meleeSplashDamage;
 		this.spinRadius = spinRadius;
 		this.spinDamage = spinDamage;
 		this.spinCooldownTicks = spinCooldownTicks;
+		this.maxSpinCount = maxSpinCount;
 	}
 
 	@Override
@@ -71,9 +81,42 @@ public abstract class AbstractScytheItem extends HoeItem {
 		return InteractionResultHolder.consume(entity.getItemInHand(hand));
 	}
 
+	private int rotationTicks(int rotationIndex) {
+		return Math.max(MIN_ROTATION_TICKS, BASE_ROTATION_TICKS - rotationIndex * ROTATION_ACCEL_TICKS);
+	}
+
+	private int totalSpinTicks() {
+		int total = 0;
+		for (int i = 0; i < maxSpinCount; i++)
+			total += rotationTicks(i);
+		return total;
+	}
+
+	private int rotationIndexAt(int ticksElapsed) {
+		int cumulative = 0;
+		for (int i = 0; i < maxSpinCount; i++) {
+			cumulative += rotationTicks(i);
+			if (ticksElapsed < cumulative)
+				return i;
+		}
+		return maxSpinCount - 1;
+	}
+
+	private int spinsCompletedAt(int ticksElapsed) {
+		int cumulative = 0;
+		int completed = 0;
+		for (int i = 0; i < maxSpinCount; i++) {
+			cumulative += rotationTicks(i);
+			if (ticksElapsed < cumulative)
+				break;
+			completed++;
+		}
+		return completed;
+	}
+
 	@Override
 	public int getUseDuration(ItemStack stack) {
-		return SPIN_CHARGE_TICKS;
+		return totalSpinTicks();
 	}
 
 	@Override
@@ -84,29 +127,44 @@ public abstract class AbstractScytheItem extends HoeItem {
 	@Override
 	public void onUseTick(Level world, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
 		if (entity instanceof ServerPlayer serverPlayer) {
-			float yawDelta = 360f / SPIN_CHARGE_TICKS;
+			int ticksElapsed = totalSpinTicks() - remainingUseDuration;
+			float yawDelta = 360f / rotationTicks(rotationIndexAt(ticksElapsed));
 			EndElemetnMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ScytheSpinMessage(yawDelta));
 		}
 	}
 
 	@Override
 	public void releaseUsing(ItemStack stack, Level world, LivingEntity entity, int timeLeft) {
-		int ticksUsed = SPIN_CHARGE_TICKS - timeLeft;
-		if (ticksUsed >= MIN_HOLD_FOR_SPIN_TICKS) {
-			spin(stack, world, entity);
+		int ticksUsed = totalSpinTicks() - timeLeft;
+		int spinsPerformed = spinsCompletedAt(ticksUsed);
+		if (spinsPerformed == 0 && ticksUsed >= MIN_HOLD_FOR_SPIN_TICKS) {
+			spinsPerformed = 1;
+		}
+		if (spinsPerformed > 0) {
+			spin(stack, world, entity, spinsPerformed);
 		}
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-		spin(stack, world, entity);
+		spin(stack, world, entity, maxSpinCount);
 		return stack;
 	}
 
-	private void spin(ItemStack stack, Level world, LivingEntity entity) {
-		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
+	private void spin(ItemStack stack, Level world, LivingEntity entity, int spinsPerformed) {
+		if (entity instanceof Player player && player.getCooldowns().isOnCooldown(stack.getItem())) {
+			return;
+		}
+		boolean superHit = spinsPerformed >= SUPER_HIT_SPIN_THRESHOLD;
+		float damage = spinDamage * spinsPerformed;
+		double radius = spinRadius;
+		if (superHit) {
+			damage *= SUPER_HIT_DAMAGE_MULTIPLIER;
+			radius *= SUPER_HIT_RADIUS_MULTIPLIER;
+		}
+		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack, radius, damage, superHit);
 		if (entity instanceof Player player) {
-			player.getCooldowns().addCooldown(stack.getItem(), spinCooldownTicks);
+			player.getCooldowns().addCooldown(stack.getItem(), spinCooldownTicks * spinsPerformed);
 		}
 	}
 

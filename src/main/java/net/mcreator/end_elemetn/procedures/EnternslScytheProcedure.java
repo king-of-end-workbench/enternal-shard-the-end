@@ -21,27 +21,27 @@ import net.minecraft.core.BlockPos;
 import java.util.Comparator;
 
 public class EnternslScytheProcedure {
-	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
+	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack, double radius, float damage, boolean superHit) {
 		if (entity == null)
 			return;
-		if ((entity instanceof Player _plrCldRem1 ? _plrCldRem1.getCooldowns().getCooldownPercent(itemstack.getItem(), 0f) * 100 : 0) == 0) {
-			{
-				final Vec3 _center = new Vec3(x, y, z);
-				for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(4 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList()) {
-					if (!(entityiterator == entity)) {
-						entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK)), 1);
-						if (world instanceof Level _level) {
-							if (!_level.isClientSide()) {
-								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.player.attack.sweep")), SoundSource.NEUTRAL, 1, 1);
-							} else {
-								_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.player.attack.sweep")), SoundSource.NEUTRAL, 1, 1, false);
-							}
-						}
-						if (world instanceof ServerLevel _level)
-							_level.sendParticles(ParticleTypes.SWEEP_ATTACK, x, y, z, 5, 3, 3, 3, 1);
+		final Vec3 _center = new Vec3(x, y, z);
+		for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(radius), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList()) {
+			if (!(entityiterator == entity)) {
+				entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.PLAYER_ATTACK)), damage);
+				if (world instanceof Level _level) {
+					if (!_level.isClientSide()) {
+						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.player.attack.sweep")), SoundSource.NEUTRAL, 1, 1);
+					} else {
+						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.player.attack.sweep")), SoundSource.NEUTRAL, 1, 1, false);
 					}
 				}
+				if (world instanceof ServerLevel _level)
+					_level.sendParticles(ParticleTypes.SWEEP_ATTACK, x, y, z, 5, 3, 3, 3, 1);
 			}
+		}
+		if (superHit && world instanceof ServerLevel _level) {
+			_level.sendParticles(ParticleTypes.END_ROD, x, y + 1, z, 40, radius / 2, 1, radius / 2, 0.05);
+			_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ender_dragon.growl")), SoundSource.NEUTRAL, 0.6f, 1.4f);
 		}
 	}
 }

@@ -40,6 +40,6 @@ public class EnternalScytheItem extends AbstractScytheItem {
 	};
 
 	public EnternalScytheItem() {
-		super(TOOL_TIER, 19f, -2.8f, 3.0, 8f, 7.0, 22f, 100);
+		super(TOOL_TIER, 19f, -2.8f, 3.0, 8f, 7.0, 22f, 100, 5);
 	}
 }
