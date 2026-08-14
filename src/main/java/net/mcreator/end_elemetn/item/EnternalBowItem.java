@@ -9,26 +9,30 @@ import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.stats.Stats;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.core.particles.ParticleTypes;
 
 /**
  * A vanilla-correct bow (real ammo lookup/consumption, Infinity/Power/Punch/Flame all actually
- * work, guaranteed crit on full draw) that also rewards a full draw with a "void shot": a brief
- * Levitation proc (and the matching particle trail tipped arrows get for free) plus bonus damage.
+ * work, guaranteed crit on full draw) that also rewards a full draw with a "void line" perk: the
+ * arrow flies at greatly boosted speed and leaves a lingering line of void energy along its
+ * flight path (tracked by VoidLineManager) that damages any non-player entity touching it for a
+ * few seconds after the shot.
  */
 public class EnternalBowItem extends Item {
-	private static final float FULL_DRAW_BONUS_DAMAGE = 2.0f;
+	private static final float NORMAL_VELOCITY_MULTIPLIER = 3.15f;
+	private static final float VOID_SHOT_VELOCITY_MULTIPLIER = 6.0f;
 
 	public EnternalBowItem() {
 		super(new Item.Properties().durability(1000));
@@ -60,6 +64,17 @@ public class EnternalBowItem extends Item {
 	}
 
 	@Override
+	public void onUseTick(Level world, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
+		if (!(world instanceof ServerLevel serverLevel))
+			return;
+		int ticksUsed = this.getUseDuration(stack) - remainingUseDuration;
+		if (ticksUsed % 2 != 0)
+			return;
+		Vec3 origin = entity.getEyePosition().add(entity.getLookAngle().scale(0.6));
+		serverLevel.sendParticles(ParticleTypes.REVERSE_PORTAL, origin.x, origin.y, origin.z, 3, 0.15, 0.15, 0.15, 0.02);
+	}
+
+	@Override
 	public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entity, int time) {
 		if (world.isClientSide() || !(entity instanceof ServerPlayer player))
 			return;
@@ -72,16 +87,16 @@ public class EnternalBowItem extends Item {
 		boolean infinite = player.getAbilities().instabuild
 				|| (stack.getItem() instanceof ArrowItem arrowItem && arrowItem.isInfinite(stack, itemstack, player));
 		ItemStack ammoForArrow = stack.isEmpty() ? new ItemStack(Items.ARROW) : stack;
+		boolean fullDraw = pullingPower >= 1.0f;
+		float velocityMultiplier = fullDraw ? VOID_SHOT_VELOCITY_MULTIPLIER : NORMAL_VELOCITY_MULTIPLIER;
 
 		Arrow projectile = new Arrow(world, entity);
 		projectile.setEffectsFromItem(ammoForArrow);
-		projectile.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0, pullingPower * 3.15f, 1.0F);
+		projectile.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0, pullingPower * velocityMultiplier, 1.0F);
 
-		boolean fullDraw = pullingPower >= 1.0f;
 		if (fullDraw) {
 			projectile.setCritArrow(true);
-			projectile.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 20, 0));
-			projectile.setBaseDamage(projectile.getBaseDamage() + FULL_DRAW_BONUS_DAMAGE);
+			VoidLineManager.track(projectile);
 		}
 
 		int powerLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, itemstack);
