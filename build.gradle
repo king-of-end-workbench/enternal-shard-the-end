@@ -48,6 +48,12 @@ mixin {
         add sourceSets.main, "end_elemetn.refmap.json"
         config "end_elemetn.mixins.json"
     }
+    // Start of user code block custom mixins
+    if (file("src/main/resources/end_elemetn_custom.mixins.json").exists()) {
+        add sourceSets.main, "end_elemetn_custom.refmap.json"
+        config "end_elemetn_custom.mixins.json"
+    }
+    // End of user code block custom mixins
 }
 
 dependencies {
@@ -62,6 +68,13 @@ jar {
                 "MixinConfigs": "end_elemetn.mixins.json"
         ])
     }
+    // Start of user code block custom mixins
+    if (file("src/main/resources/end_elemetn_custom.mixins.json").exists()) {
+        manifest.attributes([
+                "MixinConfigs": "end_elemetn.mixins.json,end_elemetn_custom.mixins.json"
+        ])
+    }
+    // End of user code block custom mixins
 }
 
 apply from: 'mcreator.gradle'
