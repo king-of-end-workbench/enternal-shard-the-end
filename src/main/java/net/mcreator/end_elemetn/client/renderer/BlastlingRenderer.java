@@ -68,9 +68,13 @@ public class BlastlingRenderer extends MobRenderer<BlastlingEntity, Modelblastli
 			animator.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			// Isolated to the head bone specifically (not the whole body) - applied last so it
-			// always wins over whatever the idle/walk/attack animations above left the head at.
-			this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-			this.head.xRot = headPitch * ((float) Math.PI / 180F);
+			// wins over the idle/walk animations above, but only when the attack animation isn't
+			// running, since that animation has its own deliberate head keyframes that this
+			// look-tracking override would otherwise blot out entirely.
+			if (!entity.animationState2.isStarted()) {
+				this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
+				this.head.xRot = headPitch * ((float) Math.PI / 180F);
+			}
 		}
 	}
 }

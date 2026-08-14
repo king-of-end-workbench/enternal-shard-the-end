@@ -70,8 +70,14 @@ public class VengefulHeartOfEnderRenderer extends MobRenderer<VengefulHeartOfEnd
 		public void setupAnim(VengefulHeartOfEnderEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 			animator.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 			super.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-			this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
-			this.head.xRot = headPitch * ((float) Math.PI / 180F);
+			// Isolated to the head bone specifically (not the whole body) - applied last so it
+			// wins over the idle/walk animations above, but only when the shoot animation isn't
+			// running, since that animation has its own deliberate head keyframes that this
+			// look-tracking override would otherwise blot out entirely.
+			if (!entity.animationState2.isStarted()) {
+				this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
+				this.head.xRot = headPitch * ((float) Math.PI / 180F);
+			}
 		}
 	}
 }

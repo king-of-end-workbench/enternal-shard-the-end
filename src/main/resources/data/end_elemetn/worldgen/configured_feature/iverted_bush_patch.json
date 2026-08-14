@@ -9,10 +9,8 @@
     "vegetation_chance": 0.2,
     "xz_radius": {
       "type": "minecraft:uniform",
-      "value": {
-        "min_inclusive": 1,
-        "max_inclusive": 2
-      }
+      "min_inclusive": 1,
+      "max_inclusive": 2
     },
     "replaceable": "#end_elemetn:inverted_tree_replaceable",
     "ground_state": {

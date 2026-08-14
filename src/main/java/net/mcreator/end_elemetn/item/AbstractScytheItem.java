@@ -93,14 +93,21 @@ public abstract class AbstractScytheItem extends HoeItem {
 	public void releaseUsing(ItemStack stack, Level world, LivingEntity entity, int timeLeft) {
 		int ticksUsed = SPIN_CHARGE_TICKS - timeLeft;
 		if (ticksUsed >= MIN_HOLD_FOR_SPIN_TICKS) {
-			EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
+			spin(stack, world, entity);
 		}
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
+		spin(stack, world, entity);
 		return stack;
+	}
+
+	private void spin(ItemStack stack, Level world, LivingEntity entity) {
+		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
+		if (entity instanceof Player player) {
+			player.getCooldowns().addCooldown(stack.getItem(), spinCooldownTicks);
+		}
 	}
 
 	@Override
