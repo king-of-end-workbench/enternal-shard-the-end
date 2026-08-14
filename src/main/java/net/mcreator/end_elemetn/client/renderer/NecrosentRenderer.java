@@ -63,10 +63,6 @@ public class NecrosentRenderer extends MobRenderer<NecrosentEntity, Modelnecrose
 		public AnimatedModel(ModelPart root) {
 			super(root);
 			this.root = root;
-			// watchlingHead/watchlingHeadSkull are a leftover duplicate of the real head/skull,
-			// left over from Watchling's model being used as a starting point in Blockbench -
-			// they sit at the exact same position as head/skull and are never meant to be seen.
-			this.watchlingHead.visible = false;
 		}
 
 		@Override
@@ -81,6 +77,12 @@ public class NecrosentRenderer extends MobRenderer<NecrosentEntity, Modelnecrose
 				this.head.yRot = netHeadYaw * ((float) Math.PI / 180F);
 				this.head.xRot = headPitch * ((float) Math.PI / 180F);
 			}
+			// watchlingHead/watchlingHeadSkull are a leftover duplicate of the real head/skull
+			// (same position, left over from Watchling's model being used as a starting point in
+			// Blockbench) that never got its own proper head-tracking - keep it in sync with the
+			// real head/skull instead of hiding it, so both move together.
+			this.watchlingHead.copyFrom(this.head);
+			this.watchlingHeadSkull.copyFrom(this.skull);
 		}
 	}
 }
