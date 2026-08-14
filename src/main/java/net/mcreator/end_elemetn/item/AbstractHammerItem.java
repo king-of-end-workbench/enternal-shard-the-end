@@ -37,27 +37,38 @@ import java.util.List;
  * look direction, and unleashes a ground-slam AoE when the charged right-click completes.
  */
 public abstract class AbstractHammerItem extends TieredItem {
-	private static final int SLAM_CHARGE_TICKS = 20;
+	// Holding the slam without releasing charges it up in stages, each stage a little quicker to
+	// reach than the last; the eventual slam's damage/radius/knockback and cooldown scale with how
+	// many charge stages were actually completed.
+	private static final int BASE_STAGE_TICKS = 20;
+	private static final int STAGE_ACCEL_TICKS = 2;
+	private static final int MIN_STAGE_TICKS = 10;
 	private static final int MIN_HOLD_FOR_SLAM_TICKS = 10;
+	private static final int SUPER_SLAM_CHARGE_THRESHOLD = 5;
+	private static final float SUPER_SLAM_DAMAGE_MULTIPLIER = 1.5f;
+	private static final float SUPER_SLAM_RADIUS_MULTIPLIER = 1.3f;
+	private static final double SUPER_SLAM_KNOCKBACK_MULTIPLIER = 1.5;
 
 	private final float mineSpeed;
 	private final double slamRadius;
 	private final float slamDamage;
 	private final double slamKnockback;
 	private final int slamCooldownTicks;
+	private final int maxChargeCount;
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
 	// forge-1.20.1 has no Item.Properties().attributes(...) data component (later addition) - the
 	// attack damage/speed attribute modifiers are built by hand here, mirroring what DiggerItem's own
 	// constructor does internally.
 	protected AbstractHammerItem(Tier tier, float attackDamage, float attackSpeed, float mineSpeed, double slamRadius, float slamDamage, double slamKnockback,
-			int slamCooldownTicks) {
+			int slamCooldownTicks, int maxChargeCount) {
 		super(tier, new Item.Properties());
 		this.mineSpeed = mineSpeed;
 		this.slamRadius = slamRadius;
 		this.slamDamage = slamDamage;
 		this.slamKnockback = slamKnockback;
 		this.slamCooldownTicks = slamCooldownTicks;
+		this.maxChargeCount = maxChargeCount;
 		float attackDamageBaseline = attackDamage + tier.getAttackDamageBonus();
 		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
 		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", attackDamageBaseline, AttributeModifier.Operation.ADDITION));
@@ -141,9 +152,32 @@ public abstract class AbstractHammerItem extends TieredItem {
 		return InteractionResultHolder.consume(entity.getItemInHand(hand));
 	}
 
+	private int stageTicks(int stageIndex) {
+		return Math.max(MIN_STAGE_TICKS, BASE_STAGE_TICKS - stageIndex * STAGE_ACCEL_TICKS);
+	}
+
+	private int totalChargeTicks() {
+		int total = 0;
+		for (int i = 0; i < maxChargeCount; i++)
+			total += stageTicks(i);
+		return total;
+	}
+
+	private int chargesCompletedAt(int ticksElapsed) {
+		int cumulative = 0;
+		int completed = 0;
+		for (int i = 0; i < maxChargeCount; i++) {
+			cumulative += stageTicks(i);
+			if (ticksElapsed < cumulative)
+				break;
+			completed++;
+		}
+		return completed;
+	}
+
 	@Override
 	public int getUseDuration(ItemStack stack) {
-		return SLAM_CHARGE_TICKS;
+		return totalChargeTicks();
 	}
 
 	@Override
@@ -153,37 +187,54 @@ public abstract class AbstractHammerItem extends TieredItem {
 
 	@Override
 	public void releaseUsing(ItemStack stack, Level world, LivingEntity entity, int timeLeft) {
-		int ticksUsed = SLAM_CHARGE_TICKS - timeLeft;
-		if (ticksUsed >= MIN_HOLD_FOR_SLAM_TICKS) {
-			groundSlam(world, entity, stack);
+		int ticksUsed = totalChargeTicks() - timeLeft;
+		int chargesReached = chargesCompletedAt(ticksUsed);
+		if (chargesReached == 0 && ticksUsed >= MIN_HOLD_FOR_SLAM_TICKS) {
+			chargesReached = 1;
+		}
+		if (chargesReached > 0) {
+			groundSlam(world, entity, stack, chargesReached);
 		}
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-		groundSlam(world, entity, stack);
+		groundSlam(world, entity, stack, maxChargeCount);
 		return stack;
 	}
 
-	private void groundSlam(Level world, LivingEntity entity, ItemStack stack) {
+	private void groundSlam(Level world, LivingEntity entity, ItemStack stack, int chargesReached) {
 		if (!(world instanceof ServerLevel level))
 			return;
 		if (entity instanceof Player player && player.getCooldowns().isOnCooldown(stack.getItem()))
 			return;
+		boolean superSlam = chargesReached >= SUPER_SLAM_CHARGE_THRESHOLD;
+		double radius = slamRadius;
+		float damage = slamDamage * chargesReached;
+		double knockback = slamKnockback * chargesReached;
+		if (superSlam) {
+			radius *= SUPER_SLAM_RADIUS_MULTIPLIER;
+			damage *= SUPER_SLAM_DAMAGE_MULTIPLIER;
+			knockback *= SUPER_SLAM_KNOCKBACK_MULTIPLIER;
+		}
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
 		DamageSource source = entity instanceof Player playerAttacker ? entity.damageSources().playerAttack(playerAttacker) : entity.damageSources().mobAttack(entity);
-		List<LivingEntity> nearby = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(slamRadius), e -> e != entity);
+		List<LivingEntity> nearby = level.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(radius), e -> e != entity);
 		for (LivingEntity target : nearby) {
-			target.hurt(source, slamDamage);
-			target.knockback(slamKnockback, target.getX() - x, target.getZ() - z);
+			target.hurt(source, damage);
+			target.knockback(knockback, target.getX() - x, target.getZ() - z);
 		}
 		level.playSound(null, x, y, z, SoundEvents.ANVIL_LAND, SoundSource.PLAYERS, 1.5f, 0.7f);
 		level.sendParticles(ParticleTypes.EXPLOSION, x, y, z, 1, 0, 0, 0, 0);
-		level.sendParticles(ParticleTypes.CRIT, x, y + 0.2, z, 20, slamRadius / 2, 0.1, slamRadius / 2, 0.3);
+		level.sendParticles(ParticleTypes.CRIT, x, y + 0.2, z, 20, radius / 2, 0.1, radius / 2, 0.3);
+		if (superSlam) {
+			level.sendParticles(ParticleTypes.SONIC_BOOM, x, y + 0.5, z, 1, 0, 0, 0, 0);
+			level.playSound(null, x, y, z, SoundEvents.WARDEN_SONIC_BOOM, SoundSource.PLAYERS, 1f, 0.8f);
+		}
 		if (entity instanceof Player player) {
-			player.getCooldowns().addCooldown(stack.getItem(), slamCooldownTicks);
+			player.getCooldowns().addCooldown(stack.getItem(), slamCooldownTicks * chargesReached);
 		}
 	}
 }

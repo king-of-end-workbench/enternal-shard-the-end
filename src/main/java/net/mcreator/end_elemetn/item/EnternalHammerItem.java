@@ -42,6 +42,6 @@ public class EnternalHammerItem extends AbstractHammerItem {
 	};
 
 	public EnternalHammerItem() {
-		super(TOOL_TIER, 26f, -4f, MINE_SPEED, 5.0, 18f, 1.2, 90);
+		super(TOOL_TIER, 26f, -4f, MINE_SPEED, 5.0, 18f, 1.2, 90, 5);
 	}
 }
