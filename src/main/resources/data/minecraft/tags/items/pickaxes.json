@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:diamond_hammer",
+    "end_elemetn:netherite_hammer",
+    "end_elemetn:diamond_scyth",
+    "end_elemetn:iron_hammer",
+    "end_elemetn:wooden_scyth",
+    "end_elemetn:iron_scyth",
+    "end_elemetn:enderithe_pickaxe",
+    "end_elemetn:netherite_scyth",
+    "end_elemetn:stone_hammer",
+    "end_elemetn:golden_scyth",
+    "end_elemetn:stone_scyth",
+    "end_elemetn:dimensional_cutter",
+    "end_elemetn:golden_hammer",
+    "end_elemetn:wooden_hammer"
+  ]
+}

@@ -6,6 +6,6 @@ import net.minecraft.world.food.FoodProperties;
 
 public class DragonFruitItem extends Item {
 	public DragonFruitItem() {
-		super(new Item.Properties().rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8f).build()));
+		super(new Item.Properties().rarity(Rarity.UNCOMMON).food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.8f).build()));
 	}
 }

@@ -1,9 +1,21 @@
 {
   "replace": false,
   "values": [
-    "end_elemetn:ender_wood",
+    "end_elemetn:chorus_planks",
+    "end_elemetn:warped_planks",
+    "end_elemetn:chorus_log",
+    "end_elemetn:dracora_palm_log",
+    "end_elemetn:cracked_chorus_planks",
+    "end_elemetn:dracora_palm_planks",
     "end_elemetn:ender_log",
+    "end_elemetn:warped_log",
+    "end_elemetn:dirty_chorus_planks",
+    "end_elemetn:chorus_wood",
+    "end_elemetn:ender_wood_stairs",
+    "end_elemetn:ender_wood",
+    "end_elemetn:dracora_palm_wood",
     "end_elemetn:ender_planks",
-    "end_elemetn:ender_wood_stairs"
+    "end_elemetn:pillars_of_shadow_wood",
+    "end_elemetn:warped_wood"
   ]
 }

@@ -21,7 +21,7 @@
         "value": "COMBAT"
       }
     ],
-    "efficiency": 5,
+    "efficiency": 5.0,
     "attackSpeed": 0.0,
     "enchantability": 22,
     "damageVsEntity": 12.0,

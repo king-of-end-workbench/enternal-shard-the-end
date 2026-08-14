@@ -8,15 +8,7 @@ import net.minecraft.world.level.block.FallingBlock;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.BlockPos;
 
-import com.mojang.serialization.MapCodec;
-
 public class EndstoneDustBlock extends FallingBlock {
-	public static final MapCodec<EndstoneDustBlock> CODEC = simpleCodec(properties -> new EndstoneDustBlock());
-
-	public MapCodec<EndstoneDustBlock> codec() {
-		return CODEC;
-	}
-
 	public EndstoneDustBlock() {
 		super(BlockBehaviour.Properties.of().sound(SoundType.SAND).strength(1f, 10f).instrument(NoteBlockInstrument.SNARE));
 	}

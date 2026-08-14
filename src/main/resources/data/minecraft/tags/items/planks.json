@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "end_elemetn:ender_planks"
+    "end_elemetn:chorus_planks",
+    "end_elemetn:ender_planks",
+    "end_elemetn:warped_planks",
+    "end_elemetn:dracora_palm_planks"
   ]
 }

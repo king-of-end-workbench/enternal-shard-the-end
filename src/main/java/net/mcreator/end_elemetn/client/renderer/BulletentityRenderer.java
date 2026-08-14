@@ -14,6 +14,6 @@ public class BulletentityRenderer extends MobRenderer<BulletentityEntity, Modelb
 
 	@Override
 	public ResourceLocation getTextureLocation(BulletentityEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/blastbomb.png");
 	}
 }

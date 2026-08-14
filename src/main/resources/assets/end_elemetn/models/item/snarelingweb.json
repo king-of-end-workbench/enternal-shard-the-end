@@ -1,8 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "end_elemetn:item/snarelingwebitem"
-  },
+  "parent": "end_elemetn:block/snarelingweb",
   "display": {
     "thirdperson": {
       "rotation": [

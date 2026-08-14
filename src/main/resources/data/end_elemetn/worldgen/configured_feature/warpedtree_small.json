@@ -4,11 +4,6 @@
     "structure": "end_elemetn:warped_tree_small",
     "random_rotation": true,
     "random_mirror": true,
-    "ignored_blocks": "minecraft:air",
-    "offset": [
-      -1,
-      -4,
-      -1
-    ]
+    "ignored_blocks": "minecraft:air"
   }
 }

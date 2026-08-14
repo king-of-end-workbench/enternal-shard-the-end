@@ -22,7 +22,12 @@ import net.mcreator.end_elemetn.init.EndElemetnModBlocks;
 
 public class CornStage0Block extends FlowerBlock implements BonemealableBlock {
 	public CornStage0Block() {
-		super(MobEffects.MOVEMENT_SPEED, 100, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
+		super(() -> MobEffects.MOVEMENT_SPEED, 100, BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.GRASS).instabreak().noCollission().offsetType(BlockBehaviour.OffsetType.XZ).pushReaction(PushReaction.DESTROY));
+	}
+
+	@Override
+	public int getEffectDuration() {
+		return 100;
 	}
 
 	@Override
@@ -53,7 +58,7 @@ public class CornStage0Block extends FlowerBlock implements BonemealableBlock {
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState blockstate) {
+	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState blockstate, boolean clientSide) {
 		return true;
 	}
 

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "end_elemetn:snarelingblob"
+    }
+  ],
+  "result": {
+    "item": "end_elemetn:snare_string",
+    "count": 5
+  }
+}

@@ -1,138 +1,18 @@
 {
   "variants": {
-    "facing=north,tier=0,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_endstone_idle"
-    },
-    "facing=north,tier=0,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_endstone_active"
-    },
-    "facing=north,tier=0,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_endstone_ejecting"
-    },
-    "facing=north,tier=1,blockstate=0": {
+    "facing=north": {
       "model": "end_elemetn:block/end_city_vault"
     },
-    "facing=north,tier=1,blockstate=1": {
-      "model": "end_elemetn:block/vault_blockstate_0"
-    },
-    "facing=north,tier=1,blockstate=2": {
-      "model": "end_elemetn:block/vault_blockstate_1"
-    },
-    "facing=north,tier=2,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_soulful_idle"
-    },
-    "facing=north,tier=2,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_soulful_active"
-    },
-    "facing=north,tier=2,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_soulful_ejecting"
-    },
-    "facing=east,tier=0,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_endstone_idle",
-      "y": 90
-    },
-    "facing=east,tier=0,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_endstone_active",
-      "y": 90
-    },
-    "facing=east,tier=0,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_endstone_ejecting",
-      "y": 90
-    },
-    "facing=east,tier=1,blockstate=0": {
+    "facing=east": {
       "model": "end_elemetn:block/end_city_vault",
       "y": 90
     },
-    "facing=east,tier=1,blockstate=1": {
-      "model": "end_elemetn:block/vault_blockstate_0",
-      "y": 90
-    },
-    "facing=east,tier=1,blockstate=2": {
-      "model": "end_elemetn:block/vault_blockstate_1",
-      "y": 90
-    },
-    "facing=east,tier=2,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_soulful_idle",
-      "y": 90
-    },
-    "facing=east,tier=2,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_soulful_active",
-      "y": 90
-    },
-    "facing=east,tier=2,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_soulful_ejecting",
-      "y": 90
-    },
-    "facing=south,tier=0,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_endstone_idle",
-      "y": 180
-    },
-    "facing=south,tier=0,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_endstone_active",
-      "y": 180
-    },
-    "facing=south,tier=0,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_endstone_ejecting",
-      "y": 180
-    },
-    "facing=south,tier=1,blockstate=0": {
+    "facing=south": {
       "model": "end_elemetn:block/end_city_vault",
       "y": 180
     },
-    "facing=south,tier=1,blockstate=1": {
-      "model": "end_elemetn:block/vault_blockstate_0",
-      "y": 180
-    },
-    "facing=south,tier=1,blockstate=2": {
-      "model": "end_elemetn:block/vault_blockstate_1",
-      "y": 180
-    },
-    "facing=south,tier=2,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_soulful_idle",
-      "y": 180
-    },
-    "facing=south,tier=2,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_soulful_active",
-      "y": 180
-    },
-    "facing=south,tier=2,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_soulful_ejecting",
-      "y": 180
-    },
-    "facing=west,tier=0,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_endstone_idle",
-      "y": 270
-    },
-    "facing=west,tier=0,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_endstone_active",
-      "y": 270
-    },
-    "facing=west,tier=0,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_endstone_ejecting",
-      "y": 270
-    },
-    "facing=west,tier=1,blockstate=0": {
+    "facing=west": {
       "model": "end_elemetn:block/end_city_vault",
-      "y": 270
-    },
-    "facing=west,tier=1,blockstate=1": {
-      "model": "end_elemetn:block/vault_blockstate_0",
-      "y": 270
-    },
-    "facing=west,tier=1,blockstate=2": {
-      "model": "end_elemetn:block/vault_blockstate_1",
-      "y": 270
-    },
-    "facing=west,tier=2,blockstate=0": {
-      "model": "end_elemetn:block/end_city_vault_soulful_idle",
-      "y": 270
-    },
-    "facing=west,tier=2,blockstate=1": {
-      "model": "end_elemetn:block/end_city_vault_soulful_active",
-      "y": 270
-    },
-    "facing=west,tier=2,blockstate=2": {
-      "model": "end_elemetn:block/end_city_vault_soulful_ejecting",
       "y": 270
     }
   }

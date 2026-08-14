@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": {
+    "type": "forge:any"
+  },
+  "features": "end_elemetn:end_meshfades_stone",
+  "step": "underground_ores"
+}

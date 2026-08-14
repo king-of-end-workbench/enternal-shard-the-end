@@ -1,9 +1,9 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.bus.api.Event;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,11 +20,11 @@ import net.mcreator.end_elemetn.entity.BlastlingEntity;
 
 import javax.annotation.Nullable;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class MobskilledProcedure {
 	@SubscribeEvent
 	public static void onEntityDeath(LivingDeathEvent event) {
-		if (event.getEntity() != null) {
+		if (event != null && event.getEntity() != null) {
 			execute(event, event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getEntity());
 		}
 	}
@@ -36,29 +36,37 @@ public class MobskilledProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
+		boolean found = false;
+		double sx = 0;
+		double sy = 0;
+		double sz = 0;
 		if (entity instanceof WatchlingEntity || entity instanceof SnarelingEntity || entity instanceof BlastlingEntity || entity instanceof LurelingEntity) {
-			BlockPos foundPos = null;
-			search:
-			for (int dx = -3; dx <= 2; dx++) {
-				for (int dy = -3; dy <= 2; dy++) {
-					for (int dz = -3; dz <= 2; dz++) {
-						BlockPos candidate = BlockPos.containing(x + dx, y + dy, z + dz);
-						if (world.getBlockState(candidate).getBlock() == EndElemetnModBlocks.END_SPAWNER.get()) {
-							foundPos = candidate;
-							break search;
+			sx = -3;
+			found = false;
+			for (int index0 = 0; index0 < 6; index0++) {
+				sy = -3;
+				for (int index1 = 0; index1 < 6; index1++) {
+					sz = -3;
+					for (int index2 = 0; index2 < 6; index2++) {
+						if ((world.getBlockState(BlockPos.containing(x + sx, y + sy, z + sz))).getBlock() == EndElemetnModBlocks.END_SPAWNER.get()) {
+							found = true;
 						}
+						sz = sz + 1;
 					}
+					sy = sy + 1;
 				}
+				sx = sx + 1;
 			}
-			if (foundPos != null) {
+			if (found == true) {
 				if (!world.isClientSide()) {
-					BlockEntity _blockEntity = world.getBlockEntity(foundPos);
-					BlockState _bs = world.getBlockState(foundPos);
+					BlockPos _bp = BlockPos.containing(sx, sy, sz);
+					BlockEntity _blockEntity = world.getBlockEntity(_bp);
+					BlockState _bs = world.getBlockState(_bp);
 					if (_blockEntity != null) {
-						_blockEntity.getPersistentData().putDouble("killed_mobs", (getBlockNBTNumber(world, foundPos, "killed_mobs") + 1));
+						_blockEntity.getPersistentData().putDouble("killed_mobs", (getBlockNBTNumber(world, BlockPos.containing(x, y, z), "killed_mobs") + 1));
 					}
 					if (world instanceof Level _level)
-						_level.sendBlockUpdated(foundPos, _bs, _bs, 3);
+						_level.sendBlockUpdated(_bp, _bs, _bs, 3);
 				}
 			}
 		}

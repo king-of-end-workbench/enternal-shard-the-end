@@ -3,8 +3,7 @@
   "textures": {
     "all": "end_elemetn:block/cobweb_big",
     "particle": "end_elemetn:block/cobweb_big",
-    "0": "end_elemetn:block/cobweb_big",
-    "missing": "end_elemetn:block/cobweb_big"
+    "0": "end_elemetn:block/cobweb_big"
   },
   "render_type": "cutout"
 }

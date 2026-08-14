@@ -1,7 +1,8 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.items.ItemHandlerHelper;
+import net.minecraftforge.items.ItemHandlerHelper;
 
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
@@ -60,7 +61,7 @@ public class EnternalLootboxPriShchielchkiePKMProcedure {
 		} else {
 			itemstack.shrink(1);
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(Items.BREEZE_ROD).copy();
+				ItemStack _setstack = new ItemStack(Blocks.AIR).copy();
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}

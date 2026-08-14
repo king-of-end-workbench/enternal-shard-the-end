@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab ",
+    "cde",
+    "f  "
+  ],
+  "key": {
+    "a": {
+      "item": "end_elemetn:snarelingblob"
+    },
+    "b": {
+      "item": "end_elemetn:lure"
+    },
+    "c": {
+      "item": "minecraft:obsidian"
+    },
+    "d": {
+      "item": "end_elemetn:watchling_eye"
+    },
+    "e": {
+      "item": "end_elemetn:thumpet"
+    },
+    "f": {
+      "item": "end_elemetn:blastling_shoot"
+    }
+  },
+  "result": {
+    "item": "end_elemetn:fuseling",
+    "count": 1
+  }
+}

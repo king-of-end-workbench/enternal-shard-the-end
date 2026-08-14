@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class EnderButtonBlock extends ButtonBlock {
 	public EnderButtonBlock() {
-		super(BlockSetType.OAK, 30, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS));
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS), BlockSetType.OAK, 30, true);
 	}
 
 	@Override

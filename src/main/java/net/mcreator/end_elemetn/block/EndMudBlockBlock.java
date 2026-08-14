@@ -11,8 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.BlockPos;
 
 public class EndMudBlockBlock extends Block {
-	private static final VoxelShape SHAPE = box(0, 0, 0, 16, 15, 16);
-
 	public EndMudBlockBlock() {
 		super(BlockBehaviour.Properties.of().sound(SoundType.SLIME_BLOCK).strength(1f, 10f).speedFactor(0.4f).jumpFactor(0.5f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
 	}
@@ -29,6 +27,6 @@ public class EndMudBlockBlock extends Block {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return (SHAPE);
+		return box(0, 0, 0, 16, 15, 16);
 	}
 }

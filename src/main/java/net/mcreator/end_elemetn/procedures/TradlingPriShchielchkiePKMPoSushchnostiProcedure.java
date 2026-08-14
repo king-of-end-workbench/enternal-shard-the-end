@@ -1,5 +1,7 @@
 package net.mcreator.end_elemetn.procedures;
 
+import net.minecraftforge.network.NetworkHooks;
+
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
@@ -21,15 +23,10 @@ public class TradlingPriShchielchkiePKMPoSushchnostiProcedure {
 			return;
 		if (sourceentity instanceof ServerPlayer _ent) {
 			BlockPos _bpos = BlockPos.containing(x, y, z);
-			_ent.openMenu(new MenuProvider() {
+			NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
 				@Override
 				public Component getDisplayName() {
 					return Component.literal("TradelingGUI");
-				}
-
-				@Override
-				public boolean shouldTriggerClientSideContainerClosingOnOpen() {
-					return false;
 				}
 
 				@Override

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ab"
+  ],
+  "key": {
+    "a": {
+      "item": "end_elemetn:enderite"
+    },
+    "b": {
+      "item": "end_elemetn:enderithe_ingot"
+    }
+  },
+  "result": {
+    "item": "end_elemetn:enderithe_hoe_shard",
+    "count": 1
+  }
+}

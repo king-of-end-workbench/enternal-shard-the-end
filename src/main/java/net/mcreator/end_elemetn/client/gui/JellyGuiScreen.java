@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.GuiGraphics;
 
@@ -38,14 +39,14 @@ public class JellyGuiScreen extends AbstractContainerScreen<JellyGuiMenu> implem
 		menuStateUpdateActive = false;
 	}
 
-	private static final ResourceLocation texture = ResourceLocation.parse("end_elemetn:textures/screens/jelly_gui.png");
+	private static final ResourceLocation texture = new ResourceLocation("end_elemetn:textures/screens/jelly_gui.png");
 
 	@Override
 	public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
+		this.renderBackground(guiGraphics);
 		super.render(guiGraphics, mouseX, mouseY, partialTicks);
 		if (TttProcedure.execute(world, x, y, z) instanceof LivingEntity livingEntity) {
-			EndElemetnModScreens.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 52, this.topPos + 54, 50, 0f + (float) Math.atan((this.leftPos + 52 - mouseX) / 40.0), (float) Math.atan((this.topPos + 5 - mouseY) / 40.0),
-					livingEntity);
+			InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 52, this.topPos + 54, 50, 0f + (float) Math.atan((this.leftPos + 52 - mouseX) / 40.0), (float) Math.atan((this.topPos + 5 - mouseY) / 40.0), livingEntity);
 		}
 		this.renderTooltip(guiGraphics, mouseX, mouseY);
 	}

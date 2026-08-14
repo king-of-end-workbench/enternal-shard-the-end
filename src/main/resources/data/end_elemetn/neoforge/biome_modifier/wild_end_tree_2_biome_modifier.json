@@ -1,6 +1,0 @@
-{
-  "type": "neoforge:add_features",
-  "biomes": "end_elemetn:end_wilds",
-  "features": "end_elemetn:wild_end_tree_2",
-  "step": "vegetal_decoration"
-}

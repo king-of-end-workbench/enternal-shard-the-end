@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "template": {
+    "item": "end_elemetn:shulker_upgrader_smithing_template"
+  },
+  "base": {
+    "item": "minecraft:iron_helmet"
+  },
+  "addition": {
+    "item": "minecraft:shulker_shell"
+  },
+  "result": {
+    "item": "end_elemetn:shulker_helmet"
+  }
+}

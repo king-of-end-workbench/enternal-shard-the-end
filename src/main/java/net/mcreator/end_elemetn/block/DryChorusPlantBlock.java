@@ -1,11 +1,8 @@
 package net.mcreator.end_elemetn.block;
 
-import org.checkerframework.checker.units.qual.s;
-
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.BlockState;
@@ -24,27 +21,10 @@ import net.minecraft.core.BlockPos;
 import net.mcreator.end_elemetn.procedures.DryChorusPlantPriIzmienieniiSosiednieghoBlokaProcedure;
 
 public class DryChorusPlantBlock extends Block {
-	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 2);
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-	private static final VoxelShape SHAPE_1_NORTH = box(0, 0, 0, 16, 16, 16);
-	private static final VoxelShape SHAPE_1_SOUTH = box(0, 0, 0, 16, 16, 16);
-	private static final VoxelShape SHAPE_1_EAST = box(0, 0, 0, 16, 16, 16);
-	private static final VoxelShape SHAPE_1_WEST = box(0, 0, 0, 16, 16, 16);
-	private static final VoxelShape SHAPE_NORTH = box(4, 0, 4, 12, 16, 12);
-	private static final VoxelShape SHAPE_SOUTH = box(4, 0, 4, 12, 16, 12);
-	private static final VoxelShape SHAPE_EAST = box(4, 0, 4, 12, 16, 12);
-	private static final VoxelShape SHAPE_WEST = box(4, 0, 4, 12, 16, 12);
 
 	public DryChorusPlantBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).lightLevel(s -> (new Object() {
-			public int getLightLevel() {
-				if (s.getValue(BLOCKSTATE) == 1)
-					return 0;
-				if (s.getValue(BLOCKSTATE) == 2)
-					return 0;
-				return 0;
-			}
-		}.getLightLevel())).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
@@ -65,28 +45,18 @@ public class DryChorusPlantBlock extends Block {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (state.getValue(BLOCKSTATE) == 1) {
-			return (switch (state.getValue(FACING)) {
-				case NORTH -> SHAPE_1_NORTH;
-				case SOUTH -> SHAPE_1_SOUTH;
-				case EAST -> SHAPE_1_EAST;
-				case WEST -> SHAPE_1_WEST;
-				default -> SHAPE_1_NORTH;
-			});
-		}
-		return (switch (state.getValue(FACING)) {
-			case NORTH -> SHAPE_NORTH;
-			case SOUTH -> SHAPE_SOUTH;
-			case EAST -> SHAPE_EAST;
-			case WEST -> SHAPE_WEST;
-			default -> SHAPE_NORTH;
-		});
+		return switch (state.getValue(FACING)) {
+			default -> box(4, 0, 4, 12, 16, 12);
+			case NORTH -> box(4, 0, 4, 12, 16, 12);
+			case EAST -> box(4, 0, 4, 12, 16, 12);
+			case WEST -> box(4, 0, 4, 12, 16, 12);
+		};
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FACING, BLOCKSTATE);
+		builder.add(FACING);
 	}
 
 	@Override

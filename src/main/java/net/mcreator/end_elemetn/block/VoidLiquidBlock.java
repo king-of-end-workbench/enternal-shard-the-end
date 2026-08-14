@@ -15,7 +15,7 @@ import net.mcreator.end_elemetn.init.EndElemetnModFluids;
 
 public class VoidLiquidBlock extends LiquidBlock {
 	public VoidLiquidBlock() {
-		super(EndElemetnModFluids.VOID_LIQUID.get(), BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).strength(100f).noCollission().noLootTable().liquid().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY).replaceable());
+		super(() -> EndElemetnModFluids.VOID_LIQUID.get(), BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).strength(100f).noCollission().noLootTable().liquid().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY).replaceable());
 	}
 
 	@Override

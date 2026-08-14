@@ -161,43 +161,43 @@
                   "Name": "minecraft:cracked_deepslate_tiles"
                 },
                 {
-                  "Name": "minecraft:tuff_slab"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_stairs"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_wall"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:polished_tuff"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:polished_tuff_slab"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:polished_tuff_stairs"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:polished_tuff_wall"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:chiseled_tuff"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_bricks"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_brick_slab"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_brick_stairs"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:tuff_brick_wall"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:chiseled_tuff_bricks"
+                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:calcite"
@@ -491,28 +491,28 @@
                   "Name": "minecraft:cut_copper"
                 },
                 {
-                  "Name": "minecraft:oxidized_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:weathered_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:exposed_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_oxidized_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_weathered_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_exposed_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_chiseled_copper"
+                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:exposed_cut_copper"
@@ -947,7 +947,7 @@
                   "Name": "minecraft:dead_bush"
                 },
                 {
-                  "Name": "minecraft:short_grass"
+                  "Name": "minecraft:grass"
                 },
                 {
                   "Name": "minecraft:fern"
@@ -1403,28 +1403,28 @@
                   "Name": "minecraft:iron_door"
                 },
                 {
-                  "Name": "minecraft:copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:exposed_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:oxidized_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:weathered_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_exposed_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_oxidized_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_weathered_copper_door"
+                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:oak_trapdoor"
@@ -1463,76 +1463,76 @@
                   "Name": "minecraft:iron_trapdoor"
                 },
                 {
-                  "Name": "minecraft:copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:exposed_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:oxidized_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:weathered_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_exposed_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_oxidized_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_weathered_copper_trapdoor"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:exposed_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:weathered_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:oxidized_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_exposed_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_weathered_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_oxidized_copper_grate"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:exposed_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:weathered_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:oxidized_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_exposed_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_weathered_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
-                  "Name": "minecraft:waxed_oxidized_copper_bulb"
+                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:ladder"
@@ -1661,7 +1661,7 @@
                   "Name": "minecraft:observer"
                 },
                 {
-                  "Name": "minecraft:crafter"
+                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:hopper"

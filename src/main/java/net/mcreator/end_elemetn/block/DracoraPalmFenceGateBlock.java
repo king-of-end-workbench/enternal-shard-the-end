@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class DracoraPalmFenceGateBlock extends FenceGateBlock {
 	public DracoraPalmFenceGateBlock() {
-		super(WoodType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.HARP).forceSolidOn());
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.HARP).forceSolidOn(), WoodType.OAK);
 	}
 
 	@Override

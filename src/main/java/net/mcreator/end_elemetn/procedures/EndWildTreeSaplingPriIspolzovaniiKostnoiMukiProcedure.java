@@ -13,7 +13,7 @@ public class EndWildTreeSaplingPriIspolzovaniiKostnoiMukiProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
 		if (Math.random() < 0.111) {
 			if (world instanceof ServerLevel _serverworld) {
-				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(ResourceLocation.fromNamespaceAndPath("end_elemetn", "end_wild_tree_6"));
+				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(new ResourceLocation("end_elemetn", "end_wild_tree_6"));
 				if (template != null) {
 					template.placeInWorld(_serverworld, BlockPos.containing(x, y, z), BlockPos.containing(x, y, z), new StructurePlaceSettings().setRotation(Rotation.CLOCKWISE_90).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random,
 							3);
@@ -21,7 +21,7 @@ public class EndWildTreeSaplingPriIspolzovaniiKostnoiMukiProcedure {
 			}
 		} else if (Math.random() < 0.222) {
 			if (world instanceof ServerLevel _serverworld) {
-				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(ResourceLocation.fromNamespaceAndPath("end_elemetn", "end_wild_tree_3"));
+				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(new ResourceLocation("end_elemetn", "end_wild_tree_3"));
 				if (template != null) {
 					template.placeInWorld(_serverworld, BlockPos.containing(x, y, z), BlockPos.containing(x, y, z), new StructurePlaceSettings().setRotation(Rotation.CLOCKWISE_180).setMirror(Mirror.NONE).setIgnoreEntities(false), _serverworld.random,
 							3);
@@ -29,7 +29,7 @@ public class EndWildTreeSaplingPriIspolzovaniiKostnoiMukiProcedure {
 			}
 		} else if (Math.random() < 0.333) {
 			if (world instanceof ServerLevel _serverworld) {
-				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(ResourceLocation.fromNamespaceAndPath("end_elemetn", "end_wild_tree_1"));
+				StructureTemplate template = _serverworld.getStructureManager().getOrCreate(new ResourceLocation("end_elemetn", "end_wild_tree_1"));
 				if (template != null) {
 					template.placeInWorld(_serverworld, BlockPos.containing(x, y, z), BlockPos.containing(x, y, z), new StructurePlaceSettings().setRotation(Rotation.COUNTERCLOCKWISE_90).setMirror(Mirror.NONE).setIgnoreEntities(false),
 							_serverworld.random, 3);

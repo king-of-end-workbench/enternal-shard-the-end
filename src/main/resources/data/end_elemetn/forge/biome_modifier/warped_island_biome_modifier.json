@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "small_end_islands",
+  "features": "end_elemetn:warped_island",
+  "step": "surface_structures"
+}

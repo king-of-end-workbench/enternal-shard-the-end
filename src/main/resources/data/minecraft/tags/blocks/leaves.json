@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:chorus_leaves",
+    "end_elemetn:ender_leaves",
+    "end_elemetn:dracora_palm_leaves",
+    "end_elemetn:warped_leaves"
+  ]
+}

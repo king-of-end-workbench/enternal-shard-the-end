@@ -10,6 +10,6 @@ import net.mcreator.end_elemetn.init.EndElemetnModFluids;
 
 public class EndMudBlock extends LiquidBlock {
 	public EndMudBlock() {
-		super(EndElemetnModFluids.END_MUD.get(), BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).strength(100f).noCollission().noLootTable().liquid().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY).replaceable());
+		super(() -> EndElemetnModFluids.END_MUD.get(), BlockBehaviour.Properties.of().mapColor(MapColor.FIRE).strength(100f).noCollission().noLootTable().liquid().pushReaction(PushReaction.DESTROY).sound(SoundType.EMPTY).replaceable());
 	}
 }

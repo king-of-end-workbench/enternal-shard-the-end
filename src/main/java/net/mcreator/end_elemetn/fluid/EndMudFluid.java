@@ -1,6 +1,6 @@
 package net.mcreator.end_elemetn.fluid;
 
-import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluid;
@@ -12,8 +12,8 @@ import net.mcreator.end_elemetn.init.EndElemetnModFluids;
 import net.mcreator.end_elemetn.init.EndElemetnModFluidTypes;
 import net.mcreator.end_elemetn.init.EndElemetnModBlocks;
 
-public abstract class EndMudFluid extends BaseFlowingFluid {
-	public static final BaseFlowingFluid.Properties PROPERTIES = new BaseFlowingFluid.Properties(() -> EndElemetnModFluidTypes.END_MUD_TYPE.get(), () -> EndElemetnModFluids.END_MUD.get(), () -> EndElemetnModFluids.FLOWING_END_MUD.get())
+public abstract class EndMudFluid extends ForgeFlowingFluid {
+	public static final ForgeFlowingFluid.Properties PROPERTIES = new ForgeFlowingFluid.Properties(() -> EndElemetnModFluidTypes.END_MUD_TYPE.get(), () -> EndElemetnModFluids.END_MUD.get(), () -> EndElemetnModFluids.FLOWING_END_MUD.get())
 			.explosionResistance(100f).bucket(() -> EndElemetnModItems.END_MUD_BUCKET.get()).block(() -> (LiquidBlock) EndElemetnModBlocks.END_MUD.get());
 
 	private EndMudFluid() {

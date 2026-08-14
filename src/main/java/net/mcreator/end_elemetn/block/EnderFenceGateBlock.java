@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class EnderFenceGateBlock extends FenceGateBlock {
 	public EnderFenceGateBlock() {
-		super(WoodType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS).forceSolidOn());
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS).forceSolidOn(), WoodType.OAK);
 	}
 
 	@Override

@@ -1,0 +1,8 @@
+{
+  "type": "forge:add_features",
+  "biomes": {
+    "type": "forge:any"
+  },
+  "features": "end_elemetn:green_end_cobblestone",
+  "step": "underground_ores"
+}

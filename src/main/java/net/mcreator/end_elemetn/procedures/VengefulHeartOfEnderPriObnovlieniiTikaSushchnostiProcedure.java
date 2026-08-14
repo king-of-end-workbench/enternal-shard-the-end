@@ -1,10 +1,6 @@
 package net.mcreator.end_elemetn.procedures;
 
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.MobSpawnType;
@@ -12,11 +8,9 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
-import net.mcreator.end_elemetn.entity.VengefulHeartOfEnderEntity;
 import net.mcreator.end_elemetn.entity.BlastlingBulletEntity;
 
 public class VengefulHeartOfEnderPriObnovlieniiTikaSushchnostiProcedure {
@@ -24,10 +18,6 @@ public class VengefulHeartOfEnderPriObnovlieniiTikaSushchnostiProcedure {
 		if (entity == null)
 			return;
 		if (Math.random() < 0.01 && entity instanceof Mob _mobEnt0 && _mobEnt0.isAggressive()) {
-			if (entity instanceof VengefulHeartOfEnderEntity _ent1) {
-				_ent1.getEntityData().set(VengefulHeartOfEnderEntity.ANIM, 1000);
-				_ent1.getEntityData().set(VengefulHeartOfEnderEntity.ANIM, 3);
-			}
 			for (int index0 = 0; index0 < 25; index0++) {
 				if (world instanceof ServerLevel _level) {
 					Entity entityToSpawn = EntityType.ENDERMITE.spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
@@ -37,17 +27,13 @@ public class VengefulHeartOfEnderPriObnovlieniiTikaSushchnostiProcedure {
 				}
 			}
 		}
-		if (Math.random() < 0.05 && entity instanceof Mob _mobEnt3 && _mobEnt3.isAggressive()) {
+		if (Math.random() < 0.05 && entity instanceof Mob _mobEnt2 && _mobEnt2.isAggressive()) {
 			if (world instanceof ServerLevel projectileLevel) {
-				Projectile _entityToSpawn = initArrowProjectile(new BlastlingBulletEntity(EndElemetnModEntities.BLASTLING_BULLET.get(), 0, 0, 0, projectileLevel, createArrowWeaponItemStack(projectileLevel, 1, (byte) 0)), entity, 5, true, false,
-						false, AbstractArrow.Pickup.DISALLOWED);
+				Projectile _entityToSpawn = initArrowProjectile(createArrowWeaponItemStack(new BlastlingBulletEntity(EndElemetnModEntities.BLASTLING_BULLET.get(), 0, 0, 0, projectileLevel), 1, (byte) 0), entity, 5, true, false, false,
+						AbstractArrow.Pickup.DISALLOWED);
 				_entityToSpawn.setPos(x, (y + 5.0625), z);
 				_entityToSpawn.shoot((entity.getLookAngle().x), (entity.getLookAngle().y), (entity.getLookAngle().z), 1, 0);
 				projectileLevel.addFreshEntity(_entityToSpawn);
-			}
-			if (entity instanceof VengefulHeartOfEnderEntity _ent9) {
-				_ent9.getEntityData().set(VengefulHeartOfEnderEntity.ANIM, 1000);
-				_ent9.getEntityData().set(VengefulHeartOfEnderEntity.ANIM, 4);
 			}
 		}
 	}
@@ -58,19 +44,18 @@ public class VengefulHeartOfEnderPriObnovlieniiTikaSushchnostiProcedure {
 		if (silent)
 			entityToSpawn.setSilent(true);
 		if (fire)
-			entityToSpawn.igniteForSeconds(100);
+			entityToSpawn.setSecondsOnFire(100);
 		if (particles)
 			entityToSpawn.setCritArrow(true);
 		entityToSpawn.pickup = pickup;
 		return entityToSpawn;
 	}
 
-	private static ItemStack createArrowWeaponItemStack(Level level, int knockback, byte piercing) {
-		ItemStack weapon = new ItemStack(Items.ARROW);
+	private static AbstractArrow createArrowWeaponItemStack(AbstractArrow entityToSpawn, int knockback, byte piercing) {
 		if (knockback > 0)
-			weapon.enchant(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.KNOCKBACK), knockback);
+			entityToSpawn.setKnockback(knockback);
 		if (piercing > 0)
-			weapon.enchant(level.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(Enchantments.PIERCING), piercing);
-		return weapon;
+			entityToSpawn.setPierceLevel(piercing);
+		return entityToSpawn;
 	}
 }

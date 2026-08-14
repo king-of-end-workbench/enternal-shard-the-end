@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 
 public class SnarelingwebObnovlieniieTikaProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
-		world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
+		if (Math.random() < 0.5) {
+			world.setBlock(BlockPos.containing(x, y, z), Blocks.AIR.defaultBlockState(), 3);
+		}
 	}
 }

@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aba",
+    "cdc"
+  ],
+  "key": {
+    "a": {
+      "item": "minecraft:glass"
+    },
+    "b": {
+      "item": "end_elemetn:the_end_shard"
+    },
+    "c": {
+      "item": "end_elemetn:pillars_of_shadow_wood"
+    },
+    "d": {
+      "item": "end_elemetn:blastling_shoot"
+    }
+  },
+  "result": {
+    "item": "end_elemetn:corrupted_beacon",
+    "count": 1
+  }
+}

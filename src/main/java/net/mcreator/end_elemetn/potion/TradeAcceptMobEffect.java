@@ -7,4 +7,9 @@ public class TradeAcceptMobEffect extends MobEffect {
 	public TradeAcceptMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -16711936);
 	}
+
+	@Override
+	public boolean isDurationEffectTick(int duration, int amplifier) {
+		return true;
+	}
 }

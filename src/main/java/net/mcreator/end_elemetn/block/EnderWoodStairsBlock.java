@@ -12,12 +12,17 @@ import net.minecraft.core.BlockPos;
 
 public class EnderWoodStairsBlock extends StairBlock {
 	public EnderWoodStairsBlock() {
-		super(Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f).ignitedByLava().instrument(NoteBlockInstrument.BASS));
+		super(() -> Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f).ignitedByLava().instrument(NoteBlockInstrument.BASS));
 	}
 
 	@Override
 	public float getExplosionResistance() {
 		return 2f;
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return false;
 	}
 
 	@Override

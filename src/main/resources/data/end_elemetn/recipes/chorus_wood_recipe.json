@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "category": "building",
+  "pattern": [
+    "aa",
+    "aa"
+  ],
+  "key": {
+    "a": {
+      "item": "end_elemetn:chorus_log"
+    }
+  },
+  "result": {
+    "item": "end_elemetn:chorus_wood",
+    "count": 3
+  }
+}

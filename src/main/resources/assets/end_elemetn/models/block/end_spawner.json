@@ -1,9 +1,13 @@
 {
-  "parent": "end_elemetn:block/template_end_spawner",
+  "parent": "block/cube",
   "textures": {
-    "bottom": "end_elemetn:block/trial_spawner_bottom",
-    "top": "end_elemetn:block/trial_spawner_top_active_ominous",
-    "side": "end_elemetn:block/trial_spawner_side_active_ominous"
+    "down": "end_elemetn:block/trial_spawner_bottom",
+    "up": "end_elemetn:block/trial_spawner_top_active_ominous",
+    "north": "end_elemetn:block/trial_spawner_side_active_ominous",
+    "east": "end_elemetn:block/trial_spawner_side_active_ominous",
+    "south": "end_elemetn:block/trial_spawner_side_active_ominous",
+    "west": "end_elemetn:block/trial_spawner_side_active_ominous",
+    "particle": "end_elemetn:block/trial_spawner_bottom"
   },
   "render_type": "cutout"
 }

@@ -1,5 +1,7 @@
 package net.mcreator.end_elemetn.block;
 
+import net.minecraftforge.common.PlantType;
+
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -51,12 +53,17 @@ public class CornStage2Block extends DoublePlantBlock implements BonemealableBlo
 	}
 
 	@Override
+	public PlantType getPlantType(BlockGetter world, BlockPos pos) {
+		return PlantType.PLAINS;
+	}
+
+	@Override
 	public void randomTick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
 		CornStage2growProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
 	}
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState blockstate) {
+	public boolean isValidBonemealTarget(LevelReader worldIn, BlockPos pos, BlockState blockstate, boolean clientSide) {
 		return true;
 	}
 

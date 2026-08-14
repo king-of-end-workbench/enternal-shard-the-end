@@ -1,31 +1,7 @@
 {
   "variants": {
-    "tier=0,blockstate=0": {
-      "model": "end_elemetn:block/end_spawner_endstone_idle"
-    },
-    "tier=0,blockstate=1": {
-      "model": "end_elemetn:block/end_spawner_endstone_active"
-    },
-    "tier=0,blockstate=2": {
-      "model": "end_elemetn:block/end_spawner_endstone_ejecting"
-    },
-    "tier=1,blockstate=0": {
-      "model": "end_elemetn:block/end_spawner_endcity_idle"
-    },
-    "tier=1,blockstate=1": {
-      "model": "end_elemetn:block/end_spawner_endcity_active"
-    },
-    "tier=1,blockstate=2": {
-      "model": "end_elemetn:block/end_spawner_endcity_ejecting"
-    },
-    "tier=2,blockstate=0": {
-      "model": "end_elemetn:block/end_spawner_soulful_idle"
-    },
-    "tier=2,blockstate=1": {
-      "model": "end_elemetn:block/end_spawner_soulful_active"
-    },
-    "tier=2,blockstate=2": {
-      "model": "end_elemetn:block/end_spawner_soulful_ejecting"
+    "": {
+      "model": "end_elemetn:block/end_spawner"
     }
   }
 }

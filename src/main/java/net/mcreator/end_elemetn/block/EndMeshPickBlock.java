@@ -11,8 +11,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.core.BlockPos;
 
 public class EndMeshPickBlock extends Block {
-	private static final VoxelShape SHAPE = Shapes.or(box(4, 0, 4, 12, 14, 12), box(6, 14, 6, 10, 30, 10));
-
 	public EndMeshPickBlock() {
 		super(BlockBehaviour.Properties.of().strength(1f, 10f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false).instrument(NoteBlockInstrument.BASEDRUM));
 	}
@@ -34,6 +32,6 @@ public class EndMeshPickBlock extends Block {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return (SHAPE);
+		return Shapes.or(box(4, 0, 4, 12, 14, 12), box(6, 14, 6, 10, 30, 10));
 	}
 }

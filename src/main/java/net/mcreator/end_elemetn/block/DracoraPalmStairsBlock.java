@@ -12,12 +12,17 @@ import net.minecraft.core.BlockPos;
 
 public class DracoraPalmStairsBlock extends StairBlock {
 	public DracoraPalmStairsBlock() {
-		super(Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(3f, 2f).ignitedByLava().instrument(NoteBlockInstrument.HARP));
+		super(() -> Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(3f, 2f).ignitedByLava().instrument(NoteBlockInstrument.HARP));
 	}
 
 	@Override
 	public float getExplosionResistance() {
 		return 2f;
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return false;
 	}
 
 	@Override

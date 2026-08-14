@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:void_liquid",
+    "end_elemetn:chorus_plant",
+    "end_elemetn:tall_chorus_blossom_grass",
+    "end_elemetn:end_mud",
+    "end_elemetn:tall_chorus_plant",
+    "end_elemetn:chorus_blossom_grass",
+    "end_elemetn:chorus_shroom"
+  ]
+}

@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class EnderPressurePlateBlock extends PressurePlateBlock {
 	public EnderPressurePlateBlock() {
-		super(BlockSetType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS).forceSolidOn());
+		super(Sensitivity.EVERYTHING, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().instrument(NoteBlockInstrument.BASS).forceSolidOn(), BlockSetType.OAK);
 	}
 
 	@Override

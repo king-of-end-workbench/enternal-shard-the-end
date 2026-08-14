@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class DracoraPalmButtonBlock extends ButtonBlock {
 	public DracoraPalmButtonBlock() {
-		super(BlockSetType.OAK, 30, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).noCollission().pushReaction(PushReaction.DESTROY));
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).noCollission().pushReaction(PushReaction.DESTROY), BlockSetType.OAK, 30, true);
 	}
 
 	@Override

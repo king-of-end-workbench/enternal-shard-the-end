@@ -1,6 +1,6 @@
 package net.mcreator.end_elemetn.fluid;
 
-import net.neoforged.neoforge.fluids.BaseFlowingFluid;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
 
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluid;
@@ -12,8 +12,8 @@ import net.mcreator.end_elemetn.init.EndElemetnModFluids;
 import net.mcreator.end_elemetn.init.EndElemetnModFluidTypes;
 import net.mcreator.end_elemetn.init.EndElemetnModBlocks;
 
-public abstract class VoidLiquidFluid extends BaseFlowingFluid {
-	public static final BaseFlowingFluid.Properties PROPERTIES = new BaseFlowingFluid.Properties(() -> EndElemetnModFluidTypes.VOID_LIQUID_TYPE.get(), () -> EndElemetnModFluids.VOID_LIQUID.get(), () -> EndElemetnModFluids.FLOWING_VOID_LIQUID.get())
+public abstract class VoidLiquidFluid extends ForgeFlowingFluid {
+	public static final ForgeFlowingFluid.Properties PROPERTIES = new ForgeFlowingFluid.Properties(() -> EndElemetnModFluidTypes.VOID_LIQUID_TYPE.get(), () -> EndElemetnModFluids.VOID_LIQUID.get(), () -> EndElemetnModFluids.FLOWING_VOID_LIQUID.get())
 			.explosionResistance(100f).tickRate(30).bucket(() -> EndElemetnModItems.VOID_LIQUID_BUCKET.get()).block(() -> (LiquidBlock) EndElemetnModBlocks.VOID_LIQUID.get());
 
 	private VoidLiquidFluid() {

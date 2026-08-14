@@ -9,7 +9,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerLevel;
 
 import net.mcreator.end_elemetn.procedures.SnarelingblobPriShchielchkiePKMProcedure;
 import net.mcreator.end_elemetn.entity.SnarelingGlobEntity;
@@ -40,11 +39,16 @@ public class SnarelingblobItem extends Item {
 					projectile.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 				} else {
 					if (stack.isDamageableItem()) {
-						if (world instanceof ServerLevel serverLevel)
-							stack.hurtAndBreak(1, serverLevel, player, _stkprov -> {
-							});
+						if (stack.hurt(1, world.getRandom(), player)) {
+							stack.shrink(1);
+							stack.setDamageValue(0);
+							if (stack.isEmpty())
+								player.getInventory().removeItem(stack);
+						}
 					} else {
 						stack.shrink(1);
+						if (stack.isEmpty())
+							player.getInventory().removeItem(stack);
 					}
 				}
 			}

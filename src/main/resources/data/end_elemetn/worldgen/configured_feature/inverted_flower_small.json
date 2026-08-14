@@ -2,11 +2,6 @@
   "type": "end_elemetn:structure_feature",
   "config": {
     "structure": "end_elemetn:small_plant_a",
-    "ignored_blocks": "minecraft:air",
-    "offset": [
-      0,
-      -1,
-      0
-    ]
+    "ignored_blocks": "minecraft:air"
   }
 }

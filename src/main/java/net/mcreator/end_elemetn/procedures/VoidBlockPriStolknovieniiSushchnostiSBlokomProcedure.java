@@ -11,6 +11,6 @@ public class VoidBlockPriStolknovieniiSushchnostiSBlokomProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(EndElemetnModMobEffects.VOID_TOUCH, 60, 1));
+			_entity.addEffect(new MobEffectInstance(EndElemetnModMobEffects.VOID_TOUCH.get(), 60, 1));
 	}
 }

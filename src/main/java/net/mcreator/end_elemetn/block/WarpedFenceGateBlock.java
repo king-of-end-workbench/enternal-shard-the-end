@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos;
 
 public class WarpedFenceGateBlock extends FenceGateBlock {
 	public WarpedFenceGateBlock() {
-		super(WoodType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().forceSolidOn());
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).ignitedByLava().forceSolidOn(), WoodType.OAK);
 	}
 
 	@Override

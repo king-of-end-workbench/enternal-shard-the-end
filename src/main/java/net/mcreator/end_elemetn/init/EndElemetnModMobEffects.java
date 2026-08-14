@@ -3,11 +3,11 @@
  */
 package net.mcreator.end_elemetn.init;
 
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.registries.DeferredHolder;
+import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.DeferredRegister;
 
 import net.minecraft.world.effect.MobEffect;
-import net.minecraft.core.registries.Registries;
 
 import net.mcreator.end_elemetn.potion.VoidTouchMobEffect;
 import net.mcreator.end_elemetn.potion.TradeAcceptMobEffect;
@@ -16,9 +16,9 @@ import net.mcreator.end_elemetn.potion.HauntedMobEffect;
 import net.mcreator.end_elemetn.EndElemetnMod;
 
 public class EndElemetnModMobEffects {
-	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(Registries.MOB_EFFECT, EndElemetnMod.MODID);
-	public static final DeferredHolder<MobEffect, MobEffect> TRADE_ACCEPT = REGISTRY.register("trade_accept", () -> new TradeAcceptMobEffect());
-	public static final DeferredHolder<MobEffect, MobEffect> VOID_TOUCH = REGISTRY.register("void_touch", () -> new VoidTouchMobEffect());
-	public static final DeferredHolder<MobEffect, MobEffect> HAUNTED = REGISTRY.register("haunted", () -> new HauntedMobEffect());
-	public static final DeferredHolder<MobEffect, MobEffect> HYPNOTISED = REGISTRY.register("hypnotised", () -> new HypnotisedMobEffect());
+	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, EndElemetnMod.MODID);
+	public static final RegistryObject<MobEffect> TRADE_ACCEPT = REGISTRY.register("trade_accept", () -> new TradeAcceptMobEffect());
+	public static final RegistryObject<MobEffect> VOID_TOUCH = REGISTRY.register("void_touch", () -> new VoidTouchMobEffect());
+	public static final RegistryObject<MobEffect> HAUNTED = REGISTRY.register("haunted", () -> new HauntedMobEffect());
+	public static final RegistryObject<MobEffect> HYPNOTISED = REGISTRY.register("hypnotised", () -> new HypnotisedMobEffect());
 }

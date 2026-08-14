@@ -16,7 +16,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
-	private static final ResourceLocation texture = ResourceLocation.parse("end_elemetn:textures/entities/snareling_glob.png");
+	private static final ResourceLocation texture = new ResourceLocation("end_elemetn:textures/entities/snareling_glob.png");
 	private final Modelsnareling_blob model;
 
 	public SnarelingGlobRenderer(EntityRendererProvider.Context context) {
@@ -31,7 +31,7 @@ public class SnarelingGlobRenderer extends EntityRenderer<SnarelingGlobEntity> {
 		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90));
 		poseStack.mulPose(Axis.ZP.rotationDegrees(90 + Mth.lerp(partialTicks, entityIn.xRotO, entityIn.getXRot())));
 		model.setupAnim(entityIn, 0, 0, entityIn.tickCount + partialTicks, entityIn.getYRot(), entityIn.getXRot());
-		model.renderToBuffer(poseStack, vb, packedLightIn, OverlayTexture.NO_OVERLAY);
+		model.renderToBuffer(poseStack, vb, packedLightIn, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
 		poseStack.popPose();
 		super.render(entityIn, entityYaw, partialTicks, poseStack, bufferIn, packedLightIn);
 	}

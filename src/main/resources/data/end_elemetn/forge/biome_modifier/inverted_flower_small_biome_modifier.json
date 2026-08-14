@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "end_elemetn:inverted_forest",
+  "features": "end_elemetn:inverted_flower_small",
+  "step": "surface_structures"
+}

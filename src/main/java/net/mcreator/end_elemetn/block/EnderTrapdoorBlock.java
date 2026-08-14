@@ -11,7 +11,7 @@ import net.minecraft.core.BlockPos;
 
 public class EnderTrapdoorBlock extends TrapDoorBlock {
 	public EnderTrapdoorBlock() {
-		super(BlockSetType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false).ignitedByLava().instrument(NoteBlockInstrument.BASS));
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(1f, 10f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false).ignitedByLava().instrument(NoteBlockInstrument.BASS), BlockSetType.OAK);
 	}
 
 	@Override

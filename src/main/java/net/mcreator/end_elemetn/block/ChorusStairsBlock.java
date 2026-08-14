@@ -11,12 +11,17 @@ import net.minecraft.core.BlockPos;
 
 public class ChorusStairsBlock extends StairBlock {
 	public ChorusStairsBlock() {
-		super(Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(3f, 2f).ignitedByLava());
+		super(() -> Blocks.AIR.defaultBlockState(), BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(3f, 2f).ignitedByLava());
 	}
 
 	@Override
 	public float getExplosionResistance() {
 		return 2f;
+	}
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state) {
+		return false;
 	}
 
 	@Override

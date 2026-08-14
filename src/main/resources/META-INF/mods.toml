@@ -1,0 +1,47 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="Academic Free License v3.0"
+
+[[mods]]
+modId="end_elemetn"
+version="1.0.1"
+displayName="enternal_shard(the_end)"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/enternal-shard-end-update"
+logoFile="logo.png"
+credits="welcome to end update"
+authors="King_of_end__"
+description="End update but dungeons?"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.end_elemetn]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1]"
+ordering="AFTER"
+side="BOTH"
+
+
+
+
+# Start of user code block dependencies configuration
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.memory_of_the_past]]
+modId="jauml"
+mandatory=true
+versionRange="[1.1.0,)"
+ordering="NONE"
+side="BOTH"
+# End of user code block dependencies configuration

@@ -1,9 +1,38 @@
 package net.mcreator.end_elemetn.item;
 
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
 
-public class IronScythItem extends AbstractScytheItem {
+public class IronScythItem extends PickaxeItem {
 	public IronScythItem() {
-		super(Tiers.IRON, 8f, -2.8f, 2.6, 5f, 5.0, 12f, 120);
+		super(new Tier() {
+			public int getUses() {
+				return 250;
+			}
+
+			public float getSpeed() {
+				return 6f;
+			}
+
+			public float getAttackDamageBonus() {
+				return 6f;
+			}
+
+			public int getLevel() {
+				return 2;
+			}
+
+			public int getEnchantmentValue() {
+				return 14;
+			}
+
+			public Ingredient getRepairIngredient() {
+				return Ingredient.of(new ItemStack(Items.IRON_INGOT));
+			}
+		}, 1, -2.8f, new Item.Properties());
 	}
 }

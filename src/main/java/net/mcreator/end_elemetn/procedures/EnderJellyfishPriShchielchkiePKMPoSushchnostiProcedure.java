@@ -4,10 +4,14 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.TamableAnimal;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.core.NonNullList;
+
+import java.util.List;
 
 public class EnderJellyfishPriShchielchkiePKMPoSushchnostiProcedure {
 	public static void execute(Entity entity, Entity sourceentity) {
@@ -24,8 +28,17 @@ public class EnderJellyfishPriShchielchkiePKMPoSushchnostiProcedure {
 	}
 
 	private static boolean hasEntityInInventory(Entity entity, ItemStack itemstack) {
-		if (entity instanceof Player player)
-			return player.getInventory().contains(stack -> !stack.isEmpty() && ItemStack.isSameItem(stack, itemstack));
+		if (entity instanceof Player player) {
+			Inventory inventory = player.getInventory();
+			List<NonNullList<ItemStack>> compartments = com.google.common.collect.ImmutableList.of(inventory.items, inventory.armor, inventory.offhand);
+			for (List<ItemStack> list : compartments) {
+				for (ItemStack itemstack2 : list) {
+					if (!itemstack2.isEmpty() && ItemStack.isSameItem(itemstack2, itemstack)) {
+						return true;
+					}
+				}
+			}
+		}
 		return false;
 	}
 }

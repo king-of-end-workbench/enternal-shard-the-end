@@ -16,8 +16,6 @@ import net.minecraft.core.BlockPos;
 import net.mcreator.end_elemetn.procedures.SnarelingwebObnovlieniieTikaProcedure;
 
 public class SnarelingwebBlock extends Block {
-	private static final VoxelShape SHAPE = box(0, 0, 0, 16, 8, 16);
-
 	public SnarelingwebBlock() {
 		super(BlockBehaviour.Properties.of().sound(SoundType.WEEPING_VINES).strength(1f, 10f).requiresCorrectToolForDrops().noCollission().speedFactor(0.1f).jumpFactor(0.2f).noOcclusion().isRedstoneConductor((bs, br, bp) -> false));
 	}
@@ -39,18 +37,22 @@ public class SnarelingwebBlock extends Block {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		return (SHAPE);
+		return box(0, 0, 0, 16, 8, 16);
 	}
 
 	@Override
 	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
 		super.onPlace(blockstate, world, pos, oldState, moving);
-		world.scheduleTick(pos, this, 160);
+		world.scheduleTick(pos, this, 20);
 	}
 
 	@Override
 	public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
 		super.tick(blockstate, world, pos, random);
-		SnarelingwebObnovlieniieTikaProcedure.execute(world, pos.getX(), pos.getY(), pos.getZ());
+		int x = pos.getX();
+		int y = pos.getY();
+		int z = pos.getZ();
+		SnarelingwebObnovlieniieTikaProcedure.execute(world, x, y, z);
+		world.scheduleTick(pos, this, 20);
 	}
 }

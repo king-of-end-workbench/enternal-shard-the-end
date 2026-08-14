@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:dracora_palm_slab",
+    "end_elemetn:chorus_slab",
+    "end_elemetn:warped_slab",
+    "end_elemetn:ender_slab"
+  ]
+}

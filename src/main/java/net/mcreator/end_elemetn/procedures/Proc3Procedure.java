@@ -1,7 +1,7 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.items.IItemHandlerModifiable;
-import net.neoforged.neoforge.capabilities.Capabilities;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
@@ -18,10 +18,14 @@ public class Proc3Procedure {
 				ItemStack _stktoremove = new ItemStack(EndElemetnModItems.TITANIUM_COIN.get());
 				_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 64, _player.inventoryMenu.getCraftSlots());
 			}
-			if (entity.getCapability(Capabilities.ItemHandler.ENTITY, null) instanceof IItemHandlerModifiable _modHandler) {
-				ItemStack _setstack = new ItemStack(EndElemetnModItems.ENDERITE_LOOTBOX.get()).copy();
+			{
+				final int _slotid = 1;
+				final ItemStack _setstack = new ItemStack(EndElemetnModItems.ENDERITE_LOOTBOX.get()).copy();
 				_setstack.setCount(1);
-				_modHandler.setStackInSlot(1, _setstack);
+				entity.getCapability(ForgeCapabilities.ITEM_HANDLER, null).ifPresent(capability -> {
+					if (capability instanceof IItemHandlerModifiable _modHandlerEntSetSlot)
+						_modHandlerEntSetSlot.setStackInSlot(_slotid, _setstack);
+				});
 			}
 		}
 	}

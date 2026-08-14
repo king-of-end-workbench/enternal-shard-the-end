@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "end_elemetn:warped_pressure_plate",
+    "end_elemetn:dracora_palm_pressure_plate",
+    "end_elemetn:chorus_pressure_plate",
+    "end_elemetn:ender_pressure_plate"
+  ]
+}

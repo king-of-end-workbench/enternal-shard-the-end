@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "item": "end_elemetn:chorus_planks"
+    }
+  ],
+  "result": {
+    "item": "end_elemetn:chorus_button",
+    "count": 1
+  }
+}

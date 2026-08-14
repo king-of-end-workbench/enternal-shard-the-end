@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "category": "building",
+  "ingredients": [
+    {
+      "tag": "end_elemetn:warped_logs"
+    }
+  ],
+  "result": {
+    "item": "end_elemetn:warped_planks",
+    "count": 4
+  }
+}

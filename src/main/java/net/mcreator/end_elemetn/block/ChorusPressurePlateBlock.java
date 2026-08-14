@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class ChorusPressurePlateBlock extends PressurePlateBlock {
 	public ChorusPressurePlateBlock() {
-		super(BlockSetType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).pushReaction(PushReaction.DESTROY).ignitedByLava().forceSolidOn());
+		super(Sensitivity.EVERYTHING, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).pushReaction(PushReaction.DESTROY).ignitedByLava().forceSolidOn(), BlockSetType.OAK);
 	}
 
 	@Override

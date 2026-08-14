@@ -1,5 +1,7 @@
 package net.mcreator.end_elemetn.block;
 
+import net.minecraftforge.common.PlantType;
+
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -42,5 +44,10 @@ public class EndFernBlock extends DoublePlantBlock {
 			return groundState.is(this) && groundState.getValue(HALF) == DoubleBlockHalf.LOWER;
 		else
 			return this.mayPlaceOn(groundState, worldIn, blockpos);
+	}
+
+	@Override
+	public PlantType getPlantType(BlockGetter world, BlockPos pos) {
+		return PlantType.PLAINS;
 	}
 }

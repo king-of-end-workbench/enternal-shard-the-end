@@ -21,7 +21,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 public class ModelJELLY<T extends Entity> extends EntityModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in
 	// the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath("end_elemetn", "model_jelly"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("end_elemetn", "model_jelly"), "main");
 	public final ModelPart bb_main;
 	public final ModelPart bone;
 	public final ModelPart bone2;
@@ -63,14 +63,14 @@ public class ModelJELLY<T extends Entity> extends EntityModel<T> {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, int rgb) {
-		bb_main.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone2.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone3.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone4.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone5.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone6.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
-		bone7.render(poseStack, vertexConsumer, packedLight, packedOverlay, rgb);
+	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		bb_main.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone2.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone3.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone4.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone5.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone6.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+		bone7.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 }

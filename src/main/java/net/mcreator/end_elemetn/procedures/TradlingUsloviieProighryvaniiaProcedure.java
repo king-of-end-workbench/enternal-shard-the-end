@@ -9,6 +9,6 @@ public class TradlingUsloviieProighryvaniiaProcedure {
 	public static boolean execute(Entity entity) {
 		if (entity == null)
 			return false;
-		return entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(EndElemetnModMobEffects.TRADE_ACCEPT);
+		return entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(EndElemetnModMobEffects.TRADE_ACCEPT.get());
 	}
 }

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:end_stone",
+    "end_elemetn:cracked_green_endcobblestone",
+    "end_elemetn:green_end_cobblestone",
+    "end_elemetn:green_end_stone",
+    "end_elemetn:end_meshfades_stone",
+    "end_elemetn:dirty_end_cobblestone",
+    "end_elemetn:end_cobbelstone",
+    "minecraft:bedrock"
+  ]
+}

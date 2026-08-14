@@ -1,5 +1,7 @@
 package net.mcreator.end_elemetn.item;
 
+import net.minecraftforge.registries.ForgeRegistries;
+
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.Items;
@@ -12,13 +14,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.util.Unit;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.component.DataComponents;
 
 public class EnternalBowItem extends Item {
 	public EnternalBowItem() {
@@ -36,7 +34,7 @@ public class EnternalBowItem extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack itemstack, LivingEntity livingEntity) {
+	public int getUseDuration(ItemStack itemstack) {
 		return 72000;
 	}
 
@@ -53,30 +51,30 @@ public class EnternalBowItem extends Item {
 	@Override
 	public void releaseUsing(ItemStack itemstack, Level world, LivingEntity entity, int time) {
 		if (!world.isClientSide() && entity instanceof ServerPlayer player) {
-			float pullingPower = BowItem.getPowerForTime(this.getUseDuration(itemstack, player) - time);
+			float pullingPower = BowItem.getPowerForTime(this.getUseDuration(itemstack) - time);
 			if (pullingPower < 0.1)
 				return;
 			ItemStack stack = findAmmo(player);
 			if (player.getAbilities().instabuild || stack != ItemStack.EMPTY) {
-				ItemStack arrowPickupStack = stack;
-				if (arrowPickupStack.isEmpty()) {
-					arrowPickupStack = new ItemStack(Items.ARROW);
-					arrowPickupStack.set(DataComponents.INTANGIBLE_PROJECTILE, Unit.INSTANCE);
-				}
-				Arrow projectile = new Arrow(world, entity, arrowPickupStack, itemstack);
+				Arrow projectile = new Arrow(world, entity);
 				projectile.shootFromRotation(entity, entity.getXRot(), entity.getYRot(), 0, pullingPower * 3.15f, 1.0F);
 				world.addFreshEntity(projectile);
-				world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (world.getRandom().nextFloat() * 0.5f + 1));
-				itemstack.hurtAndBreak(1, entity, LivingEntity.getSlotForHand(entity.getUsedItemHand()));
+				world.playSound(null, entity.getX(), entity.getY(), entity.getZ(), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, 1, 1f / (world.getRandom().nextFloat() * 0.5f + 1));
+				itemstack.hurtAndBreak(1, entity, e -> e.broadcastBreakEvent(entity.getUsedItemHand()));
 				if (player.getAbilities().instabuild) {
 					projectile.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
 				} else {
 					if (stack.isDamageableItem()) {
-						if (world instanceof ServerLevel serverLevel)
-							stack.hurtAndBreak(1, serverLevel, player, _stkprov -> {
-							});
+						if (stack.hurt(1, world.getRandom(), player)) {
+							stack.shrink(1);
+							stack.setDamageValue(0);
+							if (stack.isEmpty())
+								player.getInventory().removeItem(stack);
+						}
 					} else {
 						stack.shrink(1);
+						if (stack.isEmpty())
+							player.getInventory().removeItem(stack);
 					}
 				}
 			}

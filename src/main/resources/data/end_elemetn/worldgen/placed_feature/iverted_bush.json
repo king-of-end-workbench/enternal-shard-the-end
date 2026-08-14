@@ -2,13 +2,6 @@
   "feature": "end_elemetn:iverted_bush",
   "placement": [
     {
-      "type": "minecraft:in_square"
-    },
-    {
-      "type": "minecraft:heightmap",
-      "heightmap": "OCEAN_FLOOR_WG"
-    },
-    {
       "type": "environment_scan",
       "direction_of_search": "down",
       "target_condition": {
@@ -29,10 +22,7 @@
           }
         ]
       },
-      "max_steps": 32
-    },
-    {
-      "type": "minecraft:biome"
+      "max_steps": 20
     }
   ]
 }

@@ -1,10 +1,13 @@
 {
-  "parent": "end_elemetn:block/template_end_city_vault",
+  "parent": "block/cube",
   "textures": {
-    "bottom": "end_elemetn:block/vault_bottom_ominous",
-    "top": "end_elemetn:block/vault_top_ominous",
-    "front": "end_elemetn:block/vault_front_off_ominous",
-    "side": "end_elemetn:block/vault_side_off_ominous"
+    "down": "end_elemetn:block/vault_bottom_ominous",
+    "up": "end_elemetn:block/vault_top_ominous",
+    "north": "end_elemetn:block/vault_front_off_ominous",
+    "east": "end_elemetn:block/vault_side_off_ominous",
+    "south": "end_elemetn:block/vault_side_off_ominous",
+    "west": "end_elemetn:block/vault_side_off_ominous",
+    "particle": "end_elemetn:block/vault_bottom_ominous"
   },
   "render_type": "cutout"
 }

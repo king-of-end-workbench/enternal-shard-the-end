@@ -13,7 +13,7 @@ import net.minecraft.core.BlockPos;
 
 public class DracoraPalmPressurePlateBlock extends PressurePlateBlock {
 	public DracoraPalmPressurePlateBlock() {
-		super(BlockSetType.OAK, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).noCollission().pushReaction(PushReaction.DESTROY).ignitedByLava().instrument(NoteBlockInstrument.HARP).forceSolidOn());
+		super(Sensitivity.EVERYTHING, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).noCollission().pushReaction(PushReaction.DESTROY).ignitedByLava().instrument(NoteBlockInstrument.HARP).forceSolidOn(), BlockSetType.OAK);
 	}
 
 	@Override

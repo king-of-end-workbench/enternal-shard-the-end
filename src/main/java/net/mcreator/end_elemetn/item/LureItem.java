@@ -11,7 +11,7 @@ import net.mcreator.end_elemetn.procedures.LurePriZaviershieniiIspolzovaniiaProc
 
 public class LureItem extends Item {
 	public LureItem() {
-		super(new Item.Properties().food((new FoodProperties.Builder()).nutrition(8).saturationModifier(1f).build()));
+		super(new Item.Properties().food((new FoodProperties.Builder()).nutrition(8).saturationMod(1f).build()));
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class LureItem extends Item {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack itemstack, LivingEntity livingEntity) {
+	public int getUseDuration(ItemStack itemstack) {
 		return 0;
 	}
 

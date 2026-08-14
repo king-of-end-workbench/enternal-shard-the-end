@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 
 public class WarpedButtonBlock extends ButtonBlock {
 	public WarpedButtonBlock() {
-		super(BlockSetType.OAK, 30, BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).pushReaction(PushReaction.DESTROY));
+		super(BlockBehaviour.Properties.of().sound(SoundType.WOOD).strength(2f, 3f).pushReaction(PushReaction.DESTROY), BlockSetType.OAK, 30, true);
 	}
 
 	@Override

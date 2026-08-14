@@ -3,10 +3,10 @@
  */
 package net.mcreator.end_elemetn.init;
 
-import net.neoforged.neoforge.registries.DeferredRegister;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.CreativeModeTab;
@@ -14,7 +14,7 @@ import net.minecraft.core.registries.Registries;
 
 import net.mcreator.end_elemetn.EndElemetnMod;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EndElemetnModTabs {
 	public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, EndElemetnMod.MODID);
 
@@ -33,6 +33,7 @@ public class EndElemetnModTabs {
 			tabData.accept(EndElemetnModItems.ENDERITHE_AXE.get());
 			tabData.accept(EndElemetnModItems.ENDERITHE_SCYTHE.get());
 			tabData.accept(EndElemetnModItems.ENDERITHE_BOW.get());
+			tabData.accept(EndElemetnModItems.ENDERITHE_HAMMER.get());
 			tabData.accept(EndElemetnModItems.BLASTLING_SHOOT.get());
 			tabData.accept(EndElemetnModItems.FUSELING.get());
 			tabData.accept(EndElemetnModItems.CORRUPTED_BEACON.get());

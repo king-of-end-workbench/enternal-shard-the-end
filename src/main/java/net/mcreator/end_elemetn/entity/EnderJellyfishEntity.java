@@ -1,27 +1,26 @@
 package net.mcreator.end_elemetn.entity;
 
-import net.neoforged.neoforge.items.wrapper.EntityHandsInvWrapper;
-import net.neoforged.neoforge.items.wrapper.EntityArmorInvWrapper;
-import net.neoforged.neoforge.items.wrapper.CombinedInvWrapper;
-import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
-import net.neoforged.neoforge.event.EventHooks;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.network.PlayMessages;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.items.wrapper.EntityHandsInvWrapper;
+import net.minecraftforge.items.wrapper.EntityArmorInvWrapper;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.capabilities.Capability;
 
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
@@ -42,57 +41,40 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.end_elemetn.world.inventory.JellyGuiMenu;
 import net.mcreator.end_elemetn.procedures.EnderJellyfishPriShchielchkiePKMPoSushchnostiProcedure;
 import net.mcreator.end_elemetn.init.EndElemetnModItems;
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
-import net.mcreator.end_elemetn.custommixin.LivingEntityJumpingAccessor;
+
+import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 import io.netty.buffer.Unpooled;
 
 public class EnderJellyfishEntity extends TamableAnimal {
-
-	public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(EnderJellyfishEntity.class, EntityDataSerializers.STRING);
-	public static final EntityDataAccessor<Integer> ANIM = SynchedEntityData.defineId(EnderJellyfishEntity.class, EntityDataSerializers.INT);
+	public EnderJellyfishEntity(PlayMessages.SpawnEntity packet, Level world) {
+		this(EndElemetnModEntities.ENDER_JELLYFISH.get(), world);
+	}
 
 	public EnderJellyfishEntity(EntityType<EnderJellyfishEntity> type, Level world) {
 		super(type, world);
+		setMaxUpStep(0.6f);
 		xpReward = 0;
 		setNoAi(false);
 		this.moveControl = new FlyingMoveControl(this, 10, true);
 	}
 
 	@Override
-	public void onSyncedDataUpdated(EntityDataAccessor<?> data) {
-		if (ANIM.equals(data)) {
-			switch (this.entityData.get(ANIM)) {
-			}
-		}
-		super.onSyncedDataUpdated(data);
-	}
-
-	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(TEXTURE, "drifter");
-		builder.define(ANIM, 0);
-	}
-
-	public void setTexture(String texture) {
-		this.entityData.set(TEXTURE, texture);
-	}
-
-	public String getTexture() {
-		return this.entityData.get(TEXTURE);
+	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
@@ -118,13 +100,18 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	}
 
 	@Override
+	public MobType getMobType() {
+		return MobType.UNDEFINED;
+	}
+
+	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.hurt"));
+		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.death"));
+		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.death"));
 	}
 
 	@Override
@@ -140,8 +127,11 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	};
 	private final CombinedInvWrapper combined = new CombinedInvWrapper(inventory, new EntityHandsInvWrapper(this), new EntityArmorInvWrapper(this));
 
-	public CombinedInvWrapper getCombinedInventory() {
-		return combined;
+	@Override
+	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction side) {
+		if (this.isAlive() && capability == ForgeCapabilities.ITEM_HANDLER && side == null)
+			return LazyOptional.of(() -> combined).cast();
+		return super.getCapability(capability, side);
 	}
 
 	@Override
@@ -149,7 +139,7 @@ public class EnderJellyfishEntity extends TamableAnimal {
 		super.dropEquipment();
 		for (int i = 0; i < inventory.getSlots(); ++i) {
 			ItemStack itemstack = inventory.getStackInSlot(i);
-			if (!itemstack.isEmpty() && !EnchantmentHelper.has(itemstack, EnchantmentEffectComponents.PREVENT_EQUIPMENT_DROP)) {
+			if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
 				this.spawnAtLocation(itemstack);
 			}
 		}
@@ -158,17 +148,14 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
-		compound.putString("Texture", this.getTexture());
-		compound.put("InventoryCustom", inventory.serializeNBT(this.registryAccess()));
+		compound.put("InventoryCustom", inventory.serializeNBT());
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
-		if (compound.contains("Texture"))
-			this.setTexture(compound.getString("Texture"));
 		if (compound.get("InventoryCustom") instanceof CompoundTag inventoryTag)
-			inventory.deserializeNBT(this.registryAccess(), inventoryTag);
+			inventory.deserializeNBT(inventoryTag);
 	}
 
 	@Override
@@ -177,7 +164,7 @@ public class EnderJellyfishEntity extends TamableAnimal {
 		InteractionResult retval = InteractionResult.sidedSuccess(this.level().isClientSide());
 		if (sourceentity.isSecondaryUseActive()) {
 			if (sourceentity instanceof ServerPlayer serverPlayer) {
-				serverPlayer.openMenu(new MenuProvider() {
+				NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
 					@Override
 					public Component getDisplayName() {
 						return Component.literal("Ender Jellyfish");
@@ -207,11 +194,9 @@ public class EnderJellyfishEntity extends TamableAnimal {
 		} else {
 			if (this.isTame()) {
 				if (this.isOwnedBy(sourceentity)) {
-					if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
+					if (item.isEdible() && this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
 						this.usePlayerItem(sourceentity, hand, itemstack);
-						FoodProperties foodproperties = itemstack.getFoodProperties(this);
-						float nutrition = foodproperties != null ? (float) foodproperties.nutrition() : 1;
-						this.heal(nutrition);
+						this.heal((float) item.getFoodProperties().getNutrition());
 						retval = InteractionResult.sidedSuccess(this.level().isClientSide());
 					} else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
 						this.usePlayerItem(sourceentity, hand, itemstack);
@@ -223,7 +208,7 @@ public class EnderJellyfishEntity extends TamableAnimal {
 				}
 			} else if (this.isFood(itemstack)) {
 				this.usePlayerItem(sourceentity, hand, itemstack);
-				if (this.random.nextInt(3) == 0 && !EventHooks.onAnimalTame(this, sourceentity)) {
+				if (this.random.nextInt(3) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, sourceentity)) {
 					this.tame(sourceentity);
 					this.level().broadcastEntityEvent(this, (byte) 7);
 				} else {
@@ -251,7 +236,7 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
 		EnderJellyfishEntity retval = EndElemetnModEntities.ENDER_JELLYFISH.get().create(serverWorld);
-		retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null);
+		retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
 		return retval;
 	}
 
@@ -272,71 +257,10 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	public void aiStep() {
 		super.aiStep();
 		this.setNoGravity(true);
-		// A gentle up-down pulse layered on top of normal movement, like a real jellyfish, instead
-		// of gliding in dead-flat straight lines - kept active while ridden too, so flying it still
-		// feels alive instead of a perfectly flat mount.
-		double bob = Math.sin((this.tickCount + this.getId()) * 0.1) * 0.02;
-		this.setDeltaMovement(this.getDeltaMovement().add(0.0, bob, 0.0));
 	}
 
-	@Override
-	public LivingEntity getControllingPassenger() {
-		Entity passenger = this.getFirstPassenger();
-		return passenger instanceof Player player ? player : super.getControllingPassenger();
-	}
-
-	@Override
-	protected void tickRidden(Player player, Vec3 travelVector) {
-		super.tickRidden(player, travelVector);
-		this.setRot(player.getYRot(), player.getXRot() * 0.5F);
-		this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
-
-		// Jet-propulsion burst on sprint - a real jellyfish shoves itself forward by pulsing, so
-		// sprinting punches out a burst of particles behind it and a wingbeat-like sound, instead
-		// of just quietly moving faster like any other flying mount.
-		if (player.isSprinting()) {
-			if (this.level().isClientSide) {
-				Vec3 look = this.getLookAngle();
-				RandomSource random = this.getRandom();
-				for (int i = 0; i < 3; i++) {
-					double px = this.getX() - look.x * 1.2 + (random.nextDouble() - 0.5) * 0.4;
-					double py = this.getY() + this.getBbHeight() * 0.5 + (random.nextDouble() - 0.5) * 0.4;
-					double pz = this.getZ() - look.z * 1.2 + (random.nextDouble() - 0.5) * 0.4;
-					this.level().addParticle(ParticleTypes.REVERSE_PORTAL, px, py, pz, -look.x * 0.3, -look.y * 0.3, -look.z * 0.3);
-				}
-			} else if (this.tickCount % 8 == 0) {
-				this.level().playSound(null, this.blockPosition(), SoundEvents.PHANTOM_FLAP, SoundSource.NEUTRAL, 0.6F, 1.6F);
-			}
-		}
-	}
-
-	@Override
-	protected Vec3 getRiddenInput(Player player, Vec3 input) {
-		double vertical = 0.0;
-		if (player instanceof LivingEntityJumpingAccessor accessor && accessor.end_elemetn$isJumping()) {
-			vertical += 1.0;
-		} else if (player.isShiftKeyDown()) {
-			vertical -= 1.0;
-		}
-		// Blend in a climb/dive from the camera's pitch while moving forward, on top of the
-		// explicit up/down keys - otherwise altitude is entirely decoupled from where you're
-		// looking and flight feels like a flat plane with an elevator button instead of actually
-		// piloting through open air.
-		double forward = player.zza;
-		if (forward > 0.0) {
-			vertical -= Math.sin(Math.toRadians(player.getXRot())) * forward;
-		}
-		return new Vec3(player.xxa * 0.5F, vertical, forward);
-	}
-
-	@Override
-	protected float getRiddenSpeed(Player player) {
-		float base = (float) this.getAttributeValue(Attributes.FLYING_SPEED);
-		return player.isSprinting() ? base * 2.2F : base;
-	}
-
-	public static void init(RegisterSpawnPlacementsEvent event) {
-		event.register(EndElemetnModEntities.ENDER_JELLYFISH.get(), SpawnPlacementTypes.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules, RegisterSpawnPlacementsEvent.Operation.REPLACE);
+	public static void init() {
+		SpawnPlacements.register(EndElemetnModEntities.ENDER_JELLYFISH.get(), SpawnPlacements.Type.NO_RESTRICTIONS, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Mob::checkMobSpawnRules);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -346,13 +270,7 @@ public class EnderJellyfishEntity extends TamableAnimal {
 		builder = builder.add(Attributes.ARMOR, 0);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		builder = builder.add(Attributes.FLYING_SPEED, 0.3);
 		return builder;
-	}
-
-	@Override
-	protected void onBelowWorld() {
-		// End mobs ignore the void - falling below the world should not deal damage
 	}
 }
