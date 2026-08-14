@@ -8,13 +8,11 @@
   "terrain_adaptation": "bury",
   "start_height": {
     "type": "minecraft:uniform",
-    "value": {
-      "min_inclusive": {
-        "absolute": -40
-      },
-      "max_inclusive": {
-        "absolute": 20
-      }
+    "min_inclusive": {
+      "absolute": -40
+    },
+    "max_inclusive": {
+      "absolute": 20
     }
   },
   "biomes": "#minecraft:is_overworld",

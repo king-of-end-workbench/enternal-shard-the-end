@@ -5,22 +5,20 @@
       "type": "minecraft:count",
       "count": {
         "type": "weighted_list",
-        "value": {
-          "distribution": [
-            {
-              "data": 100,
-              "weight": 5
-            },
-            {
-              "data": 75,
-              "weight": 3
-            },
-            {
-              "data": 50,
-              "weight": 2
-            }
-          ]
-        }
+        "distribution": [
+          {
+            "data": 100,
+            "weight": 5
+          },
+          {
+            "data": 75,
+            "weight": 3
+          },
+          {
+            "data": 50,
+            "weight": 2
+          }
+        ]
       }
     },
     {

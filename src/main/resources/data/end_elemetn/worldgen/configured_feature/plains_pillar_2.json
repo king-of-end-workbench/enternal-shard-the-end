@@ -10,22 +10,20 @@
       {
         "height": {
           "type": "weighted_list",
-          "value": {
-            "distribution": [
-              {
-                "data": 5,
-                "weight": 5
-              },
-              {
-                "data": 5,
-                "weight": 3
-              },
-              {
-                "data": 5,
-                "weight": 2
-              }
-            ]
-          }
+          "distribution": [
+            {
+              "data": 5,
+              "weight": 5
+            },
+            {
+              "data": 5,
+              "weight": 3
+            },
+            {
+              "data": 5,
+              "weight": 2
+            }
+          ]
         },
         "provider": {
           "type": "minecraft:simple_state_provider",
