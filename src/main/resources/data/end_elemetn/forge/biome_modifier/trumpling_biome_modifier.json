@@ -1,5 +1,5 @@
 {
-  "type": "neoforge:add_spawns",
+  "type": "forge:add_spawns",
   "biomes": [
     "end_elemetn:chorus_forest",
     "end_elemetn:inverted_forest"

@@ -1,14 +1,14 @@
 {
-  "type": "neoforge:add_spawns",
+  "type": "forge:add_spawns",
   "biomes": [
     "end_elemetn:end_wilds",
-    "end_barrens",
-    "end_highlands",
     "end_midlands",
-    "small_end_islands"
+    "small_end_islands",
+    "end_barrens",
+    "end_highlands"
   ],
   "spawners": {
-    "type": "end_elemetn:blastling",
+    "type": "end_elemetn:watchling",
     "weight": 12,
     "minCount": 1,
     "maxCount": 4
