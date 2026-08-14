@@ -1,0 +1,8 @@
+{
+  "feature": "end_elemetn:end_warped_grass_ceiling",
+  "placement": [
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
