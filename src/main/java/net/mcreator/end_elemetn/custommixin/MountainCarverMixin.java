@@ -1,6 +1,7 @@
 package net.mcreator.end_elemetn.custommixin;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -54,7 +55,7 @@ public abstract class MountainCarverMixin {
 	}
 
 	@Inject(method = "fillFromNoise", at = @At("RETURN"), cancellable = true)
-	private void end_elemetn$carveMountains(Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess, CallbackInfoReturnable<CompletableFuture<ChunkAccess>> cir) {
+	private void end_elemetn$carveMountains(Executor executor, Blender blender, RandomState randomState, StructureManager structureManager, ChunkAccess chunkAccess, CallbackInfoReturnable<CompletableFuture<ChunkAccess>> cir) {
 		// Chaotic mode deliberately wants tall mountains/spikes fused straight to the ground - this
 		// carver would otherwise chop every single one of them right back off. Only run in calm mode.
 		if (EndIslandGenerationState.CHAOTIC_ENABLED)
