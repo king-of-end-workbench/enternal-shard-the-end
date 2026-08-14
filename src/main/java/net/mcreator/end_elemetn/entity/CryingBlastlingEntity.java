@@ -44,6 +44,7 @@ public class CryingBlastlingEntity extends EnderMan implements RangedAttackMob {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
+		this.setMaxUpStep(0.6f);
 	}
 
 	@Override
@@ -169,7 +170,6 @@ public class CryingBlastlingEntity extends EnderMan implements RangedAttackMob {
 		builder = builder.add(Attributes.ARMOR, 4);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 6);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		return builder;
 	}
 

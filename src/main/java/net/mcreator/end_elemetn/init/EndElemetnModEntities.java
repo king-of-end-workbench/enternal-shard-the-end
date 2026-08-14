@@ -26,31 +26,31 @@ public class EndElemetnModEntities {
 	public static final RegistryObject<EntityType<BlastlingBulletEntity>> BLASTLING_BULLET = register("blastling_bullet", EntityType.Builder.<BlastlingBulletEntity>of(BlastlingBulletEntity::new, MobCategory.MISC)
 			.setCustomClientFactory(BlastlingBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
 	public static final RegistryObject<EntityType<WatchlingEntity>> WATCHLING = register("watchling",
-			EntityType.Builder.<WatchlingEntity>of(WatchlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(WatchlingEntity::new)
+			EntityType.Builder.<WatchlingEntity>of(WatchlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 2.5f));
 	public static final RegistryObject<EntityType<SnarelingEntity>> SNARELING = register("snareling",
-			EntityType.Builder.<SnarelingEntity>of(SnarelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SnarelingEntity::new)
+			EntityType.Builder.<SnarelingEntity>of(SnarelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 2.5f));
 	public static final RegistryObject<EntityType<BlastlingEntity>> BLASTLING = register("blastling",
-			EntityType.Builder.<BlastlingEntity>of(BlastlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BlastlingEntity::new)
+			EntityType.Builder.<BlastlingEntity>of(BlastlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 2.4f));
 	public static final RegistryObject<EntityType<LurelingEntity>> LURELING = register("lureling",
-			EntityType.Builder.<LurelingEntity>of(LurelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(LurelingEntity::new)
+			EntityType.Builder.<LurelingEntity>of(LurelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 2.7f));
 	public static final RegistryObject<EntityType<TrumplingEntity>> TRUMPLING = register("trumpling",
-			EntityType.Builder.<TrumplingEntity>of(TrumplingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(TrumplingEntity::new)
+			EntityType.Builder.<TrumplingEntity>of(TrumplingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 2.3f));
 	public static final RegistryObject<EntityType<EndersentEntity>> ENDERSENT = register("endersent",
-			EntityType.Builder.<EndersentEntity>of(EndersentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(EndersentEntity::new)
+			EntityType.Builder.<EndersentEntity>of(EndersentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(1.4f, 6f));
 	public static final RegistryObject<EntityType<EyedEndersentEntity>> EYED_ENDERSENT = register("eyed_endersent",
-			EntityType.Builder.<EyedEndersentEntity>of(EyedEndersentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(EyedEndersentEntity::new)
+			EntityType.Builder.<EyedEndersentEntity>of(EyedEndersentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(1.3f, 6f));
 	public static final RegistryObject<EntityType<TradlingEntity>> TRADLING = register("tradling",
@@ -66,25 +66,25 @@ public class EndElemetnModEntities {
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<ShadowlingEntity>> SHADOWLING = register("shadowling",
-			EntityType.Builder.<ShadowlingEntity>of(ShadowlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ShadowlingEntity::new)
+			EntityType.Builder.<ShadowlingEntity>of(ShadowlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<NecrosentEntity>> NECROSENT = register("necrosent",
-			EntityType.Builder.<NecrosentEntity>of(NecrosentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NecrosentEntity::new)
+			EntityType.Builder.<NecrosentEntity>of(NecrosentEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(1.4f, 6f));
 	public static final RegistryObject<EntityType<SoulBulletEntity>> SOUL_BULLET = register("soul_bullet",
 			EntityType.Builder.<SoulBulletEntity>of(SoulBulletEntity::new, MobCategory.MISC).setCustomClientFactory(SoulBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
 	public static final RegistryObject<EntityType<CryingWatchlingEntity>> CRYING_WATCHLING = register("crying_watchling",
-			EntityType.Builder.<CryingWatchlingEntity>of(CryingWatchlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CryingWatchlingEntity::new)
+			EntityType.Builder.<CryingWatchlingEntity>of(CryingWatchlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<CryingSnarelingEntity>> CRYING_SNARELING = register("crying_snareling",
-			EntityType.Builder.<CryingSnarelingEntity>of(CryingSnarelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CryingSnarelingEntity::new)
+			EntityType.Builder.<CryingSnarelingEntity>of(CryingSnarelingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<CryingBlastlingEntity>> CRYING_BLASTLING = register("crying_blastling",
-			EntityType.Builder.<CryingBlastlingEntity>of(CryingBlastlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CryingBlastlingEntity::new)
+			EntityType.Builder.<CryingBlastlingEntity>of(CryingBlastlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<SoulGlobEntity>> SOUL_GLOB = register("soul_glob",
@@ -94,7 +94,7 @@ public class EndElemetnModEntities {
 	public static final RegistryObject<EntityType<LureBlastlingBulletEntity>> LURE_BLASTLING_BULLET = register("lure_blastling_bullet", EntityType.Builder.<LureBlastlingBulletEntity>of(LureBlastlingBulletEntity::new, MobCategory.MISC)
 			.setCustomClientFactory(LureBlastlingBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.5f, 0.5f));
 	public static final RegistryObject<EntityType<LaserBeamEntity>> LASER_BEAM = register("laser_beam",
-			EntityType.Builder.<LaserBeamEntity>of(LaserBeamEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(LaserBeamEntity::new)
+			EntityType.Builder.<LaserBeamEntity>of(LaserBeamEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3)
 
 					.sized(0.6f, 1.8f));
 	public static final RegistryObject<EntityType<EnderJellyfishEntity>> ENDER_JELLYFISH = register("ender_jellyfish",

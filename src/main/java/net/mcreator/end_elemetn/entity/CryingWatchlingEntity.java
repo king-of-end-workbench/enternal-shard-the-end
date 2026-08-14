@@ -2,6 +2,7 @@ package net.mcreator.end_elemetn.entity;
 
 
 import net.minecraft.world.level.Level;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.monster.EnderMan;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -39,6 +40,7 @@ public class CryingWatchlingEntity extends EnderMan {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
+		this.setMaxUpStep(0.6f);
 	}
 
 	@Override
@@ -82,8 +84,12 @@ public class CryingWatchlingEntity extends EnderMan {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
 			@Override
-			protected boolean canPerformAttack(LivingEntity entity) {
-				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
+			protected void checkAndPerformAttack(LivingEntity entity, double distToEnemySqr) {
+				if (this.isTimeToAttack() && distToEnemySqr < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity)) {
+					this.resetAttackCooldown();
+					this.mob.swing(InteractionHand.MAIN_HAND);
+					this.mob.doHurtTarget(entity);
+				}
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
@@ -151,7 +157,6 @@ public class CryingWatchlingEntity extends EnderMan {
 		builder = builder.add(Attributes.ARMOR, 4);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 6);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		return builder;
 	}
 

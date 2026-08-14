@@ -2,6 +2,7 @@ package net.mcreator.end_elemetn.entity;
 
 
 import net.minecraft.world.level.Level;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -44,6 +45,7 @@ public class EyedEndersentEntity extends EnderMan {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
+		this.setMaxUpStep(0.6f);
 	}
 
 	@Override
@@ -93,8 +95,12 @@ public class EyedEndersentEntity extends EnderMan {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
 			@Override
-			protected boolean canPerformAttack(LivingEntity entity) {
-				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
+			protected void checkAndPerformAttack(LivingEntity entity, double distToEnemySqr) {
+				if (this.isTimeToAttack() && distToEnemySqr < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity)) {
+					this.resetAttackCooldown();
+					this.mob.swing(InteractionHand.MAIN_HAND);
+					this.mob.doHurtTarget(entity);
+				}
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
@@ -103,8 +109,8 @@ public class EyedEndersentEntity extends EnderMan {
 		this.goalSelector.addGoal(5, new FloatGoal(this));
 	}
 
-	protected void dropCustomDeathLoot(ServerLevel serverLevel, DamageSource source, boolean recentlyHitIn) {
-		super.dropCustomDeathLoot(serverLevel, source, recentlyHitIn);
+	protected void dropCustomDeathLoot(DamageSource source, int lootingMultiplier, boolean recentlyHitIn) {
+		super.dropCustomDeathLoot(source, lootingMultiplier, recentlyHitIn);
 		this.spawnAtLocation(new ItemStack(Items.ENDER_EYE));
 	}
 
@@ -173,7 +179,6 @@ public class EyedEndersentEntity extends EnderMan {
 		builder = builder.add(Attributes.ARMOR, 8);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 25);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		return builder;
 	}
 

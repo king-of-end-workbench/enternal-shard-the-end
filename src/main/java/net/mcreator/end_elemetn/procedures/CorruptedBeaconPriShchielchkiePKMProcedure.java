@@ -59,7 +59,8 @@ public class CorruptedBeaconPriShchielchkiePKMProcedure {
 		if (beamLength < 0.5)
 			beamLength = 0.5;
 
-		DamageSource voidDamage = new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("end_elemetn:void_touched"))));
+		DamageSource voidDamage = new DamageSource(
+				world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("end_elemetn:void_touched"))));
 
 		Set<Entity> alreadyHit = new HashSet<>();
 		int steps = (int) Math.ceil(beamLength);

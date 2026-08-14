@@ -46,6 +46,7 @@ public class TrumplingEntity extends TamableAnimal {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(false);
+		this.setMaxUpStep(0.6f);
 	}
 
 	@Override
@@ -89,14 +90,18 @@ public class TrumplingEntity extends TamableAnimal {
 		super.registerGoals();
 		this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.2, false) {
 			@Override
-			protected boolean canPerformAttack(LivingEntity entity) {
-				return this.isTimeToAttack() && this.mob.distanceToSqr(entity) < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity);
+			protected void checkAndPerformAttack(LivingEntity entity, double distToEnemySqr) {
+				if (this.isTimeToAttack() && distToEnemySqr < (this.mob.getBbWidth() * this.mob.getBbWidth() + entity.getBbWidth()) && this.mob.getSensing().hasLineOfSight(entity)) {
+					this.resetAttackCooldown();
+					this.mob.swing(InteractionHand.MAIN_HAND);
+					this.mob.doHurtTarget(entity);
+				}
 			}
 		});
 		this.goalSelector.addGoal(2, new RandomStrollGoal(this, 1));
 		this.goalSelector.addGoal(3, new BreedGoal(this, 1));
 		this.goalSelector.addGoal(4, new FollowParentGoal(this, 0.8));
-		this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1, (float) 10, (float) 2));
+		this.goalSelector.addGoal(5, new FollowOwnerGoal(this, 1, (float) 10, (float) 2, false));
 		this.goalSelector.addGoal(6, new OwnerHurtByTargetGoal(this));
 		this.targetSelector.addGoal(7, new HurtByTargetGoal(this));
 		this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
@@ -141,7 +146,7 @@ public class TrumplingEntity extends TamableAnimal {
 					if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
 						this.usePlayerItem(sourceentity, hand, itemstack);
 						FoodProperties foodproperties = itemstack.getFoodProperties(this);
-						float nutrition = foodproperties != null ? (float) foodproperties.nutrition() : 1;
+						float nutrition = foodproperties != null ? (float) foodproperties.getNutrition() : 1;
 						this.heal(nutrition);
 						retval = InteractionResult.sidedSuccess(this.level().isClientSide());
 					} else if (this.isFood(itemstack) && this.getHealth() < this.getMaxHealth()) {
@@ -191,7 +196,7 @@ public class TrumplingEntity extends TamableAnimal {
 	@Override
 	public AgeableMob getBreedOffspring(ServerLevel serverWorld, AgeableMob ageable) {
 		TrumplingEntity retval = EndElemetnModEntities.TRUMPLING.get().create(serverWorld);
-		retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null);
+		retval.finalizeSpawn(serverWorld, serverWorld.getCurrentDifficultyAt(retval.blockPosition()), MobSpawnType.BREEDING, null, null);
 		return retval;
 	}
 
@@ -212,7 +217,6 @@ public class TrumplingEntity extends TamableAnimal {
 		builder = builder.add(Attributes.ARMOR, 0);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		return builder;
 	}
 

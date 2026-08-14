@@ -11,6 +11,6 @@ public class LurePriZaviershieniiIspolzovaniiaProcedure {
 		if (entity == null)
 			return;
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(EndElemetnModMobEffects.HYPNOTISED, 200, 1));
+			_entity.addEffect(new MobEffectInstance(EndElemetnModMobEffects.HYPNOTISED.get(), 200, 1));
 	}
 }

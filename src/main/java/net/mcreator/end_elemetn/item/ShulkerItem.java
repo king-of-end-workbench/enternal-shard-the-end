@@ -34,7 +34,7 @@ public abstract class ShulkerItem extends ArmorItem {
 
 		@Override
 		public int getDurabilityForType(ArmorItem.Type type) {
-			return type.getDurability(25);
+			return durabilityFor(type);
 		}
 
 		@Override
@@ -73,13 +73,25 @@ public abstract class ShulkerItem extends ArmorItem {
 		}
 	};
 
+	// forge-1.20.1's ArmorItem.Type has no getDurability(int) multiplier method (later addition) -
+	// these are vanilla's own per-slot base durabilities (see ArmorMaterials) times a x25 multiplier,
+	// matching what the 1.21 API's type.getDurability(25) used to compute.
+	private static int durabilityFor(ArmorItem.Type type) {
+		return switch (type) {
+			case HELMET -> 11 * 25;
+			case CHESTPLATE -> 16 * 25;
+			case LEGGINGS -> 15 * 25;
+			case BOOTS -> 13 * 25;
+		};
+	}
+
 	public ShulkerItem(ArmorItem.Type type, Item.Properties properties) {
 		super(ARMOR_MATERIAL, type, properties);
 	}
 
 	public static class Helmet extends ShulkerItem {
 		public Helmet() {
-			super(ArmorItem.Type.HELMET, new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(25)));
+			super(ArmorItem.Type.HELMET, new Item.Properties().durability(durabilityFor(ArmorItem.Type.HELMET)));
 		}
 
 		@Override
@@ -93,19 +105,19 @@ public abstract class ShulkerItem extends ArmorItem {
 
 	public static class Chestplate extends ShulkerItem {
 		public Chestplate() {
-			super(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(25)));
+			super(ArmorItem.Type.CHESTPLATE, new Item.Properties().durability(durabilityFor(ArmorItem.Type.CHESTPLATE)));
 		}
 	}
 
 	public static class Leggings extends ShulkerItem {
 		public Leggings() {
-			super(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(25)));
+			super(ArmorItem.Type.LEGGINGS, new Item.Properties().durability(durabilityFor(ArmorItem.Type.LEGGINGS)));
 		}
 	}
 
 	public static class Boots extends ShulkerItem {
 		public Boots() {
-			super(ArmorItem.Type.BOOTS, new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(25)));
+			super(ArmorItem.Type.BOOTS, new Item.Properties().durability(durabilityFor(ArmorItem.Type.BOOTS)));
 		}
 	}
 }

@@ -20,7 +20,6 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.resources.ResourceLocation;
 
 import net.mcreator.end_elemetn.item.ShulkerItem;
 
@@ -31,7 +30,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Mod.EventBusSubscriber
 public class ShulkerBlockProcedure {
 	private static final int DISABLE_TICKS = 100;
-	private static final ResourceLocation BLOCK_SLOW_ID = new ResourceLocation("end_elemetn", "shulker_block_slow");
+	private static final UUID BLOCK_SLOW_ID = UUID.fromString("8e0f1f3a-7c1c-4f6b-9e8a-3d0f6a2b5c11");
 	private static final Map<UUID, Long> BLOCKED_AT_TICK = new ConcurrentHashMap<>();
 
 	private static boolean isBlocking(Player player) {
@@ -97,9 +96,9 @@ public class ShulkerBlockProcedure {
 		if (speed == null)
 			return;
 		boolean blocking = isBlocking(player);
-		boolean hasModifier = speed.hasModifier(BLOCK_SLOW_ID);
+		boolean hasModifier = speed.getModifier(BLOCK_SLOW_ID) != null;
 		if (blocking && !hasModifier) {
-			speed.addTransientModifier(new AttributeModifier(BLOCK_SLOW_ID, -0.99, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+			speed.addTransientModifier(new AttributeModifier(BLOCK_SLOW_ID, "Shulker block slow", -0.99, AttributeModifier.Operation.MULTIPLY_TOTAL));
 		} else if (!blocking && hasModifier) {
 			speed.removeModifier(BLOCK_SLOW_ID);
 		}

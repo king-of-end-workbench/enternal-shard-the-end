@@ -8,6 +8,8 @@ import net.minecraftforge.api.distmarker.Dist;
 
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -23,6 +25,8 @@ import net.mcreator.end_elemetn.procedures.SnarelingGlobKoghdaSnariadPopadaietVB
 import net.mcreator.end_elemetn.init.EndElemetnModItems;
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
 
+import javax.annotation.Nullable;
+
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 public class SnarelingGlobEntity extends AbstractArrow implements ItemSupplier {
 	public static final ItemStack PROJECTILE_ITEM = new ItemStack(EndElemetnModItems.SNARELINGBLOB.get());
@@ -37,6 +41,12 @@ public class SnarelingGlobEntity extends AbstractArrow implements ItemSupplier {
 
 	public SnarelingGlobEntity(EntityType<? extends SnarelingGlobEntity> type, double x, double y, double z, Level world) {
 		super(type, x, y, z, world);
+	}
+
+	public SnarelingGlobEntity(EntityType<? extends SnarelingGlobEntity> type, double x, double y, double z, Level world, @Nullable ItemStack firedFromWeapon) {
+		super(type, x, y, z, world);
+		if (firedFromWeapon != null)
+			this.setKnockback(EnchantmentHelper.getItemEnchantmentLevel(Enchantments.KNOCKBACK, firedFromWeapon));
 	}
 
 	public SnarelingGlobEntity(EntityType<? extends SnarelingGlobEntity> type, LivingEntity entity, Level world) {
@@ -68,7 +78,7 @@ public class SnarelingGlobEntity extends AbstractArrow implements ItemSupplier {
 	@Override
 	public void onHitBlock(BlockHitResult blockHitResult) {
 		super.onHitBlock(blockHitResult);
-		SnarelingGlobKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), blockHitResult.getBlockPos().getX(), blockHitResult.getBlockPos().getY(), blockHitResult.getBlockPos().getZ());
+		SnarelingGlobKoghdaSnariadPopadaietVBlokProcedure.execute(this.level(), blockHitResult.getBlockPos(), blockHitResult.getDirection());
 	}
 
 	@Override

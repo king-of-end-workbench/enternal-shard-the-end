@@ -44,6 +44,7 @@ public class LaserBeamEntity extends Monster {
 		super(type, world);
 		xpReward = 0;
 		setNoAi(true);
+		this.setMaxUpStep(0.6f);
 		this.moveControl = new FlyingMoveControl(this, 10, true);
 	}
 
@@ -130,8 +131,8 @@ public class LaserBeamEntity extends Monster {
 	}
 
 	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata) {
-		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata);
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag dataTag) {
+		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, dataTag);
 		LaserBeamPriNachalnomPrizyvieSushchnostiProcedure.execute(world, this);
 		return retval;
 	}
@@ -210,7 +211,6 @@ public class LaserBeamEntity extends Monster {
 		builder = builder.add(Attributes.ARMOR, 0);
 		builder = builder.add(Attributes.ATTACK_DAMAGE, 3);
 		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.STEP_HEIGHT, 0.6);
 		builder = builder.add(Attributes.FLYING_SPEED, 0.3);
 		return builder;
 	}

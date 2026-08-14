@@ -6,12 +6,14 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionHand;
@@ -23,6 +25,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
+
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
 
 import java.util.List;
 
@@ -40,15 +45,29 @@ public abstract class AbstractHammerItem extends TieredItem {
 	private final float slamDamage;
 	private final double slamKnockback;
 	private final int slamCooldownTicks;
+	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
+	// forge-1.20.1 has no Item.Properties().attributes(...) data component (later addition) - the
+	// attack damage/speed attribute modifiers are built by hand here, mirroring what DiggerItem's own
+	// constructor does internally.
 	protected AbstractHammerItem(Tier tier, float attackDamage, float attackSpeed, float mineSpeed, double slamRadius, float slamDamage, double slamKnockback,
 			int slamCooldownTicks) {
-		super(tier, new Item.Properties().attributes(DiggerItem.createAttributes(tier, attackDamage, attackSpeed)));
+		super(tier, new Item.Properties());
 		this.mineSpeed = mineSpeed;
 		this.slamRadius = slamRadius;
 		this.slamDamage = slamDamage;
 		this.slamKnockback = slamKnockback;
 		this.slamCooldownTicks = slamCooldownTicks;
+		float attackDamageBaseline = attackDamage + tier.getAttackDamageBonus();
+		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", attackDamageBaseline, AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
+		this.defaultModifiers = builder.build();
+	}
+
+	@Override
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+		return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
 	}
 
 	// forge-1.20.1 has no data-driven Tool component (later addition) - a hammer that mines
@@ -81,7 +100,7 @@ public abstract class AbstractHammerItem extends TieredItem {
 
 	@Override
 	public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-		stack.hurtAndBreak(2, attacker, EquipmentSlot.MAINHAND);
+		stack.hurtAndBreak(2, attacker, e -> e.broadcastBreakEvent(EquipmentSlot.MAINHAND));
 	}
 
 	@Override
@@ -127,7 +146,7 @@ public abstract class AbstractHammerItem extends TieredItem {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack stack, LivingEntity entity) {
+	public int getUseDuration(ItemStack stack) {
 		return SLAM_CHARGE_TICKS;
 	}
 

@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.Event;
 
 import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Mob;
@@ -15,10 +16,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.tags.TagKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.CommandSource;
+
+import net.mcreator.end_elemetn.init.EndElemetnModEnchantments;
 
 import javax.annotation.Nullable;
 
@@ -41,8 +43,8 @@ public class AntiEndHateProcedure {
 		if (entity instanceof Mob _mobEnt0 && _mobEnt0.isAggressive()) {
 			if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge:end_entity"))) && (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof Player) {
 				www = entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null;
-				if (((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, new ResourceLocation("end_elemetn:ender_vision")))) != 0) {
+				if (EnchantmentHelper.getItemEnchantmentLevel(EndElemetnModEnchantments.ENDER_VISION.get(),
+						(entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY) != 0) {
 					{
 						Entity _ent = entity;
 						if (!_ent.level().isClientSide() && _ent.getServer() != null) {
@@ -55,9 +57,8 @@ public class AntiEndHateProcedure {
 					entity.getPersistentData().putDouble("AngerTime", 0);
 					if (entity instanceof Mob _entity)
 						_entity.getNavigation().stop();
-					if (world instanceof ServerLevel _level) {
-						(www instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).hurtAndBreak(1, _level, null, _stkprov -> {
-						});
+					if (world instanceof ServerLevel && www instanceof LivingEntity _entGetArmor) {
+						_entGetArmor.getItemBySlot(EquipmentSlot.HEAD).hurtAndBreak(1, _entGetArmor, e -> e.broadcastBreakEvent(EquipmentSlot.HEAD));
 					}
 				} else if (((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null).getDisplayName().getString()).equals("King_of end__")) {
 					entity.getPersistentData().putDouble("AngerTime", 0);

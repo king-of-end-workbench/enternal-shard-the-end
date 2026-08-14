@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.BlockGetter;
@@ -86,7 +85,7 @@ public class EndFireBlock extends Block {
 	}
 
 	@Override
-	protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
+	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
 		BooleanProperty property = propertyFor(direction);
 		if (property == null)
 			return state;
@@ -125,7 +124,7 @@ public class EndFireBlock extends Block {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
 		return new ItemStack(Blocks.AIR);
 	}
 

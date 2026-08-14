@@ -6,10 +6,9 @@ import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.entity.ItemEntityRenderer;
 import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
@@ -30,7 +29,6 @@ public class EndCityVaultRenderer implements BlockEntityRenderer<EndCityVaultBlo
 			new ItemStack(Items.DIAMOND_CHESTPLATE), new ItemStack(EndElemetnModItems.ENDERITE_LOOTBOX.get()) };
 
 	private final ItemRenderer itemRenderer;
-	private final RandomSource random = RandomSource.create();
 
 	public EndCityVaultRenderer(BlockEntityRendererProvider.Context context) {
 		this.itemRenderer = context.getItemRenderer();
@@ -42,13 +40,12 @@ public class EndCityVaultRenderer implements BlockEntityRenderer<EndCityVaultBlo
 			return;
 		int tier = Mth.clamp(be.getCurrentTier(), 0, PREVIEW_ITEMS.length - 1);
 		ItemStack item = PREVIEW_ITEMS[tier];
-		this.random.setSeed(ItemEntityRenderer.getSeedForItemStack(item));
 
 		poseStack.pushPose();
 		poseStack.translate(0.5F, 0.55F, 0.5F);
 		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.rotLerp(partialTicks, be.getPreviousSpin(), be.getSpin())));
 		poseStack.scale(0.65F, 0.65F, 0.65F);
-		ItemEntityRenderer.renderMultipleFromCount(this.itemRenderer, poseStack, bufferSource, packedLight, item, this.random, be.getLevel());
+		this.itemRenderer.renderStatic(item, ItemDisplayContext.GROUND, packedLight, packedOverlay, poseStack, bufferSource, be.getLevel(), 0);
 		poseStack.popPose();
 	}
 }

@@ -11,10 +11,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.HoeItem;
-import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.InteractionResult;
@@ -34,6 +37,9 @@ import net.mcreator.end_elemetn.EndElemetnMod;
 import net.mcreator.end_elemetn.procedures.EnternslScytheProcedure;
 import net.mcreator.end_elemetn.network.ScytheSpinMessage;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+
 import java.util.List;
 
 /**
@@ -52,15 +58,29 @@ public abstract class AbstractScytheItem extends HoeItem {
 	private final double spinRadius;
 	private final float spinDamage;
 	private final int spinCooldownTicks;
+	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
 
+	// forge-1.20.1 has no Item.Properties().attributes(...) data component (later addition) - the
+	// attack damage/speed attribute modifiers are built by hand here, mirroring what DiggerItem's own
+	// constructor does internally.
 	protected AbstractScytheItem(Tier tier, float attackDamage, float attackSpeed, double meleeSplashRadius, float meleeSplashDamage, double spinRadius,
 			float spinDamage, int spinCooldownTicks) {
-		super(tier, new Item.Properties().attributes(DiggerItem.createAttributes(tier, attackDamage, attackSpeed)));
+		super(tier, new Item.Properties());
 		this.meleeSplashRadius = meleeSplashRadius;
 		this.meleeSplashDamage = meleeSplashDamage;
 		this.spinRadius = spinRadius;
 		this.spinDamage = spinDamage;
 		this.spinCooldownTicks = spinCooldownTicks;
+		float attackDamageBaseline = attackDamage + tier.getAttackDamageBonus();
+		ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+		builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Tool modifier", attackDamageBaseline, AttributeModifier.Operation.ADDITION));
+		builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Tool modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
+		this.defaultModifiers = builder.build();
+	}
+
+	@Override
+	public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlot slot) {
+		return slot == EquipmentSlot.MAINHAND ? this.defaultModifiers : super.getDefaultAttributeModifiers(slot);
 	}
 
 	@Override
@@ -70,7 +90,7 @@ public abstract class AbstractScytheItem extends HoeItem {
 	}
 
 	@Override
-	public int getUseDuration(ItemStack stack, LivingEntity entity) {
+	public int getUseDuration(ItemStack stack) {
 		return SPIN_CHARGE_TICKS;
 	}
 
@@ -91,13 +111,13 @@ public abstract class AbstractScytheItem extends HoeItem {
 	public void releaseUsing(ItemStack stack, Level world, LivingEntity entity, int timeLeft) {
 		int ticksUsed = SPIN_CHARGE_TICKS - timeLeft;
 		if (ticksUsed >= MIN_HOLD_FOR_SPIN_TICKS) {
-			EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack, spinRadius, spinDamage, spinCooldownTicks);
+			EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
 		}
 	}
 
 	@Override
 	public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack, spinRadius, spinDamage, spinCooldownTicks);
+		EnternslScytheProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, stack);
 		return stack;
 	}
 

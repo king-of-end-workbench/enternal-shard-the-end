@@ -30,7 +30,7 @@ public class ShadowlingPriObnovlieniiTikaSushchnostiProcedure {
 		if (world instanceof ServerLevel _level)
 			_level.getServer().getCommands().performPrefixedCommand(new CommandSourceStack(CommandSource.NULL, new Vec3(x, y, z), Vec2.ZERO, _level, 4, "", Component.literal(""), _level.getServer(), null).withSuppressedOutput(),
 					"/execute as @a[distance=..10] facing entity @s eyes run effect give @s end_elemetn:hunted 4 0 true");
-		if ((findEntityInWorldRange(world, Player.class, x, y, z, 10)) instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(EndElemetnModMobEffects.HAUNTED)) {
+		if ((findEntityInWorldRange(world, Player.class, x, y, z, 10)) instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(EndElemetnModMobEffects.HAUNTED.get())) {
 			if (entity instanceof Mob _entity && (findEntityInWorldRange(world, Player.class, x, y, z, 10)) instanceof LivingEntity _ent)
 				_entity.setTarget(_ent);
 		}

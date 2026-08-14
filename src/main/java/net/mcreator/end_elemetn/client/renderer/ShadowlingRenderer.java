@@ -31,7 +31,7 @@ public class ShadowlingRenderer extends MobRenderer<ShadowlingEntity, Modelerr_e
 				this.getParentModel().copyPropertiesTo(model);
 				model.prepareMobModel(entity, limbSwing, limbSwingAmount, partialTicks);
 				model.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-				model.renderToBuffer(poseStack, vertexConsumer, light, LivingEntityRenderer.getOverlayCoords(entity, 0));
+				model.renderToBuffer(poseStack, vertexConsumer, light, LivingEntityRenderer.getOverlayCoords(entity, 0), 1.0F, 1.0F, 1.0F, 1.0F);
 			}
 		});
 	}
