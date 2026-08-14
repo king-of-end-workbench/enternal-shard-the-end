@@ -3740,7 +3740,7 @@
     {
       "name": "EndSpawner",
       "type": "block",
-      "compiles": false,
+      "compiles": true,
       "locked_code": false,
       "registry_name": "end_spawner",
       "metadata": {
@@ -5942,7 +5942,7 @@
     {
       "name": "SnarelingPriObnovleniiTika",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "snareling_pri_obnovlenii_tika",
       "metadata": {
@@ -5994,7 +5994,7 @@
     {
       "name": "NecrosentPriObnovleniiTika",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "necrosent_pri_obnovlenii_tika",
       "metadata": {
@@ -6054,7 +6054,7 @@
     {
       "name": "SSnarelingPriObnovleniiTika",
       "type": "procedure",
-      "compiles": false,
+      "compiles": true,
       "locked_code": true,
       "registry_name": "s_snareling_pri_obnovlenii_tika",
       "metadata": {
