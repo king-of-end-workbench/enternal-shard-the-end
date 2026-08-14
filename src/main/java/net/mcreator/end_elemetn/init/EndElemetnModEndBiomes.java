@@ -10,7 +10,7 @@ import net.minecraft.core.registries.Registries;
 
 import net.mcreator.end_elemetn.endbiomes.TheEndBiomes;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class EndElemetnModEndBiomes {
 	@SubscribeEvent
 	public static void init(FMLCommonSetupEvent event) {

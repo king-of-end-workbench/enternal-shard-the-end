@@ -161,45 +161,6 @@
                   "Name": "minecraft:cracked_deepslate_tiles"
                 },
                 {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
                   "Name": "minecraft:calcite"
                 },
                 {
@@ -489,30 +450,6 @@
                 },
                 {
                   "Name": "minecraft:cut_copper"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:exposed_cut_copper"
@@ -1403,30 +1340,6 @@
                   "Name": "minecraft:iron_door"
                 },
                 {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
                   "Name": "minecraft:oak_trapdoor"
                 },
                 {
@@ -1461,78 +1374,6 @@
                 },
                 {
                   "Name": "minecraft:iron_trapdoor"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
-                },
-                {
-                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:ladder"
@@ -1659,9 +1500,6 @@
                 },
                 {
                   "Name": "minecraft:observer"
-                },
-                {
-                  "Name": "minecraft:air"
                 },
                 {
                   "Name": "minecraft:hopper"

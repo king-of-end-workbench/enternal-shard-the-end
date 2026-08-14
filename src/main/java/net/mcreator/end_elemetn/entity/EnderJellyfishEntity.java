@@ -38,6 +38,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.util.RandomSource;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.resources.ResourceLocation;
@@ -53,6 +56,7 @@ import net.mcreator.end_elemetn.world.inventory.JellyGuiMenu;
 import net.mcreator.end_elemetn.procedures.EnderJellyfishPriShchielchkiePKMPoSushchnostiProcedure;
 import net.mcreator.end_elemetn.init.EndElemetnModItems;
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
+import net.mcreator.end_elemetn.custommixin.LivingEntityJumpingAccessor;
 
 import javax.annotation.Nullable;
 import javax.annotation.Nonnull;
@@ -257,6 +261,67 @@ public class EnderJellyfishEntity extends TamableAnimal {
 	public void aiStep() {
 		super.aiStep();
 		this.setNoGravity(true);
+		// A gentle up-down pulse layered on top of normal movement, like a real jellyfish, instead
+		// of gliding in dead-flat straight lines - kept active while ridden too, so flying it still
+		// feels alive instead of a perfectly flat mount.
+		double bob = Math.sin((this.tickCount + this.getId()) * 0.1) * 0.02;
+		this.setDeltaMovement(this.getDeltaMovement().add(0.0, bob, 0.0));
+	}
+
+	@Override
+	public LivingEntity getControllingPassenger() {
+		Entity passenger = this.getFirstPassenger();
+		return passenger instanceof Player player ? player : super.getControllingPassenger();
+	}
+
+	@Override
+	protected void tickRidden(Player player, Vec3 travelVector) {
+		super.tickRidden(player, travelVector);
+		this.setRot(player.getYRot(), player.getXRot() * 0.5F);
+		this.yRotO = this.yBodyRot = this.yHeadRot = this.getYRot();
+
+		// Jet-propulsion burst on sprint - a real jellyfish shoves itself forward by pulsing, so
+		// sprinting punches out a burst of particles behind it and a wingbeat-like sound, instead
+		// of just quietly moving faster like any other flying mount.
+		if (player.isSprinting()) {
+			if (this.level().isClientSide) {
+				Vec3 look = this.getLookAngle();
+				RandomSource random = this.getRandom();
+				for (int i = 0; i < 3; i++) {
+					double px = this.getX() - look.x * 1.2 + (random.nextDouble() - 0.5) * 0.4;
+					double py = this.getY() + this.getBbHeight() * 0.5 + (random.nextDouble() - 0.5) * 0.4;
+					double pz = this.getZ() - look.z * 1.2 + (random.nextDouble() - 0.5) * 0.4;
+					this.level().addParticle(ParticleTypes.REVERSE_PORTAL, px, py, pz, -look.x * 0.3, -look.y * 0.3, -look.z * 0.3);
+				}
+			} else if (this.tickCount % 8 == 0) {
+				this.level().playSound(null, this.blockPosition(), SoundEvents.PHANTOM_FLAP, SoundSource.NEUTRAL, 0.6F, 1.6F);
+			}
+		}
+	}
+
+	@Override
+	protected Vec3 getRiddenInput(Player player, Vec3 input) {
+		double vertical = 0.0;
+		if (player instanceof LivingEntityJumpingAccessor accessor && accessor.end_elemetn$isJumping()) {
+			vertical += 1.0;
+		} else if (player.isShiftKeyDown()) {
+			vertical -= 1.0;
+		}
+		// Blend in a climb/dive from the camera's pitch while moving forward, on top of the
+		// explicit up/down keys - otherwise altitude is entirely decoupled from where you're
+		// looking and flight feels like a flat plane with an elevator button instead of actually
+		// piloting through open air.
+		double forward = player.zza;
+		if (forward > 0.0) {
+			vertical -= Math.sin(Math.toRadians(player.getXRot())) * forward;
+		}
+		return new Vec3(player.xxa * 0.5F, vertical, forward);
+	}
+
+	@Override
+	protected float getRiddenSpeed(Player player) {
+		float base = (float) this.getAttributeValue(Attributes.FLYING_SPEED);
+		return player.isSprinting() ? base * 2.2F : base;
 	}
 
 	public static void init() {

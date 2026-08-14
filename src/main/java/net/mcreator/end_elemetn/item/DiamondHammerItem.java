@@ -1,38 +1,9 @@
 package net.mcreator.end_elemetn.item;
 
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 
-public class DiamondHammerItem extends PickaxeItem {
+public class DiamondHammerItem extends AbstractHammerItem {
 	public DiamondHammerItem() {
-		super(new Tier() {
-			public int getUses() {
-				return 1561;
-			}
-
-			public float getSpeed() {
-				return 6f;
-			}
-
-			public float getAttackDamageBonus() {
-				return 15f;
-			}
-
-			public int getLevel() {
-				return 3;
-			}
-
-			public int getEnchantmentValue() {
-				return 10;
-			}
-
-			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(Items.DIAMOND));
-			}
-		}, 1, -4f, new Item.Properties());
+		super(Tiers.DIAMOND, 17f, -4f, 6f, 4.2, 13f, 1.0, 110);
 	}
 }
