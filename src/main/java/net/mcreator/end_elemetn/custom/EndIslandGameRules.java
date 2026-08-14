@@ -1,12 +1,12 @@
 package net.mcreator.end_elemetn.custom;
 
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.server.ServerStartingEvent;
 
 import net.minecraft.world.level.GameRules;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class EndIslandGameRules {
 	public static final GameRules.Key<GameRules.BooleanValue> CHAOTIC_END_ISLANDS = GameRules.register("chaoticEndIslands", GameRules.Category.MISC,
 			GameRules.BooleanValue.create(false, (server, rule) -> EndIslandGenerationState.CHAOTIC_ENABLED = rule.get()));

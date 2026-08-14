@@ -1,7 +1,6 @@
 package net.mcreator.end_elemetn.entity;
 
-import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
-import net.neoforged.neoforge.event.EventHooks;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.block.Blocks;
@@ -71,10 +70,10 @@ public class TrumplingEntity extends TamableAnimal {
 	}
 
 	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(TEXTURE, "thumpling_8hp");
-		builder.define(ANIM, 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TEXTURE, "thumpling_8hp");
+		this.entityData.define(ANIM, 0);
 	}
 
 	public void setTexture(String texture) {
@@ -106,12 +105,12 @@ public class TrumplingEntity extends TamableAnimal {
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.death"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.death"));
 	}
 
 	@Override
@@ -155,7 +154,7 @@ public class TrumplingEntity extends TamableAnimal {
 				}
 			} else if (this.isFood(itemstack)) {
 				this.usePlayerItem(sourceentity, hand, itemstack);
-				if (this.random.nextInt(3) == 0 && !EventHooks.onAnimalTame(this, sourceentity)) {
+				if (this.random.nextInt(3) == 0 && !ForgeEventFactory.onAnimalTame(this, sourceentity)) {
 					this.tame(sourceentity);
 					this.level().broadcastEntityEvent(this, (byte) 7);
 				} else {
@@ -201,10 +200,9 @@ public class TrumplingEntity extends TamableAnimal {
 		return Ingredient.of(new ItemStack(Blocks.CHORUS_FLOWER)).test(stack);
 	}
 
-	public static void init(RegisterSpawnPlacementsEvent event) {
-		event.register(EndElemetnModEntities.TRUMPLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)),
-				RegisterSpawnPlacementsEvent.Operation.REPLACE);
+	public static void init() {
+		SpawnPlacements.register(EndElemetnModEntities.TRUMPLING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

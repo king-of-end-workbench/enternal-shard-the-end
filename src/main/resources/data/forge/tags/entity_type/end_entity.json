@@ -1,0 +1,29 @@
+{
+  "replace": false,
+  "values": [
+    "shulker_bullet",
+    "ender_dragon",
+    "end_elemetn:vengeful_heart_of_ender",
+    "end_elemetn:snareling",
+    "end_elemetn:celestian_guard",
+    "end_elemetn:tradling",
+    "end_elemetn:lureling",
+    "end_elemetn:crying_watchling",
+    "end_elemetn:eyed_endersent",
+    "end_elemetn:enderbaby",
+    "end_elemetn:bulletentity",
+    "endermite",
+    "end_elemetn:laser_beam",
+    "end_elemetn:endersent",
+    "end_elemetn:watchling",
+    "end_elemetn:necrosent",
+    "end_elemetn:crying_snareling",
+    "end_elemetn:blastling",
+    "end_elemetn:trumpling",
+    "end_elemetn:ender_jellyfish",
+    "end_elemetn:shadowling",
+    "enderman",
+    "shulker",
+    "end_elemetn:crying_blastling"
+  ]
+}

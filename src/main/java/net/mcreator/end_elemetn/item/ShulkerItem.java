@@ -1,9 +1,5 @@
 package net.mcreator.end_elemetn.item;
 
-import net.neoforged.neoforge.registries.RegisterEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.Items;
@@ -13,38 +9,69 @@ import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.Holder;
 import net.minecraft.Util;
 
 import net.mcreator.end_elemetn.procedures.ShulkerKazhdyiTikDliaShliemaProcedure;
 
-import java.util.List;
+import java.util.Map;
 import java.util.EnumMap;
 
 import com.google.common.collect.Iterables;
 
-@EventBusSubscriber
 public abstract class ShulkerItem extends ArmorItem {
-	public static Holder<ArmorMaterial> ARMOR_MATERIAL = null;
-
-	@SubscribeEvent
-	public static void registerArmorMaterial(RegisterEvent event) {
-		event.register(Registries.ARMOR_MATERIAL, registerHelper -> {
-			ArmorMaterial armorMaterial = new ArmorMaterial(Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
-				map.put(ArmorItem.Type.BOOTS, 2);
-				map.put(ArmorItem.Type.LEGGINGS, 5);
-				map.put(ArmorItem.Type.CHESTPLATE, 6);
-				map.put(ArmorItem.Type.HELMET, 2);
-				map.put(ArmorItem.Type.BODY, 6);
-			}), 9, BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.EMPTY), () -> Ingredient.of(new ItemStack(Items.SHULKER_SHELL)), List.of(new ArmorMaterial.Layer(ResourceLocation.parse("end_elemetn:sss"))), 0f, 0f);
-			registerHelper.register(ResourceLocation.parse("end_elemetn:shulker"), armorMaterial);
-			ARMOR_MATERIAL = BuiltInRegistries.ARMOR_MATERIAL.wrapAsHolder(armorMaterial);
+	// forge-1.20.1's ArmorMaterial is a plain interface (no registry) - the 1.21 version's
+	// registry-based ArmorMaterial record + RegisterEvent doesn't exist here, so this is just
+	// instantiated directly instead of registered.
+	public static final ArmorMaterial ARMOR_MATERIAL = new ArmorMaterial() {
+		private final Map<ArmorItem.Type, Integer> DEFENSE = Util.make(new EnumMap<>(ArmorItem.Type.class), map -> {
+			map.put(ArmorItem.Type.BOOTS, 2);
+			map.put(ArmorItem.Type.LEGGINGS, 5);
+			map.put(ArmorItem.Type.CHESTPLATE, 6);
+			map.put(ArmorItem.Type.HELMET, 2);
 		});
-	}
+
+		@Override
+		public int getDurabilityForType(ArmorItem.Type type) {
+			return type.getDurability(25);
+		}
+
+		@Override
+		public int getDefenseForType(ArmorItem.Type type) {
+			return DEFENSE.getOrDefault(type, 0);
+		}
+
+		@Override
+		public int getEnchantmentValue() {
+			return 9;
+		}
+
+		@Override
+		public SoundEvent getEquipSound() {
+			return SoundEvents.EMPTY;
+		}
+
+		@Override
+		public Ingredient getRepairIngredient() {
+			return Ingredient.of(Items.SHULKER_SHELL);
+		}
+
+		@Override
+		public String getName() {
+			return "end_elemetn:shulker";
+		}
+
+		@Override
+		public float getToughness() {
+			return 0f;
+		}
+
+		@Override
+		public float getKnockbackResistance() {
+			return 0f;
+		}
+	};
 
 	public ShulkerItem(ArmorItem.Type type, Item.Properties properties) {
 		super(ARMOR_MATERIAL, type, properties);

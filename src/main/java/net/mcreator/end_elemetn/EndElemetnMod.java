@@ -36,7 +36,8 @@ public class EndElemetnMod {
 
 	public EndElemetnMod(FMLJavaModLoadingContext context) {
 		// Start of user code block mod constructor
-		EndElemetnModMapDecorationTypes.REGISTRY.register(modEventBus);
+		// forge-1.20.1 has no custom-registrable map decoration type registry (later addition) -
+		// EndersentCaveMapTrade (currently unused) falls back to a built-in MapDecoration.Type instead.
 		// End of user code block mod constructor
 		MinecraftForge.EVENT_BUS.register(this);
 		IEventBus bus = context.getModEventBus();

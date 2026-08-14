@@ -1,9 +1,9 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.event.tick.EntityTickEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.bus.api.Event;
+import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.item.ItemStack;
@@ -22,10 +22,10 @@ import net.minecraft.commands.CommandSource;
 
 import javax.annotation.Nullable;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class AntiEndHateProcedure {
 	@SubscribeEvent
-	public static void onEntityTick(EntityTickEvent.Pre event) {
+	public static void onEntityTick(LivingEvent.LivingTickEvent event) {
 		execute(event, event.getEntity().level(), event.getEntity());
 	}
 
@@ -39,10 +39,10 @@ public class AntiEndHateProcedure {
 		Entity www = null;
 		Entity etrg = null;
 		if (entity instanceof Mob _mobEnt0 && _mobEnt0.isAggressive()) {
-			if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.parse("neoforge:end_entity"))) && (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof Player) {
+			if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge:end_entity"))) && (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof Player) {
 				www = entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null;
 				if (((entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null) instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)
-						.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.parse("end_elemetn:ender_vision")))) != 0) {
+						.getEnchantmentLevel(world.registryAccess().lookupOrThrow(Registries.ENCHANTMENT).getOrThrow(ResourceKey.create(Registries.ENCHANTMENT, new ResourceLocation("end_elemetn:ender_vision")))) != 0) {
 					{
 						Entity _ent = entity;
 						if (!_ent.level().isClientSide() && _ent.getServer() != null) {

@@ -22,7 +22,7 @@ public class EyedEndersentRenderer extends MobRenderer<EyedEndersentEntity, Mode
 	public EyedEndersentRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelendersent.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new RenderLayer<EyedEndersentEntity, Modelendersent<EyedEndersentEntity>>(this) {
-			final ResourceLocation LAYER_TEXTURE = ResourceLocation.parse("end_elemetn:textures/entities/endersent_eyes.png");
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/endersent_eyes.png");
 
 			@Override
 			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, EyedEndersentEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -38,7 +38,7 @@ public class EyedEndersentRenderer extends MobRenderer<EyedEndersentEntity, Mode
 
 	@Override
 	public ResourceLocation getTextureLocation(EyedEndersentEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	private static final class AnimatedModel extends Modelendersent<EyedEndersentEntity> {

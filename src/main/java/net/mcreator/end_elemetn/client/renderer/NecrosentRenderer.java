@@ -23,7 +23,7 @@ public class NecrosentRenderer extends MobRenderer<NecrosentEntity, Modelnecrose
 	public NecrosentRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelnecrosent.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new RenderLayer<NecrosentEntity, Modelnecrosent<NecrosentEntity>>(this) {
-			final ResourceLocation LAYER_TEXTURE = ResourceLocation.parse("end_elemetn:textures/entities/necrosent_eyes.png");
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/necrosent_eyes.png");
 
 			@Override
 			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, NecrosentEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -39,7 +39,7 @@ public class NecrosentRenderer extends MobRenderer<NecrosentEntity, Modelnecrose
 
 	@Override
 	public ResourceLocation getTextureLocation(NecrosentEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	private static final class AnimatedModel extends Modelnecrosent<NecrosentEntity> {

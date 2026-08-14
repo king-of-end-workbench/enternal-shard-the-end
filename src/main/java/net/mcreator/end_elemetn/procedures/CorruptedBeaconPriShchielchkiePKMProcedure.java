@@ -59,7 +59,7 @@ public class CorruptedBeaconPriShchielchkiePKMProcedure {
 		if (beamLength < 0.5)
 			beamLength = 0.5;
 
-		DamageSource voidDamage = new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, ResourceLocation.parse("end_elemetn:void_touched"))));
+		DamageSource voidDamage = new DamageSource(world.holderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("end_elemetn:void_touched"))));
 
 		Set<Entity> alreadyHit = new HashSet<>();
 		int steps = (int) Math.ceil(beamLength);
@@ -84,7 +84,7 @@ public class CorruptedBeaconPriShchielchkiePKMProcedure {
 				beam = newBeam;
 				player.getPersistentData().putString(NBT_KEY, beam.getUUID().toString());
 				world.playSound(null, player.getX(), player.getY(), player.getZ(),
-						BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.ender_dragon.shoot")), SoundSource.NEUTRAL, 1, 1);
+						BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.ender_dragon.shoot")), SoundSource.NEUTRAL, 1, 1);
 			}
 		}
 		if (beam != null) {

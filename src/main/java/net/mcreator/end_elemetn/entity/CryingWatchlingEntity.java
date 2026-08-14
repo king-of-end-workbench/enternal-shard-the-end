@@ -1,6 +1,5 @@
 package net.mcreator.end_elemetn.entity;
 
-import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.entity.monster.EnderMan;
@@ -64,10 +63,10 @@ public class CryingWatchlingEntity extends EnderMan {
 	}
 
 	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(TEXTURE, "watchling_controling1");
-		builder.define(ANIM, 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TEXTURE, "watchling_controling1");
+		this.entityData.define(ANIM, 0);
 	}
 
 	public void setTexture(String texture) {
@@ -104,12 +103,12 @@ public class CryingWatchlingEntity extends EnderMan {
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.death"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.death"));
 	}
 
 	@Override
@@ -142,7 +141,7 @@ public class CryingWatchlingEntity extends EnderMan {
 		}
 	}
 
-	public static void init(RegisterSpawnPlacementsEvent event) {
+	public static void init() {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

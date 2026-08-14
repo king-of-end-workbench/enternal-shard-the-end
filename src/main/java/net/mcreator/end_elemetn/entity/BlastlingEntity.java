@@ -1,6 +1,5 @@
 package net.mcreator.end_elemetn.entity;
 
-import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.Level;
@@ -17,7 +16,7 @@ import net.minecraft.world.entity.ai.goal.FloatGoal;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EntityType;
@@ -75,10 +74,10 @@ public class BlastlingEntity extends EnderMan implements RangedAttackMob {
 	}
 
 	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(TEXTURE, "blastling1_8hp");
-		builder.define(ANIM, 0);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TEXTURE, "blastling1_8hp");
+		this.entityData.define(ANIM, 0);
 	}
 
 	public void setTexture(String texture) {
@@ -128,7 +127,7 @@ public class BlastlingEntity extends EnderMan implements RangedAttackMob {
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.death"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.death"));
 	}
 
 	@Override
@@ -167,10 +166,9 @@ public class BlastlingEntity extends EnderMan implements RangedAttackMob {
 		BlastlingPriObnovlieniiTikaSushchnostiProcedure.execute(this.level(), this);
 	}
 
-	public static void init(RegisterSpawnPlacementsEvent event) {
-		event.register(EndElemetnModEntities.BLASTLING.get(), SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)),
-				RegisterSpawnPlacementsEvent.Operation.REPLACE);
+	public static void init() {
+		SpawnPlacements.register(EndElemetnModEntities.BLASTLING.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

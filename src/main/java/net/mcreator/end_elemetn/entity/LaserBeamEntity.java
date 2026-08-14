@@ -1,6 +1,5 @@
 package net.mcreator.end_elemetn.entity;
 
-import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -49,14 +48,14 @@ public class LaserBeamEntity extends Monster {
 	}
 
 	@Override
-	protected void defineSynchedData(SynchedEntityData.Builder builder) {
-		super.defineSynchedData(builder);
-		builder.define(TEXTURE, "beam");
-		builder.define(ANIM, 0);
-		builder.define(DATA_laser_lenght, 0);
-		builder.define(DATA_yaw, 0);
-		builder.define(DATA_pitch, 0);
-		builder.define(DATA_shouldSynchroRot, false);
+	protected void defineSynchedData() {
+		super.defineSynchedData();
+		this.entityData.define(TEXTURE, "beam");
+		this.entityData.define(ANIM, 0);
+		this.entityData.define(DATA_laser_lenght, 0);
+		this.entityData.define(DATA_yaw, 0);
+		this.entityData.define(DATA_pitch, 0);
+		this.entityData.define(DATA_shouldSynchroRot, false);
 	}
 
 	public void setTexture(String texture) {
@@ -112,12 +111,12 @@ public class LaserBeamEntity extends Monster {
 
 	@Override
 	public SoundEvent getHurtSound(DamageSource ds) {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.hurt"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.hurt"));
 	}
 
 	@Override
 	public SoundEvent getDeathSound() {
-		return BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.generic.death"));
+		return BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.generic.death"));
 	}
 
 	@Override
@@ -201,7 +200,7 @@ public class LaserBeamEntity extends Monster {
 		this.setNoGravity(true);
 	}
 
-	public static void init(RegisterSpawnPlacementsEvent event) {
+	public static void init() {
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

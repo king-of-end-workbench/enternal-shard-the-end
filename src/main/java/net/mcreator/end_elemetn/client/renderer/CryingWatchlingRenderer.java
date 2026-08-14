@@ -22,7 +22,7 @@ public class CryingWatchlingRenderer extends MobRenderer<CryingWatchlingEntity, 
 	public CryingWatchlingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelwatchling_control.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new RenderLayer<CryingWatchlingEntity, Modelwatchling_control<CryingWatchlingEntity>>(this) {
-			final ResourceLocation LAYER_TEXTURE = ResourceLocation.parse("end_elemetn:textures/entities/crying_watchling_eyes.png");
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/crying_watchling_eyes.png");
 
 			@Override
 			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, CryingWatchlingEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -38,7 +38,7 @@ public class CryingWatchlingRenderer extends MobRenderer<CryingWatchlingEntity, 
 
 	@Override
 	public ResourceLocation getTextureLocation(CryingWatchlingEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	private static final class AnimatedModel extends Modelwatchling_control<CryingWatchlingEntity> {

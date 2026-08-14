@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.DiggerItem;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -21,7 +20,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.phys.Vec3;
@@ -37,6 +35,7 @@ public abstract class AbstractHammerItem extends TieredItem {
 	private static final int SLAM_CHARGE_TICKS = 20;
 	private static final int MIN_HOLD_FOR_SLAM_TICKS = 10;
 
+	private final float mineSpeed;
 	private final double slamRadius;
 	private final float slamDamage;
 	private final double slamKnockback;
@@ -44,16 +43,35 @@ public abstract class AbstractHammerItem extends TieredItem {
 
 	protected AbstractHammerItem(Tier tier, float attackDamage, float attackSpeed, float mineSpeed, double slamRadius, float slamDamage, double slamKnockback,
 			int slamCooldownTicks) {
-		super(tier, new Item.Properties().attributes(DiggerItem.createAttributes(tier, attackDamage, attackSpeed)).component(DataComponents.TOOL, buildTool(tier, mineSpeed)));
+		super(tier, new Item.Properties().attributes(DiggerItem.createAttributes(tier, attackDamage, attackSpeed)));
+		this.mineSpeed = mineSpeed;
 		this.slamRadius = slamRadius;
 		this.slamDamage = slamDamage;
 		this.slamKnockback = slamKnockback;
 		this.slamCooldownTicks = slamCooldownTicks;
 	}
 
-	private static Tool buildTool(Tier tier, float speed) {
-		return new Tool(List.of(Tool.Rule.deniesDrops(tier.getIncorrectBlocksForDrops()), Tool.Rule.minesAndDrops(BlockTags.MINEABLE_WITH_PICKAXE, speed),
-				Tool.Rule.minesAndDrops(BlockTags.MINEABLE_WITH_AXE, speed), Tool.Rule.minesAndDrops(BlockTags.MINEABLE_WITH_SHOVEL, speed)), 1.0f, 1);
+	// forge-1.20.1 has no data-driven Tool component (later addition) - a hammer that mines
+	// pickaxe+axe+shovel blocks alike is done the old way, by overriding isCorrectToolForDrops/
+	// getDestroySpeed directly instead of attaching a Tool.Rule list.
+	@Override
+	public boolean isCorrectToolForDrops(BlockState state) {
+		int level = this.getTier().getLevel();
+		if (level < 3 && state.is(BlockTags.NEEDS_DIAMOND_TOOL))
+			return false;
+		if (level < 2 && state.is(BlockTags.NEEDS_IRON_TOOL))
+			return false;
+		if (level < 1 && state.is(BlockTags.NEEDS_STONE_TOOL))
+			return false;
+		return state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL);
+	}
+
+	@Override
+	public float getDestroySpeed(ItemStack stack, BlockState state) {
+		if (state.is(BlockTags.MINEABLE_WITH_PICKAXE) || state.is(BlockTags.MINEABLE_WITH_AXE) || state.is(BlockTags.MINEABLE_WITH_SHOVEL)) {
+			return this.mineSpeed;
+		}
+		return super.getDestroySpeed(stack, state);
 	}
 
 	@Override

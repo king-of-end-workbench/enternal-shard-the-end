@@ -27,7 +27,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
-import net.neoforged.neoforge.network.PacketDistributor;
+import net.minecraftforge.network.PacketDistributor;
+
+import net.mcreator.end_elemetn.EndElemetnMod;
 
 import net.mcreator.end_elemetn.procedures.EnternslScytheProcedure;
 import net.mcreator.end_elemetn.network.ScytheSpinMessage;
@@ -81,7 +83,7 @@ public abstract class AbstractScytheItem extends HoeItem {
 	public void onUseTick(Level world, LivingEntity entity, ItemStack stack, int remainingUseDuration) {
 		if (entity instanceof ServerPlayer serverPlayer) {
 			float yawDelta = 360f / SPIN_CHARGE_TICKS;
-			PacketDistributor.sendToPlayer(serverPlayer, new ScytheSpinMessage(yawDelta));
+			EndElemetnMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new ScytheSpinMessage(yawDelta));
 		}
 	}
 
@@ -109,7 +111,7 @@ public abstract class AbstractScytheItem extends HoeItem {
 			for (LivingEntity nearby : nearbyMobs) {
 				nearby.hurt(source, meleeSplashDamage * crowdMultiplier);
 			}
-			level.playSound(null, target.getX(), target.getY(), target.getZ(), BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("entity.player.attack.sweep")), SoundSource.PLAYERS, 1f, 1f);
+			level.playSound(null, target.getX(), target.getY(), target.getZ(), BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("entity.player.attack.sweep")), SoundSource.PLAYERS, 1f, 1f);
 			level.sendParticles(ParticleTypes.SWEEP_ATTACK, target.getX(), target.getY() + target.getBbHeight() / 2, target.getZ(), 5, 1, 1, 1, 1);
 			harvestNearbyCrops(level, target, attacker, stack);
 		}

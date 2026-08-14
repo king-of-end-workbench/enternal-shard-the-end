@@ -1,6 +1,6 @@
 package net.mcreator.end_elemetn.block;
 
-import net.neoforged.neoforge.common.util.DeferredSoundType;
+import net.minecraftforge.common.util.ForgeSoundType;
 
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -44,9 +44,9 @@ public class EndFireBlock extends Block {
 
 	public EndFireBlock() {
 		super(BlockBehaviour.Properties.of()
-				.sound(new DeferredSoundType(1.0f, 1.0f, () -> BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.fire.ambient")), () -> BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.fire.ambient")),
-						() -> BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("item.flintandsteel.use")), () -> BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.fire.extinguish")),
-						() -> BuiltInRegistries.SOUND_EVENT.get(ResourceLocation.parse("block.fire.ambient"))))
+				.sound(new ForgeSoundType(1.0f, 1.0f, () -> BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("block.fire.ambient")), () -> BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("block.fire.ambient")),
+						() -> BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("item.flintandsteel.use")), () -> BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("block.fire.extinguish")),
+						() -> BuiltInRegistries.SOUND_EVENT.get(new ResourceLocation("block.fire.ambient"))))
 				.strength(1f, 10f).noCollission().noOcclusion().isRedstoneConductor((bs, br, bp) -> false).replaceable());
 		this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(UP, false));
 	}

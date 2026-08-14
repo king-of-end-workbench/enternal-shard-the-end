@@ -22,7 +22,7 @@ public class ShadowlingRenderer extends MobRenderer<ShadowlingEntity, Modelerr_e
 	public ShadowlingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelerr_entity_shadow.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new RenderLayer<ShadowlingEntity, Modelerr_entity_shadow<ShadowlingEntity>>(this) {
-			final ResourceLocation LAYER_TEXTURE = ResourceLocation.parse("end_elemetn:textures/entities/eyes_that_glow_in_shadow_error.png");
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/eyes_that_glow_in_shadow_error.png");
 
 			@Override
 			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, ShadowlingEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -38,7 +38,7 @@ public class ShadowlingRenderer extends MobRenderer<ShadowlingEntity, Modelerr_e
 
 	@Override
 	public ResourceLocation getTextureLocation(ShadowlingEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	private static final class AnimatedModel extends Modelerr_entity_shadow<ShadowlingEntity> {

@@ -1,13 +1,13 @@
 package net.mcreator.end_elemetn.client.renderer.blockentity;
 
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.api.distmarker.Dist;
 
 import net.mcreator.end_elemetn.init.EndElemetnModBlockEntities;
 
-@EventBusSubscriber(Dist.CLIENT)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class HoleInRealityClientRenderers {
 	@SubscribeEvent
 	public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

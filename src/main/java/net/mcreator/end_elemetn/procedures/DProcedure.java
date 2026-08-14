@@ -1,9 +1,9 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.bus.api.Event;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.eventbus.api.Event;
 
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,10 +14,10 @@ import net.mcreator.end_elemetn.EndElemetnMod;
 
 import javax.annotation.Nullable;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class DProcedure {
 	@SubscribeEvent
-	public static void onEntityAttacked(LivingIncomingDamageEvent event) {
+	public static void onEntityAttacked(LivingAttackEvent event) {
 		if (event.getEntity() != null) {
 			execute(event, event.getEntity().level(), event.getSource());
 		}

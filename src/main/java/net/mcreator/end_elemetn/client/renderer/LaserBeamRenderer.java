@@ -17,7 +17,7 @@ public class LaserBeamRenderer extends MobRenderer<LaserBeamEntity, Modellaser_b
 
 	@Override
 	public ResourceLocation getTextureLocation(LaserBeamEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	@Override

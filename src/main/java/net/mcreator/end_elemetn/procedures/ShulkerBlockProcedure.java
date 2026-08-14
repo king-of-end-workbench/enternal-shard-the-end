@@ -1,11 +1,11 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.LivingKnockBackEvent;
-import net.neoforged.neoforge.event.entity.player.AttackEntityEvent;
-import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.bus.api.SubscribeEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.AxeItem;
@@ -28,10 +28,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-@EventBusSubscriber
+@Mod.EventBusSubscriber
 public class ShulkerBlockProcedure {
 	private static final int DISABLE_TICKS = 100;
-	private static final ResourceLocation BLOCK_SLOW_ID = ResourceLocation.fromNamespaceAndPath("end_elemetn", "shulker_block_slow");
+	private static final ResourceLocation BLOCK_SLOW_ID = new ResourceLocation("end_elemetn", "shulker_block_slow");
 	private static final Map<UUID, Long> BLOCKED_AT_TICK = new ConcurrentHashMap<>();
 
 	private static boolean isBlocking(Player player) {
@@ -44,7 +44,7 @@ public class ShulkerBlockProcedure {
 	}
 
 	@SubscribeEvent
-	public static void onIncomingDamage(LivingIncomingDamageEvent event) {
+	public static void onIncomingDamage(LivingAttackEvent event) {
 		if (!(event.getEntity() instanceof Player player))
 			return;
 		if (player.level().isClientSide())
@@ -56,7 +56,7 @@ public class ShulkerBlockProcedure {
 		if (source.is(DamageTypeTags.BYPASSES_SHIELD) || source.is(DamageTypeTags.BYPASSES_INVULNERABILITY))
 			return;
 
-		event.setAmount(0.0F);
+		event.setCanceled(true);
 		BLOCKED_AT_TICK.put(player.getUUID(), player.level().getGameTime());
 
 		ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
@@ -87,8 +87,10 @@ public class ShulkerBlockProcedure {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerTick(PlayerTickEvent.Pre event) {
-		Player player = event.getEntity();
+	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+		if (event.phase != TickEvent.Phase.START)
+			return;
+		Player player = event.player;
 		if (player.level().isClientSide())
 			return;
 		AttributeInstance speed = player.getAttribute(Attributes.MOVEMENT_SPEED);

@@ -22,7 +22,7 @@ public class TrumplingRenderer extends MobRenderer<TrumplingEntity, Modelthumpli
 	public TrumplingRenderer(EntityRendererProvider.Context context) {
 		super(context, new AnimatedModel(context.bakeLayer(Modelthumpling.LAYER_LOCATION)), 0.5f);
 		this.addLayer(new RenderLayer<TrumplingEntity, Modelthumpling<TrumplingEntity>>(this) {
-			final ResourceLocation LAYER_TEXTURE = ResourceLocation.parse("end_elemetn:textures/entities/thumpling_eyes.png");
+			final ResourceLocation LAYER_TEXTURE = new ResourceLocation("end_elemetn:textures/entities/thumpling_eyes.png");
 
 			@Override
 			public void render(PoseStack poseStack, MultiBufferSource bufferSource, int light, TrumplingEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
@@ -43,7 +43,7 @@ public class TrumplingRenderer extends MobRenderer<TrumplingEntity, Modelthumpli
 
 	@Override
 	public ResourceLocation getTextureLocation(TrumplingEntity entity) {
-		return ResourceLocation.parse("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
+		return new ResourceLocation("end_elemetn:textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	private static final class AnimatedModel extends Modelthumpling<TrumplingEntity> {

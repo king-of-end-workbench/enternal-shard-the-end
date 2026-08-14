@@ -5,7 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.util.RandomSource;
 
 import net.mcreator.end_elemetn.init.EndElemetnModEntities;
@@ -74,9 +74,9 @@ public final class SpawnerTierData {
 	private static final List<ItemStack> ENDSTONE_EXTRAS = List.of(new ItemStack(Items.BOW), new ItemStack(Items.ARROW, 16), new ItemStack(Items.SHIELD),
 			new ItemStack(Items.COOKED_BEEF, 4), new ItemStack(Items.IRON_SWORD));
 	private static final List<ItemStack> ENDCITY_EXTRAS = List.of(new ItemStack(Items.SHIELD), new ItemStack(Items.CROSSBOW), new ItemStack(Items.GOLDEN_CARROT, 4),
-			PotionContents.createItemStack(Items.SPLASH_POTION, Potions.STRONG_HEALING), PotionContents.createItemStack(Items.SPLASH_POTION, Potions.FIRE_RESISTANCE));
-	private static final List<ItemStack> SOULFUL_EXTRAS = List.of(new ItemStack(Items.TOTEM_OF_UNDYING), PotionContents.createItemStack(Items.SPLASH_POTION, Potions.HARMING),
-			PotionContents.createItemStack(Items.SPLASH_POTION, Potions.STRONG_STRENGTH), new ItemStack(Items.NETHERITE_SCRAP));
+			PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.STRONG_HEALING), PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.FIRE_RESISTANCE));
+	private static final List<ItemStack> SOULFUL_EXTRAS = List.of(new ItemStack(Items.TOTEM_OF_UNDYING), PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.HARMING),
+			PotionUtils.setPotion(new ItemStack(Items.SPLASH_POTION), Potions.STRONG_STRENGTH), new ItemStack(Items.NETHERITE_SCRAP));
 
 	public static List<ItemStack> rewardsForTier(int tier, RandomSource random) {
 		List<ItemStack> rewards = new ArrayList<>();
