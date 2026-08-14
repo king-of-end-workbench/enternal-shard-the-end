@@ -13,12 +13,15 @@ gradle-app.setting
 .eclipse/
 *.iml
 
-# MCreator workspace cache/backups (regenerated locally, not source)
-.mcreator/FullBackup*.zip
-.mcreator/generatorGradleCache
-.mcreator/workspaceBackups/
-.mcreator/imageEditorMetadata/
-.mcreator/modElementThumbnails/
+# MCreator project management files (kept locally, not published) - the
+# actual buildable mod lives entirely under src/
+/.mcreator/
+/elements/
+/models/
+/modifiers/
+/mcreator.gradle
+/end_elemetn.mcreator
+/enternal_shardthe_end.mcreator
 
 # OS
 .DS_Store
