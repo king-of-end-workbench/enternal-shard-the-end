@@ -63,6 +63,10 @@ public class NecrosentRenderer extends MobRenderer<NecrosentEntity, Modelnecrose
 		public AnimatedModel(ModelPart root) {
 			super(root);
 			this.root = root;
+			// watchlingHead/watchlingHeadSkull are a leftover duplicate of the real head/skull,
+			// left over from Watchling's model being used as a starting point in Blockbench -
+			// they sit at the exact same position as head/skull and are never meant to be seen.
+			this.watchlingHead.visible = false;
 		}
 
 		@Override
