@@ -1,38 +1,9 @@
 package net.mcreator.end_elemetn.item;
 
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Tiers;
 
-public class DiamondScythItem extends PickaxeItem {
+public class DiamondScythItem extends AbstractScytheItem {
 	public DiamondScythItem() {
-		super(new Tier() {
-			public int getUses() {
-				return 1561;
-			}
-
-			public float getSpeed() {
-				return 8f;
-			}
-
-			public float getAttackDamageBonus() {
-				return 8f;
-			}
-
-			public int getLevel() {
-				return 3;
-			}
-
-			public int getEnchantmentValue() {
-				return 10;
-			}
-
-			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(Items.DIAMOND));
-			}
-		}, 1, -2.8f, new Item.Properties());
+		super(Tiers.DIAMOND, 10f, -2.8f, 2.8, 6f, 6.0, 15f, 110);
 	}
 }
