@@ -20,7 +20,7 @@ public class EndElemetnModEndBiomes {
 			TheEndBiomes.addHighlandsBiome(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:inverted_forest")), 0.25d);
 			TheEndBiomes.addHighlandsBiome(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:void_plains")), 2.5d);
 			TheEndBiomes.addHighlandsBiome(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:dracora_oasis")), 4.5d);
-			TheEndBiomes.addHighlandsBiome(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:greenstone_springs")), 2.5d);
+			TheEndBiomes.addHighlandsBiome(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:greenstone_springs")), 5.0d);
 		});
 	}
 }

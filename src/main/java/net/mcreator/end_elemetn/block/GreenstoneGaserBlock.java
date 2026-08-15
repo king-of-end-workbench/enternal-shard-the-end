@@ -30,18 +30,20 @@ import java.util.List;
 
 /**
  * Sits at the bottom of a Greenstone Springs lake. Whenever there's water directly above it, it
- * has a random chance each check to erupt: for GEYSER_DURATION_TICKS it shoots water splash and
- * campfire smoke up through the water column, and gently keeps bouncing any living entity
- * standing in that column, like riding a bubble-column fountain.
+ * erupts on a strict cycle: GEYSER_DURATION_TICKS of shooting water splash and campfire smoke up
+ * through the water column (gently bouncing any living entity standing in it, like riding a
+ * bubble-column fountain), then COOLDOWN_TICKS_TOTAL of quiet before erupting again - the cooldown
+ * is a fixed 15s and does not include the eruption's own duration.
  *
  * Registered here (not through EndElemetnModBlocks/Items/Tabs) since those files are regenerated
  * by MCreator on every build and would silently drop a hand-added entry.
  */
 public class GreenstoneGaserBlock extends Block {
 	public static final IntegerProperty ACTIVE_TICKS = IntegerProperty.create("active_ticks", 0, 160);
+	public static final IntegerProperty COOLDOWN_TICKS = IntegerProperty.create("cooldown_ticks", 0, 300);
 
 	private static final int GEYSER_DURATION_TICKS = 160;
-	private static final int ERUPTION_CHANCE = 150;
+	private static final int COOLDOWN_TICKS_TOTAL = 300;
 	private static final double BOUNCE_VELOCITY = 0.32;
 	private static final double COLUMN_RADIUS = 0.4;
 	private static final double COLUMN_HEIGHT = 3.0;
@@ -55,12 +57,12 @@ public class GreenstoneGaserBlock extends Block {
 
 	public GreenstoneGaserBlock() {
 		super(BlockBehaviour.Properties.of().strength(1f, 10f).requiresCorrectToolForDrops());
-		registerDefaultState(this.stateDefinition.any().setValue(ACTIVE_TICKS, 0));
+		registerDefaultState(this.stateDefinition.any().setValue(ACTIVE_TICKS, 0).setValue(COOLDOWN_TICKS, 0));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(ACTIVE_TICKS);
+		builder.add(ACTIVE_TICKS, COOLDOWN_TICKS);
 	}
 
 	@Override
@@ -70,16 +72,14 @@ public class GreenstoneGaserBlock extends Block {
 
 	@Override
 	public boolean isRandomlyTicking(BlockState state) {
-		return state.getValue(ACTIVE_TICKS) == 0;
+		return state.getValue(ACTIVE_TICKS) == 0 && state.getValue(COOLDOWN_TICKS) == 0;
 	}
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		if (state.getValue(ACTIVE_TICKS) > 0)
+		if (state.getValue(ACTIVE_TICKS) > 0 || state.getValue(COOLDOWN_TICKS) > 0)
 			return;
 		if (!level.getFluidState(pos.above()).is(FluidTags.WATER))
-			return;
-		if (random.nextInt(ERUPTION_CHANCE) != 0)
 			return;
 		level.setBlock(pos, state.setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS), 3);
 		level.scheduleTick(pos, this, 1);
@@ -87,14 +87,31 @@ public class GreenstoneGaserBlock extends Block {
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
-		int remaining = state.getValue(ACTIVE_TICKS);
-		if (remaining <= 0)
-			return;
-		erupt(level, pos);
-		remaining--;
-		level.setBlock(pos, state.setValue(ACTIVE_TICKS, remaining), remaining == 0 ? 3 : 2);
-		if (remaining > 0) {
+		int activeRemaining = state.getValue(ACTIVE_TICKS);
+		if (activeRemaining > 0) {
+			erupt(level, pos);
+			activeRemaining--;
+			if (activeRemaining > 0) {
+				level.setBlock(pos, state.setValue(ACTIVE_TICKS, activeRemaining), 2);
+			} else {
+				level.setBlock(pos, state.setValue(ACTIVE_TICKS, 0).setValue(COOLDOWN_TICKS, COOLDOWN_TICKS_TOTAL), 2);
+			}
 			level.scheduleTick(pos, this, 1);
+			return;
+		}
+
+		int cooldownRemaining = state.getValue(COOLDOWN_TICKS);
+		if (cooldownRemaining > 0) {
+			cooldownRemaining--;
+			if (cooldownRemaining > 0) {
+				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, cooldownRemaining), 2);
+				level.scheduleTick(pos, this, 1);
+			} else if (level.getFluidState(pos.above()).is(FluidTags.WATER)) {
+				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, 0).setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS), 3);
+				level.scheduleTick(pos, this, 1);
+			} else {
+				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, 0), 3);
+			}
 		}
 	}
 
