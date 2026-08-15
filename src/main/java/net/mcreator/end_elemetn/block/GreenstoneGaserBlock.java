@@ -41,12 +41,14 @@ import java.util.List;
 public class GreenstoneGaserBlock extends Block {
 	public static final IntegerProperty ACTIVE_TICKS = IntegerProperty.create("active_ticks", 0, 160);
 	public static final IntegerProperty COOLDOWN_TICKS = IntegerProperty.create("cooldown_ticks", 0, 300);
+	public static final IntegerProperty COLUMN_HEIGHT = IntegerProperty.create("column_height", 5, 8);
 
 	private static final int GEYSER_DURATION_TICKS = 160;
 	private static final int COOLDOWN_TICKS_TOTAL = 300;
+	private static final int MIN_COLUMN_HEIGHT = 5;
+	private static final int MAX_COLUMN_HEIGHT = 8;
 	private static final double BOUNCE_VELOCITY = 0.32;
 	private static final double COLUMN_RADIUS = 0.4;
-	private static final double COLUMN_HEIGHT = 3.0;
 
 	public static final DeferredRegister<Block> BLOCK_REGISTRY = DeferredRegister.create(ForgeRegistries.BLOCKS, EndElemetnMod.MODID);
 	public static final RegistryObject<Block> GREENSTONE_GASER = BLOCK_REGISTRY.register("greenstone_gaser", GreenstoneGaserBlock::new);
@@ -57,12 +59,12 @@ public class GreenstoneGaserBlock extends Block {
 
 	public GreenstoneGaserBlock() {
 		super(BlockBehaviour.Properties.of().strength(1f, 10f).requiresCorrectToolForDrops());
-		registerDefaultState(this.stateDefinition.any().setValue(ACTIVE_TICKS, 0).setValue(COOLDOWN_TICKS, 0));
+		registerDefaultState(this.stateDefinition.any().setValue(ACTIVE_TICKS, 0).setValue(COOLDOWN_TICKS, 0).setValue(COLUMN_HEIGHT, MIN_COLUMN_HEIGHT));
 	}
 
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		builder.add(ACTIVE_TICKS, COOLDOWN_TICKS);
+		builder.add(ACTIVE_TICKS, COOLDOWN_TICKS, COLUMN_HEIGHT);
 	}
 
 	@Override
@@ -81,7 +83,8 @@ public class GreenstoneGaserBlock extends Block {
 			return;
 		if (!level.getFluidState(pos.above()).is(FluidTags.WATER))
 			return;
-		level.setBlock(pos, state.setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS), 3);
+		int columnHeight = MIN_COLUMN_HEIGHT + random.nextInt(MAX_COLUMN_HEIGHT - MIN_COLUMN_HEIGHT + 1);
+		level.setBlock(pos, state.setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS).setValue(COLUMN_HEIGHT, columnHeight), 3);
 		level.scheduleTick(pos, this, 1);
 	}
 
@@ -89,7 +92,7 @@ public class GreenstoneGaserBlock extends Block {
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
 		int activeRemaining = state.getValue(ACTIVE_TICKS);
 		if (activeRemaining > 0) {
-			erupt(level, pos);
+			erupt(level, pos, state.getValue(COLUMN_HEIGHT));
 			activeRemaining--;
 			if (activeRemaining > 0) {
 				level.setBlock(pos, state.setValue(ACTIVE_TICKS, activeRemaining), 2);
@@ -107,7 +110,8 @@ public class GreenstoneGaserBlock extends Block {
 				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, cooldownRemaining), 2);
 				level.scheduleTick(pos, this, 1);
 			} else if (level.getFluidState(pos.above()).is(FluidTags.WATER)) {
-				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, 0).setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS), 3);
+				int columnHeight = MIN_COLUMN_HEIGHT + random.nextInt(MAX_COLUMN_HEIGHT - MIN_COLUMN_HEIGHT + 1);
+				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, 0).setValue(ACTIVE_TICKS, GEYSER_DURATION_TICKS).setValue(COLUMN_HEIGHT, columnHeight), 3);
 				level.scheduleTick(pos, this, 1);
 			} else {
 				level.setBlock(pos, state.setValue(COOLDOWN_TICKS, 0), 3);
@@ -115,14 +119,18 @@ public class GreenstoneGaserBlock extends Block {
 		}
 	}
 
-	private void erupt(ServerLevel level, BlockPos pos) {
+	private void erupt(ServerLevel level, BlockPos pos, int columnHeight) {
 		double x = pos.getX() + 0.5;
-		double y = pos.getY() + 1.0;
 		double z = pos.getZ() + 0.5;
-		level.sendParticles(ParticleTypes.SPLASH, x, y, z, 6, 0.3, 0.2, 0.3, 0.15);
-		level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 2, 0.2, 0.3, 0.2, 0.02);
+		for (int i = 1; i <= columnHeight; i++) {
+			double y = pos.getY() + i;
+			level.sendParticles(ParticleTypes.SPLASH, x, y, z, 3, 0.15, 0.1, 0.15, 0.1);
+			if (i == columnHeight) {
+				level.sendParticles(ParticleTypes.CAMPFIRE_COSY_SMOKE, x, y, z, 2, 0.2, 0.2, 0.2, 0.02);
+			}
+		}
 
-		AABB column = new AABB(pos).inflate(COLUMN_RADIUS, 0, COLUMN_RADIUS).expandTowards(0, COLUMN_HEIGHT, 0);
+		AABB column = new AABB(pos).inflate(COLUMN_RADIUS, 0, COLUMN_RADIUS).expandTowards(0, columnHeight, 0);
 		List<LivingEntity> riders = level.getEntitiesOfClass(LivingEntity.class, column, LivingEntity::isAlive);
 		for (LivingEntity rider : riders) {
 			if (rider.getDeltaMovement().y < BOUNCE_VELOCITY) {

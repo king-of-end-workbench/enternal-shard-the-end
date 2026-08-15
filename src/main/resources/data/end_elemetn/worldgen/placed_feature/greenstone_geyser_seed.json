@@ -1,9 +1,9 @@
 {
-  "feature": "end_elemetn:greenstone_spring_lake",
+  "feature": "end_elemetn:greenstone_geyser_seed",
   "placement": [
     {
-      "type": "minecraft:rarity_filter",
-      "chance": 1
+      "type": "minecraft:count",
+      "count": 24
     },
     {
       "type": "minecraft:in_square"
@@ -24,11 +24,22 @@
       "type": "environment_scan",
       "direction_of_search": "down",
       "target_condition": {
-        "type": "minecraft:not",
-        "predicate": {
-          "type": "minecraft:matching_blocks",
-          "blocks": "minecraft:air"
-        }
+        "type": "minecraft:all_of",
+        "predicates": [
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:water"
+          },
+          {
+            "type": "minecraft:matching_blocks",
+            "blocks": "end_elemetn:green_end_cobblestone",
+            "offset": [
+              0,
+              -1,
+              0
+            ]
+          }
+        ]
       },
       "max_steps": 32
     },

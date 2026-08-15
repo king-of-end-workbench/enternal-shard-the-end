@@ -1,4 +1,17 @@
 {
-  "type": "end_elemetn:greenstone_spring_lake",
-  "config": {}
+  "type": "minecraft:lake",
+  "config": {
+    "fluid": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "minecraft:water"
+      }
+    },
+    "barrier": {
+      "type": "minecraft:simple_state_provider",
+      "state": {
+        "Name": "end_elemetn:green_end_cobblestone"
+      }
+    }
+  }
 }

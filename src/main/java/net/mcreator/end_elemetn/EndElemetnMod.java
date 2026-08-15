@@ -18,10 +18,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.mcreator.end_elemetn.world.features.StructureFeature;
+import net.mcreator.end_elemetn.world.features.GreenstoneGeyserSeedFeature;
 import net.mcreator.end_elemetn.world.features.EndWarpedGrassCeilingFeature;
-import net.mcreator.end_elemetn.world.features.GreenstoneSpringLakeFeature;
-import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
 import net.mcreator.end_elemetn.init.*;
+import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -59,7 +59,7 @@ public class EndElemetnMod {
 		EndElemetnModFluidTypes.REGISTRY.register(bus);
 		// Start of user code block mod init
 		EndWarpedGrassCeilingFeature.REGISTRY.register(bus);
-		GreenstoneSpringLakeFeature.REGISTRY.register(bus);
+		GreenstoneGeyserSeedFeature.REGISTRY.register(bus);
 		GreenstoneGaserBlock.BLOCK_REGISTRY.register(bus);
 		GreenstoneGaserBlock.ITEM_REGISTRY.register(bus);
 		// End of user code block mod init
