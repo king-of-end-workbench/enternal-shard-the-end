@@ -32,6 +32,7 @@ public class EndElemetnModSurfaceRules {
 				registerSurfaceRules(new ResourceLocation("end_elemetn:inverted_forest"), noiseGeneratorSettings, Blocks.END_STONE.defaultBlockState(), Blocks.END_STONE.defaultBlockState());
 				registerSurfaceRules(new ResourceLocation("end_elemetn:void_plains"), noiseGeneratorSettings, EndElemetnModBlocks.SHADOW_GRASS.get().defaultBlockState(), EndElemetnModBlocks.PILLARS_OF_SHADOW_WOOD.get().defaultBlockState());
 				registerSurfaceRules(new ResourceLocation("end_elemetn:dracora_oasis"), noiseGeneratorSettings, EndElemetnModBlocks.DRACORA_GRASS.get().defaultBlockState(), Blocks.END_STONE.defaultBlockState());
+				registerSurfaceRules(new ResourceLocation("end_elemetn:greenstone_springs"), noiseGeneratorSettings, EndElemetnModBlocks.GREEN_END_STONE.get().defaultBlockState(), EndElemetnModBlocks.GREEN_END_STONE.get().defaultBlockState());
 			}
 		}
 	}

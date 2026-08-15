@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "end_elemetn:block/gaser",
+    "up": "end_elemetn:block/gaser",
+    "north": "end_elemetn:block/gaser",
+    "east": "end_elemetn:block/gaser",
+    "south": "end_elemetn:block/gaser",
+    "west": "end_elemetn:block/gaser",
+    "particle": "end_elemetn:block/gaser"
+  },
+  "render_type": "solid"
+}

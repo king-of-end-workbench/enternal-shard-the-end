@@ -186,6 +186,8 @@
   "block.end_elemetn.chiseled_purpur": "Chiseled Purpur",
   "item.end_elemetn.crystallized_purpur": "Crystallized Purpur",
   "biome.end_elemetn.inverted_forest": "Inverted Forest",
+  "biome.end_elemetn.greenstone_springs": "Greenstone Springs",
+  "block.end_elemetn.greenstone_gaser": "Greenstone Geyser",
   "effect.end_elemetn.trade_accept": "Trade Accept",
   "item.end_elemetn.tradling_spawn_egg": "Tradling Spawn Egg",
   "entity.end_elemetn.tradling": "Tradling",
