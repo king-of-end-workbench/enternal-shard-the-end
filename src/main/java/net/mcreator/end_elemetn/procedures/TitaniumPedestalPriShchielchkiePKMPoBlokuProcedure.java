@@ -1,7 +1,5 @@
 package net.mcreator.end_elemetn.procedures;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.ItemStack;
@@ -11,56 +9,29 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.core.BlockPos;
 
 import net.mcreator.end_elemetn.init.EndElemetnModItems;
+import net.mcreator.end_elemetn.block.entity.TitaniumPedestalBlockEntity;
 
 public class TitaniumPedestalPriShchielchkiePKMPoBlokuProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == EndElemetnModItems.ENDERITE.get() && getBlockNBTNumber(world, BlockPos.containing(x, y, z), "points") != 4) {
-			if (!world.isClientSide()) {
-				BlockPos _bp = BlockPos.containing(x, y, z);
-				BlockEntity _blockEntity = world.getBlockEntity(_bp);
-				BlockState _bs = world.getBlockState(_bp);
-				if (_blockEntity != null) {
-					_blockEntity.getPersistentData().putDouble("points", (getBlockNBTNumber(world, BlockPos.containing(x, y, z), "points") + 1));
-				}
-				if (world instanceof Level _level)
-					_level.sendBlockUpdated(_bp, _bs, _bs, 3);
-			}
-		} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == EndElemetnModItems.STAR.get()) {
-			if (!world.isClientSide()) {
-				BlockPos _bp = BlockPos.containing(x, y, z);
-				BlockEntity _blockEntity = world.getBlockEntity(_bp);
-				BlockState _bs = world.getBlockState(_bp);
-				if (_blockEntity != null) {
-					_blockEntity.getPersistentData().putDouble("points", 5);
-				}
-				if (world instanceof Level _level)
-					_level.sendBlockUpdated(_bp, _bs, _bs, 3);
-			}
-		} else if ((entity.level().dimension()) == Level.END) {
-			if (entity instanceof ServerPlayer _serverPlayer)
-				_serverPlayer.setRespawnPosition(_serverPlayer.level().dimension(), BlockPos.containing(x, y, z), _serverPlayer.getYRot(), true, false);
-			if (!world.isClientSide()) {
-				BlockPos _bp = BlockPos.containing(x, y, z);
-				BlockEntity _blockEntity = world.getBlockEntity(_bp);
-				BlockState _bs = world.getBlockState(_bp);
-				if (_blockEntity != null) {
-					_blockEntity.getPersistentData().putDouble("points", (getBlockNBTNumber(world, BlockPos.containing(x, y, z), "points") - 1));
-				}
-				if (world instanceof Level _level)
-					_level.sendBlockUpdated(_bp, _bs, _bs, 3);
-			}
-		} else {
-			if (world instanceof Level _level && !_level.isClientSide())
-				_level.explode(null, x, y, z, 9, Level.ExplosionInteraction.BLOCK);
-		}
-	}
+		BlockPos pos = BlockPos.containing(x, y, z);
+		ItemStack heldItem = entity instanceof LivingEntity livingEntity ? livingEntity.getMainHandItem() : ItemStack.EMPTY;
 
-	private static double getBlockNBTNumber(LevelAccessor world, BlockPos pos, String tag) {
-		BlockEntity blockEntity = world.getBlockEntity(pos);
-		if (blockEntity != null)
-			return blockEntity.getPersistentData().getDouble(tag);
-		return -1;
+		if (heldItem.getItem() == EndElemetnModItems.ENDERITE.get()) {
+			if (!world.isClientSide() && world.getBlockEntity(pos) instanceof TitaniumPedestalBlockEntity pedestal) {
+				pedestal.addCrystalCharge();
+			}
+		} else if (heldItem.getItem() == EndElemetnModItems.STAR.get()) {
+			if (!world.isClientSide() && world.getBlockEntity(pos) instanceof TitaniumPedestalBlockEntity pedestal) {
+				pedestal.setStarCharge();
+			}
+		} else if (entity.level().dimension() == Level.END) {
+			if (entity instanceof ServerPlayer serverPlayer)
+				serverPlayer.setRespawnPosition(serverPlayer.level().dimension(), pos, serverPlayer.getYRot(), true, false);
+		} else {
+			if (world instanceof Level level && !level.isClientSide())
+				level.explode(null, x, y, z, 9, Level.ExplosionInteraction.BLOCK);
+		}
 	}
 }

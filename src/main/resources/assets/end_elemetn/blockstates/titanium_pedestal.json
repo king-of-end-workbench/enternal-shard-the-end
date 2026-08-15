@@ -1,19 +1,25 @@
 {
   "variants": {
     "blockstate=0": {
-      "model": "end_elemetn:block/titanium_pedestal"
+      "model": "end_elemetn:block/titanium_pedestal_inactive"
     },
     "blockstate=1": {
-      "model": "end_elemetn:block/pedestallll_blockstate_0"
+      "model": "end_elemetn:block/titanium_pedestal_active"
     },
     "blockstate=2": {
-      "model": "end_elemetn:block/pedestallll_blockstate_1"
+      "model": "end_elemetn:block/titanium_pedestal_one"
     },
     "blockstate=3": {
-      "model": "end_elemetn:block/pedestallll_blockstate_2"
+      "model": "end_elemetn:block/titanium_pedestal_two"
     },
     "blockstate=4": {
-      "model": "end_elemetn:block/pedestallll_blockstate_3"
+      "model": "end_elemetn:block/titanium_pedestal_three"
+    },
+    "blockstate=5": {
+      "model": "end_elemetn:block/titanium_pedestal_four"
+    },
+    "blockstate=6": {
+      "model": "end_elemetn:block/titanium_pedestal_star"
     }
   }
 }

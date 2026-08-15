@@ -1,0 +1,9 @@
+{
+  "parent": "end_elemetn:custom/pedestal",
+  "textures": {
+    "all": "end_elemetn:block/pedestal_active",
+    "particle": "end_elemetn:block/pedestal_active",
+    "2": "end_elemetn:block/pedestal_active"
+  },
+  "render_type": "cutout"
+}

@@ -31,8 +31,64 @@ public class TitaniumPedestalBlockEntity extends RandomizableContainerBlockEntit
 	private NonNullList<ItemStack> stacks = NonNullList.withSize(9, ItemStack.EMPTY);
 	private final LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.values());
 
+	public static final int MAX_CRYSTAL_CHARGES = 5;
+	public static final int STAR_CHARGES = 6;
+
+	private int charges = 0;
+	private boolean viaStar = false;
+
 	public TitaniumPedestalBlockEntity(BlockPos position, BlockState state) {
 		super(EndElemetnModBlockEntities.TITANIUM_PEDESTAL.get(), position, state);
+	}
+
+	public int getCharges() {
+		return charges;
+	}
+
+	public boolean isViaStar() {
+		return viaStar;
+	}
+
+	/** 0=inactive, 1=active, 2..5=one..four (crystal count), 6=star. */
+	public int getDisplayIndex() {
+		if (charges <= 0)
+			return 0;
+		return viaStar ? 6 : charges;
+	}
+
+	public void addCrystalCharge() {
+		if (!viaStar && charges < MAX_CRYSTAL_CHARGES)
+			charges++;
+		syncToClient();
+	}
+
+	public void setStarCharge() {
+		charges = STAR_CHARGES;
+		viaStar = true;
+		syncToClient();
+	}
+
+	/** Called when a respawn actually consumes one charge of this pedestal. Returns true if a charge was spent. */
+	public boolean consumeCharge() {
+		if (charges <= 0)
+			return false;
+		charges--;
+		if (charges <= 0)
+			viaStar = false;
+		syncToClient();
+		return true;
+	}
+
+	private void syncToClient() {
+		setChanged();
+		if (level != null) {
+			BlockState state = getBlockState();
+			if (state.getBlock() instanceof net.mcreator.end_elemetn.block.TitaniumPedestalBlock) {
+				int index = getDisplayIndex();
+				if (state.getValue(net.mcreator.end_elemetn.block.TitaniumPedestalBlock.BLOCKSTATE) != index)
+					level.setBlock(getBlockPos(), state.setValue(net.mcreator.end_elemetn.block.TitaniumPedestalBlock.BLOCKSTATE, index), 3);
+			}
+		}
 	}
 
 	@Override
@@ -41,6 +97,8 @@ public class TitaniumPedestalBlockEntity extends RandomizableContainerBlockEntit
 		if (!this.tryLoadLootTable(compound))
 			this.stacks = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(compound, this.stacks);
+		this.charges = compound.getInt("Charges");
+		this.viaStar = compound.getBoolean("ViaStar");
 	}
 
 	@Override
@@ -49,6 +107,8 @@ public class TitaniumPedestalBlockEntity extends RandomizableContainerBlockEntit
 		if (!this.trySaveLootTable(compound)) {
 			ContainerHelper.saveAllItems(compound, this.stacks);
 		}
+		compound.putInt("Charges", this.charges);
+		compound.putBoolean("ViaStar", this.viaStar);
 	}
 
 	@Override
