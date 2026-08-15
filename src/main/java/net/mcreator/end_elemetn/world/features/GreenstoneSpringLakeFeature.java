@@ -47,6 +47,14 @@ public class GreenstoneSpringLakeFeature extends Feature<NoneFeatureConfiguratio
 		BlockState rimState = EndElemetnModBlocks.GREEN_END_COBBLESTONE.get().defaultBlockState();
 		BlockState geyserState = GreenstoneGaserBlock.GREENSTONE_GASER.get().defaultBlockState();
 
+		// Never read/write outside the chunk currently being decorated - reaching into a
+		// neighboring chunk here (e.g. via getHeight) can throw "Requested chunk unavailable
+		// during world generation" if that chunk isn't generated far enough yet.
+		int chunkMinX = Math.floorDiv(origin.getX(), 16) * 16;
+		int chunkMinZ = Math.floorDiv(origin.getZ(), 16) * 16;
+		int chunkMaxX = chunkMinX + 15;
+		int chunkMaxZ = chunkMinZ + 15;
+
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
 		boolean placedAny = false;
 
@@ -57,6 +65,8 @@ public class GreenstoneSpringLakeFeature extends Feature<NoneFeatureConfiguratio
 					continue;
 				int x = origin.getX() + dx;
 				int z = origin.getZ() + dz;
+				if (x < chunkMinX || x > chunkMaxX || z < chunkMinZ || z > chunkMaxZ)
+					continue;
 				int surfaceY = level.getHeight(Heightmap.Types.WORLD_SURFACE, x, z) - 1;
 				if (surfaceY <= level.getMinBuildHeight())
 					continue;

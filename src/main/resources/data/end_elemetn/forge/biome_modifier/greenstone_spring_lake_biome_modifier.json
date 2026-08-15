@@ -2,5 +2,5 @@
   "type": "forge:add_features",
   "biomes": "end_elemetn:greenstone_springs",
   "features": "end_elemetn:greenstone_spring_lake",
-  "step": "lakes"
+  "step": "vegetal_decoration"
 }
