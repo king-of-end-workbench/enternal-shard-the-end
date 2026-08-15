@@ -19,6 +19,7 @@ import net.minecraft.network.FriendlyByteBuf;
 
 import net.mcreator.end_elemetn.world.features.StructureFeature;
 import net.mcreator.end_elemetn.world.features.GreenstoneGeyserSeedFeature;
+import net.mcreator.end_elemetn.world.features.EndSafeLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndWarpedGrassCeilingFeature;
 import net.mcreator.end_elemetn.init.*;
 import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
@@ -62,6 +63,7 @@ public class EndElemetnMod {
 		GreenstoneGeyserSeedFeature.REGISTRY.register(bus);
 		GreenstoneGaserBlock.BLOCK_REGISTRY.register(bus);
 		GreenstoneGaserBlock.ITEM_REGISTRY.register(bus);
+		EndSafeLakeFeature.REGISTRY.register(bus);
 		// End of user code block mod init
 	}
 
