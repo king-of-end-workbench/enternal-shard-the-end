@@ -32,7 +32,7 @@
           },
           {
             "type": "minecraft:matching_blocks",
-            "blocks": "end_elemetn:green_end_cobblestone",
+            "blocks": "end_elemetn:green_end_stone",
             "offset": [
               0,
               -1,

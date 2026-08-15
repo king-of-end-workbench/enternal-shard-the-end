@@ -20,10 +20,10 @@ import com.mojang.serialization.Codec;
 
 /**
  * Placed many times per chunk, each attempt landing on a column of water. If the block directly
- * below that water is Green End Cobblestone (the Greenstone Spring lake's barrier block, i.e.
- * this is genuinely part of a lake floor, not just any water), there's a small chance to replace
- * it with a Greenstone Geyser - so a lake ends up with a scattering of geysers on its floor
- * instead of exactly one guaranteed geyser in the same spot every time.
+ * below that water is Green End Stone (the biome's natural floor - the lake's barrier block only
+ * lines its rim, not the submerged floor, so checking for that never matched), there's a small
+ * chance to replace it with a Greenstone Geyser - so a lake ends up with a scattering of geysers
+ * on its floor instead of exactly one guaranteed geyser in the same spot every time.
  */
 public class GreenstoneGeyserSeedFeature extends Feature<NoneFeatureConfiguration> {
 	public static final DeferredRegister<Feature<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.FEATURES, EndElemetnMod.MODID);
@@ -41,7 +41,7 @@ public class GreenstoneGeyserSeedFeature extends Feature<NoneFeatureConfiguratio
 		BlockPos water = context.origin();
 		BlockPos floorPos = water.below();
 		BlockState floorState = level.getBlockState(floorPos);
-		if (!floorState.is(EndElemetnModBlocks.GREEN_END_COBBLESTONE.get()))
+		if (!floorState.is(EndElemetnModBlocks.GREEN_END_STONE.get()))
 			return false;
 
 		RandomSource random = context.random();
