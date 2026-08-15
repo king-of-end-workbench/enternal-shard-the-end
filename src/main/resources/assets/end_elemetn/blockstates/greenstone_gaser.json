@@ -1,9 +1,7 @@
 {
-  "multipart": [
-    {
-      "apply": {
-        "model": "end_elemetn:block/greenstone_gaser"
-      }
+  "variants": {
+    "": {
+      "model": "end_elemetn:block/greenstone_gaser"
     }
-  ]
+  }
 }

@@ -23,6 +23,7 @@ import net.mcreator.end_elemetn.world.features.EndSafeLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndWarpedGrassCeilingFeature;
 import net.mcreator.end_elemetn.init.*;
 import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
+import net.mcreator.end_elemetn.block.entity.GreenstoneGaserBlockEntity;
 
 import java.util.function.Supplier;
 import java.util.function.Function;
@@ -64,6 +65,7 @@ public class EndElemetnMod {
 		GreenstoneGaserBlock.BLOCK_REGISTRY.register(bus);
 		GreenstoneGaserBlock.ITEM_REGISTRY.register(bus);
 		EndSafeLakeFeature.REGISTRY.register(bus);
+		GreenstoneGaserBlockEntity.REGISTRY.register(bus);
 		// End of user code block mod init
 	}
 
