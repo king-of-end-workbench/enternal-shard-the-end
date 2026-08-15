@@ -1,5 +1,5 @@
 {
-  "type": "end_elemetn:safe_lake",
+  "type": "end_elemetn:greenstone_geyser_lake",
   "config": {
     "fluid": {
       "type": "minecraft:simple_state_provider",
