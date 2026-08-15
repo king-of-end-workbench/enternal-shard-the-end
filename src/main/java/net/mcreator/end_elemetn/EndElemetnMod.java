@@ -22,6 +22,7 @@ import net.mcreator.end_elemetn.world.features.GreenstoneSpringLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndSafeLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndWarpedGrassCeilingFeature;
 import net.mcreator.end_elemetn.world.features.GreenEndStoneReskinFeature;
+import net.mcreator.end_elemetn.world.features.PillarsOfShadowReskinFeature;
 import net.mcreator.end_elemetn.init.*;
 import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
 import net.mcreator.end_elemetn.block.entity.GreenstoneGaserBlockEntity;
@@ -68,6 +69,7 @@ public class EndElemetnMod {
 		EndSafeLakeFeature.REGISTRY.register(bus);
 		GreenstoneGaserBlockEntity.REGISTRY.register(bus);
 		GreenEndStoneReskinFeature.REGISTRY.register(bus);
+		PillarsOfShadowReskinFeature.REGISTRY.register(bus);
 		// End of user code block mod init
 	}
 
