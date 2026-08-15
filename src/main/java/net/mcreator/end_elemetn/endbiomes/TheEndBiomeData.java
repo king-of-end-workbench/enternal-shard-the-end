@@ -41,6 +41,20 @@ public final class TheEndBiomeData {
 	private TheEndBiomeData() {
 	}
 
+	private static ResourceKey<Biome> lowYOverrideBiome;
+	private static int lowYOverrideMaxY = Integer.MIN_VALUE;
+
+	/**
+	 * Forces {@code biome} to be picked instead of the normal weighted highlands replacement for
+	 * any column resolved at or below {@code maxY} - lets a biome anchor itself to a vertical band
+	 * (e.g. the empty void near the bottom of the world) regardless of the horizontal noise-based
+	 * replacement pool that otherwise decides which custom biome a "highlands" column gets.
+	 */
+	public static void setLowYBiomeOverride(ResourceKey<Biome> biome, int maxY) {
+		lowYOverrideBiome = biome;
+		lowYOverrideMaxY = maxY;
+	}
+
 	public static void addEndBiomeReplacement(ResourceKey<Biome> replaced, ResourceKey<Biome> variant, double weight) {
 		Preconditions.checkNotNull(replaced, "replaced entry is null");
 		Preconditions.checkNotNull(variant, "variant entry is null");
@@ -83,6 +97,7 @@ public final class TheEndBiomeData {
 		public @Nullable Map<Holder<Biome>, WeightedPicker<Holder<Biome>>> endBiomesMap;
 		public @Nullable Map<Holder<Biome>, WeightedPicker<Holder<Biome>>> endMidlandsMap;
 		public @Nullable Map<Holder<Biome>, WeightedPicker<Holder<Biome>>> endBarrensMap;
+		public @Nullable Holder<Biome> lowYOverrideBiomeHolder;
 		// cache for our own sampler (used for random biome replacement selection)
 		private final Map<Climate.Sampler, ImprovedNoise> samplers = new WeakHashMap<>();
 		// Object lists used for mod compatibility
@@ -95,6 +110,7 @@ public final class TheEndBiomeData {
 			this.endMidlands = biomeRegistry.getOrThrow(Biomes.END_MIDLANDS);
 			this.endBarrens = biomeRegistry.getOrThrow(Biomes.END_BARRENS);
 			this.endHighlands = biomeRegistry.getOrThrow(Biomes.END_HIGHLANDS);
+			this.lowYOverrideBiomeHolder = lowYOverrideBiome != null ? biomeRegistry.getOrThrow(lowYOverrideBiome) : null;
 			this.endBiomesCopy = List.copyOf(endBiomes);
 			this.midlandsBiomesCopy = List.copyOf(midlandsBiomes);
 			this.barrensBiomesCopy = List.copyOf(barrensBiomes);
@@ -134,6 +150,9 @@ public final class TheEndBiomeData {
 		}
 
 		public Holder<Biome> pick(int x, int y, int z, Climate.Sampler noise, Holder<Biome> vanillaBiome) {
+			if (lowYOverrideBiomeHolder != null && y <= lowYOverrideMaxY && vanillaBiome.is(endHighlands::is)) {
+				return lowYOverrideBiomeHolder;
+			}
 			boolean isMidlands = vanillaBiome.is(endMidlands::is);
 			if (isMidlands || vanillaBiome.is(endBarrens::is)) {
 				// select a random highlands biome replacement, then try to replace it with a midlands or barrens biome replacement

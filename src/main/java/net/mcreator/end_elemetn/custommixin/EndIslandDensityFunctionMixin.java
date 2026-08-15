@@ -115,6 +115,23 @@ public abstract class EndIslandDensityFunctionMixin {
 		// weak signals (like small_end_islands, which are deliberately faint in vanilla) still
 		// count as "a real island" and get scattered too, instead of being skipped entirely.
 		if (capped < 0.002) {
+			// Void Plains islands: a deliberately common (unlike the rare debris chunks below),
+			// mode-independent landmass clustered near the bottom of the world, in columns that
+			// otherwise have no natural island signal at all. TheEndBiomeData forces any "highlands"
+			// column being resolved down here to pick end_elemetn:void_plains regardless of the
+			// normal horizontal replacement pool, so these islands are always that biome.
+			double voidPlainsPick = this.islandNoise.getValue(x * 0.02 + 12000, z * 0.02 + 12000);
+			if (voidPlainsPick > 0.55) {
+				double voidPlainsTargetY = 15.0 + (this.islandNoise.getValue(x * 0.006 + 12500, z * 0.006 + 12500) + 1.0) * 0.5 * 20.0; // ~15..35
+				double voidPlainsDist = Math.abs(y - voidPlainsTargetY);
+				double voidPlainsNeed = requiredThreshold(y) + 1.0 - capped;
+				if (voidPlainsNeed > 0.0) {
+					double voidPlainsEnvelope = Math.max(0.0, 1.0 - voidPlainsDist / 12.0);
+					cir.setReturnValue(capped + voidPlainsNeed * voidPlainsEnvelope);
+					return;
+				}
+			}
+
 			double debrisThreshold = chaotic ? 0.76 : 0.97;
 			double debrisSpread = chaotic ? 225.0 : 60.0;
 			// Calm-mode debris uses a much finer pick frequency (0.015 vs chaotic's 0.0025) so a
