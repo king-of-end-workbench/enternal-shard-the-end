@@ -13,9 +13,13 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionHand;
@@ -25,6 +29,9 @@ import net.minecraft.core.BlockPos;
 
 import net.mcreator.end_elemetn.procedures.TitaniumPedestalPriShchielchkiePKMPoBlokuProcedure;
 import net.mcreator.end_elemetn.block.entity.TitaniumPedestalBlockEntity;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class TitaniumPedestalBlock extends Block implements EntityBlock {
 	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 6);
@@ -72,6 +79,21 @@ public class TitaniumPedestalBlock extends Block implements EntityBlock {
 		Direction direction = hit.getDirection();
 		TitaniumPedestalPriShchielchkiePKMPoBlokuProcedure.execute(world, x, y, z, entity);
 		return InteractionResult.SUCCESS;
+	}
+
+	/**
+	 * Vanilla only recognizes BedBlock/RespawnAnchorBlock by hardcoded instanceof checks; any other
+	 * block needs to opt in here. This override is only ever consulted when setRespawnPosition was
+	 * called with forced=false - the pedestal's right-click procedure passes false for exactly this
+	 * reason (forced=true skips straight to a generic "can the player stand here" check instead,
+	 * which a solid pedestal always fails).
+	 */
+	@Override
+	public Optional<Vec3> getRespawnPosition(BlockState state, EntityType<?> type, LevelReader levelReader, BlockPos pos, float orientation, @Nullable LivingEntity entity) {
+		if (levelReader.getBlockEntity(pos) instanceof TitaniumPedestalBlockEntity pedestal && pedestal.getCharges() > 0) {
+			return Optional.of(new Vec3(pos.getX() + 0.5, pos.getY() + 1.1, pos.getZ() + 0.5));
+		}
+		return Optional.empty();
 	}
 
 	@Override

@@ -28,7 +28,7 @@ public class TitaniumPedestalPriShchielchkiePKMPoBlokuProcedure {
 			}
 		} else if (entity.level().dimension() == Level.END) {
 			if (entity instanceof ServerPlayer serverPlayer)
-				serverPlayer.setRespawnPosition(serverPlayer.level().dimension(), pos, serverPlayer.getYRot(), true, false);
+				serverPlayer.setRespawnPosition(serverPlayer.level().dimension(), pos, serverPlayer.getYRot(), false, false);
 		} else {
 			if (world instanceof Level level && !level.isClientSide())
 				level.explode(null, x, y, z, 9, Level.ExplosionInteraction.BLOCK);
