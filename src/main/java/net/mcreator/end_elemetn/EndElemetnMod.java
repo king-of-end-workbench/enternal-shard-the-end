@@ -15,8 +15,6 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.FriendlyByteBuf;
 
 import net.mcreator.end_elemetn.world.features.StructureFeature;
@@ -24,7 +22,6 @@ import net.mcreator.end_elemetn.world.features.GreenstoneSpringLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndSafeLakeFeature;
 import net.mcreator.end_elemetn.world.features.EndWarpedGrassCeilingFeature;
 import net.mcreator.end_elemetn.world.features.GreenEndStoneReskinFeature;
-import net.mcreator.end_elemetn.endbiomes.TheEndBiomeData;
 import net.mcreator.end_elemetn.init.*;
 import net.mcreator.end_elemetn.block.GreenstoneGaserBlock;
 import net.mcreator.end_elemetn.block.entity.GreenstoneGaserBlockEntity;
@@ -71,7 +68,6 @@ public class EndElemetnMod {
 		EndSafeLakeFeature.REGISTRY.register(bus);
 		GreenstoneGaserBlockEntity.REGISTRY.register(bus);
 		GreenEndStoneReskinFeature.REGISTRY.register(bus);
-		TheEndBiomeData.setLowYBiomeOverride(ResourceKey.create(Registries.BIOME, new ResourceLocation("end_elemetn:void_plains")), 48);
 		// End of user code block mod init
 	}
 
