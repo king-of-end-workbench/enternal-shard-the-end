@@ -2,5 +2,5 @@
   "type": "forge:add_features",
   "biomes": "end_elemetn:dracora_oasis",
   "features": "end_elemetn:end_oasis_lake",
-  "step": "lakes"
+  "step": "vegetal_decoration"
 }
